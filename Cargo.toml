@@ -41,4 +41,11 @@ rpath = false
 [features]
 no_std = ["hashbrown"]
 no_thread = []
-simd
+simd = ["packed_simd"]
+
+[dependencies]
+bincode = "^1.3"
+fixedbitset = "0.4.0"
+hashbrown = {version = "0.11.2", optional = true}
+log = "^0.4"
+num = "0.
