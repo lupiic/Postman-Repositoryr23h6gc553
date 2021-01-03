@@ -5,4 +5,10 @@ license = "Apache-2.0"
 name = "hora"
 version = "0.1.1"
 
-description = "Hora 
+description = "Hora Search Everywhere"
+homepage = "https://horasearch.com"
+readme = "README.md"
+repository = "https://github.com/hora-search/hora"
+
+categories = ["algorithms", "data-structures"]
+keywords = [
