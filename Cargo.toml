@@ -30,4 +30,15 @@ rpath = false
 [profile.release]
 codegen-units = 1
 debug = false
-debug-asserti
+debug-assertions = false
+incremental = false
+lto = "fat"
+opt-level = 3
+overflow-checks = false
+panic = 'unwind'
+rpath = false
+
+[features]
+no_std = ["hashbrown"]
+no_thread = []
+simd
