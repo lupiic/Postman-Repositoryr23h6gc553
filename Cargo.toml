@@ -20,4 +20,14 @@ all-features = true
 codegen-units = 4
 debug = 1
 debug-assertions = true
-inc
+incremental = true
+lto = false
+opt-level = 0
+overflow-checks = false
+panic = 'unwind'
+rpath = false
+
+[profile.release]
+codegen-units = 1
+debug = false
+debug-asserti
