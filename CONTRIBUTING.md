@@ -30,3 +30,5 @@ cargo test --lib
 
 ```bash
 cd examples
+cargo run
+```
