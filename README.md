@@ -14,4 +14,8 @@
 
 Hora is an **approximate nearest neighbor search algorithm** ([wiki](https://en.wikipedia.org/wiki/Nearest_neighbor_search)) library. We implement all code in `Rust🦀` for reliability, high level abstraction and high speeds comparable to `C++`.
 
-Hora, **`「ほら」`** in Japanese, sounds like `[hōlə]`
+Hora, **`「ほら」`** in Japanese, sounds like `[hōlə]`, and means `Wow`, `You see!` or `Look at that!`. The name is inspired by a famous Japanese song **`「小さな恋のうた」`**.
+
+# Demos
+
+**👩 Face-Match [[online demo](https://horasear
