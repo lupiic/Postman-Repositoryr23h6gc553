@@ -33,3 +33,9 @@ Hora, **`「ほら」`** in Japanese, sounds like `[hōlə]`, and means `Wow`, `
 # Features
 
 - **Performant** ⚡️
+
+  - **SIMD-Accelerated ([packed_simd](https://github.com/rust-lang/packed_simd))**
+  - **Stable algorithm implementation**
+  - **Multiple threads design**
+
+- **Supports Multiple Languages
