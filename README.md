@@ -38,4 +38,14 @@ Hora, **`「ほら」`** in Japanese, sounds like `[hōlə]`, and means `Wow`, `
   - **Stable algorithm implementation**
   - **Multiple threads design**
 
-- **Supports Multiple Languages
+- **Supports Multiple Languages** ☄️
+
+  - `Python`
+  - `Javascript`
+  - `Java`
+  - `Go` (WIP)
+  - `Ruby` (WIP)
+  - `Swift` (WIP)
+  - `R` (WIP)
+  - `Julia` (WIP)
+  - **Can also be used as a servic
