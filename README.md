@@ -53,4 +53,5 @@ Hora, **`「ほら」`** in Japanese, sounds like `[hōlə]`, and means `Wow`, `
 - **Supports Multiple Indexes** 🚀
 
   - `Hierarchical Navigable Small World Graph Index (HNSWIndex)` ([details](https://arxiv.org/abs/1603.09320))
-  - `Satellite 
+  - `Satellite System Graph (SSGIndex)` ([details](https://arxiv.org/abs/1907.06146))
+  - `Product Quantization Inverted File(PQIVFIndex)` ([details](https://lear.inrialpes.f
