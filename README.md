@@ -48,4 +48,9 @@ Hora, **`「ほら」`** in Japanese, sounds like `[hōlə]`, and means `Wow`, `
   - `Swift` (WIP)
   - `R` (WIP)
   - `Julia` (WIP)
-  - **Can also be used as a servic
+  - **Can also be used as a service**
+
+- **Supports Multiple Indexes** 🚀
+
+  - `Hierarchical Navigable Small World Graph Index (HNSWIndex)` ([details](https://arxiv.org/abs/1603.09320))
+  - `Satellite 
