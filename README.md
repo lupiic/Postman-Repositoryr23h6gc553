@@ -56,4 +56,10 @@ Hora, **`「ほら」`** in Japanese, sounds like `[hōlə]`, and means `Wow`, `
   - `Satellite System Graph (SSGIndex)` ([details](https://arxiv.org/abs/1907.06146))
   - `Product Quantization Inverted File(PQIVFIndex)` ([details](https://lear.inrialpes.fr/pubs/2011/JDS11/jegou_searching_with_quantization.pdf))
   - `Random Projection Tree(RPTIndex)` (LSH, WIP)
-  - `BruteForce (BruteForceIndex)` (naive impl
+  - `BruteForce (BruteForceIndex)` (naive implementation with SIMD)
+
+- **Portable** 💼
+
+  - Supports `WebAssembly`
+  - Supports `Windows`, `Linux` and `OS X`
+  - Supports `IOS` and `Android`
