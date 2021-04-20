@@ -69,3 +69,10 @@ Hora, **`「ほら」`** in Japanese, sounds like `[hōlə]`, and means `Wow`, `
 - **Reliability** 🔒
 
   - `Rust` compiler secures all code
+  - Memory managed by `Rust` for all language libraries such as `Python's`
+  - Broad testing coverage
+
+- **Supports Multiple Distances** 🧮
+
+  - `Dot Product Distance`
+    - ![equa
