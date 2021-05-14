@@ -110,4 +110,13 @@ $ pip install horapy
 $ npm i horajs
 ```
 
-**`Bui
+**`Building from source`**
+
+```bash
+$ git clone https://github.com/hora-search/hora
+$ cargo build
+```
+
+# Benchmarks
+
+<img src="asset/fashion-mnist-784-eucli
