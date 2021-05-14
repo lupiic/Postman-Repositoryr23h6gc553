@@ -91,4 +91,23 @@ Hora, **`「ほら」`** in Japanese, sounds like `[hōlə]`, and means `Wow`, `
 
 **`Rust`**
 
-in `Cargo.toml
+in `Cargo.toml`
+
+```toml
+[dependencies]
+hora = "0.1.1"
+```
+
+**`Python`**
+
+```Bash
+$ pip install horapy
+```
+
+**`Javascript (WebAssembly)`**
+
+```Bash
+$ npm i horajs
+```
+
+**`Bui
