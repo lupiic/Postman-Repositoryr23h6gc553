@@ -128,4 +128,13 @@ by `aws t2.medium (CPU: Intel(R) Xeon(R) CPU E5-2686 v4 @ 2.30GHz)` [more inform
 **`Rust` example** [[more info](https://github.com/hora-search/hora/tree/main/examples)]
 
 ```Rust
-use hora::core::ann_index::ANNIn
+use hora::core::ann_index::ANNIndex;
+use rand::{thread_rng, Rng};
+use rand_distr::{Distribution, Normal};
+
+pub fn demo() {
+    let n = 1000;
+    let dimension = 64;
+
+    // make sample points
+    let mu
