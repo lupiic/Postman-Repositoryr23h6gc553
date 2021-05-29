@@ -141,4 +141,10 @@ pub fn demo() {
     let normal = Normal::new(0.0, 10.0).unwrap();
     for _i in 0..n {
         let mut sample = Vec::with_capacity(dimension);
-        f
+        for _j in 0..dimension {
+            sample.push(normal.sample(&mut rand::thread_rng()));
+        }
+        samples.push(sample);
+    }
+
+    // i
