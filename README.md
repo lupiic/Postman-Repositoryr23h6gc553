@@ -147,4 +147,7 @@ pub fn demo() {
         samples.push(sample);
     }
 
-    // i
+    // init index
+    let mut index = hora::index::hnsw_idx::HNSWIndex::<f32, usize>::new(
+        dimension,
+        &hora::index::hnsw_params::HNSWParams::<f32
