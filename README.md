@@ -156,4 +156,8 @@ pub fn demo() {
         // add point
         index.add(sample, i).unwrap();
     }
-    index.
+    index.build(hora::core::metrics::Metric::Euclidean).unwrap();
+
+    let mut rng = thread_rng();
+    let target: usize = rng.gen_range(0..n);
+    // 523 has neighbors: [523, 762,
