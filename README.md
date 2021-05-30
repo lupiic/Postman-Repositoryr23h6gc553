@@ -164,4 +164,9 @@ pub fn demo() {
     println!(
         "{:?} has neighbors: {:?}",
         target,
-        index.search(&samples[target], 10) // sear
+        index.search(&samples[target], 10) // search for k nearest neighbors
+    );
+}
+```
+
+thank @vaaaaanquish for this complete pure `Rust 🦀` image search [example](https://github.com/vaaaaanquish/rust-ann-search-example), For 
