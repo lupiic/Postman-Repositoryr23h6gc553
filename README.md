@@ -192,4 +192,10 @@ index.build("euclidean")  # build index
 
 target = np.random.randint(0, n)
 # 410 in Hora ANNIndex <HNSWIndexUsize> (dimension: 50, dtype: usize, max_item: 1000000, n_neigh: 32, n_neigh0: 64, ef_build: 20, ef_search: 500, has_deletion: False)
-# has neighbors: [410, 736, 65, 
+# has neighbors: [410, 736, 65, 36, 631, 83, 111, 254, 990, 161]
+print("{} in {} \nhas neighbors: {}".format(
+    target, index, index.search(samples[target], 10)))  # search
+
+```
+
+**`JavaScr
