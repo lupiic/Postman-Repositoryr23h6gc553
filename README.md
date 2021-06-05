@@ -185,4 +185,10 @@ index = HNSWIndex(dimension, "usize")
 
 samples = np.float32(np.random.rand(n, dimension))
 for i in range(0, len(samples)):
-    # add 
+    # add node
+    index.add(np.float32(samples[i]), i)
+
+index.build("euclidean")  # build index
+
+target = np.random.randint(0, n)
+# 410 in Hora ANNIndex <HNSWIndexUsize> (dimensi
