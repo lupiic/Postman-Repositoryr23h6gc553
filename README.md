@@ -180,4 +180,9 @@ from horapy import HNSWIndex
 dimension = 50
 n = 1000
 
-# init 
+# init index instance
+index = HNSWIndex(dimension, "usize")
+
+samples = np.float32(np.random.rand(n, dimension))
+for i in range(0, len(samples)):
+    # add 
