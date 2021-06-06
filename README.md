@@ -204,4 +204,6 @@ print("{} in {} \nhas neighbors: {}".format(
 import * as horajs from "horajs";
 
 const demo = () => {
-    const dim
+    const dimension = 50;
+    var bf_idx = horajs.BruteForceIndexUsize.new(dimension);
+    // var hnsw_idx = horajs.HNSWIndexUsize.new(dimension, 1000000, 32, 64, 20, 500, 16,
