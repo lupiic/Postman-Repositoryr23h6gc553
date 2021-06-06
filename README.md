@@ -198,4 +198,10 @@ print("{} in {} \nhas neighbors: {}".format(
 
 ```
 
-**`JavaScr
+**`JavaScript` example** [[more info](https://github.com/hora-search/hora-wasm)]
+
+```JavaScript
+import * as horajs from "horajs";
+
+const demo = () => {
+    const dim
