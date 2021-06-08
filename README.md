@@ -210,4 +210,10 @@ const demo = () => {
     for (var i = 0; i < 1000; i++) {
         var feature = [];
         for (var j = 0; j < dimension; j++) {
-            feature.push(Math.random())
+            feature.push(Math.random());
+        }
+        bf_idx.add(feature, i); // add point
+    }
+    bf_idx.build("euclidean"); // build index
+    var feature = [];
+    for (var j = 0;
