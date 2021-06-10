@@ -216,4 +216,7 @@ const demo = () => {
     }
     bf_idx.build("euclidean"); // build index
     var feature = [];
-    for (var j = 0;
+    for (var j = 0; j < dimension; j++) {
+        feature.push(Math.random());
+    }
+    console.log("bf result", bf_idx.search(feature, 10)); //bf result Uint32Array(10) [704, 113, 3
