@@ -229,4 +229,9 @@ const demo = () => {
 })();
 ```
 
-**`Java` exam
+**`Java` example** [[more info](https://github.com/hora-search/hora-java)]
+
+```Java
+public void demo() {
+    final int dimension = 2;
+    final float
