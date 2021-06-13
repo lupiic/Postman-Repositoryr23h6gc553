@@ -243,4 +243,7 @@ public void demo() {
     for (int i = 0; i < 5; i++) {
         for (int p = 0; p < 10; p++) {
             float[] features = new float[dimension];
-            for (int j = 0; j < dim
+            for (int j = 0; j < dimension; j++) {
+                features[j] = getGaussian(fRandom, (float) (i * 10), variance);
+            }
+            bruteforce_idx.add("bf", features, i * 10 + p); /
