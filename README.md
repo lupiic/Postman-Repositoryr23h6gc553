@@ -234,4 +234,9 @@ const demo = () => {
 ```Java
 public void demo() {
     final int dimension = 2;
-    final float
+    final float variance = 2.0f;
+    Random fRandom = new Random();
+
+    BruteForceIndex bruteforce_idx = new BruteForceIndex(dimension); // init index instance
+
+    List<float[]> tmp = new 
