@@ -284,4 +284,6 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
   - `ScaNN` and `Faiss` are less user-friendly, (e.g. lack of documentation).
   - Hora is **ALL IN RUST** 🦀.
 
-- [Milvus](https://github.com/milvus-io/milvus), [Vald](https://github.com/vdaas/vald), 
+- [Milvus](https://github.com/milvus-io/milvus), [Vald](https://github.com/vdaas/vald), [Jina AI](https://github.com/jina-ai/jina)
+  - `Milvus` and `Vald` also support multiple languages, but serve as a service instead of a library
+  - `Milvus` is built upo
