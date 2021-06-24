@@ -279,4 +279,6 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 
   - **`Hora`'s implementation is strongly inspired by these libraries.**
   - `Faiss` focuses more on the GPU scenerio, and `Hora` is lighter than Faiss (**no heavy dependencies)**.
-  - `Hora` expects to support more languages, and everything r
+  - `Hora` expects to support more languages, and everything related to performance will be implemented by Rust🦀.
+  - `Annoy` only supports the `LSH (Random Projection)` algorithm.
+  - `ScaNN` and `Faiss` are less user-friendly, (e.g.
