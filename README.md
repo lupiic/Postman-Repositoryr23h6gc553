@@ -300,4 +300,28 @@ We use GitHub issues for tracking suggestions and bugs.
 #### Clone the repo
 
 ```bash
-git clone https://github.com/ho
+git clone https://github.com/hora-search/hora
+```
+
+#### Build
+
+```bash
+cargo build
+```
+
+#### Test
+
+```bash
+cargo test --lib
+```
+
+#### Try the changes
+
+```bash
+cd examples
+cargo run
+```
+
+# License
+
+The entire
