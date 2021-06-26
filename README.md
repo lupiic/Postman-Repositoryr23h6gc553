@@ -324,4 +324,4 @@ cargo run
 
 # License
 
-The entire
+The entire repository is licensed under the [Apache License](https://github.com/hora-search/hora/blob/main/LICENSE).
