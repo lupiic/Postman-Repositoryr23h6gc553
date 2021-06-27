@@ -10,4 +10,8 @@
 
 **Hora** 完全基于 **Rust🦀** 实现，事实证明，**Rust** 确实非常非常快，完全可以媲美 **C++** ，且`Hora`使用 **SIMD**进行了加速，速度非常快⚡️⚡️⚡️，具体速度可以参考下面的 benchmark.
 
-**Hora**, 日语为 **「ほら」**，读法像
+**Hora**, 日语为 **「ほら」**，读法像 **[hōlə]** ，意思是 **Wow**, **You see!** , **Look at that!** 。 这个名字的灵感来自日本著名歌曲 **[「小さな恋のうた」]( https://www.youtube.com/watch?v=u8EkSB9zSpE)** 。
+
+# Demos
+
+**👩 Face-Match [[o
