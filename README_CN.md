@@ -20,4 +20,14 @@
   <img src="asset/demo3.gif" width="100%"/>
 </div>
 
-**🍷 Dream wine comments search [[online de
+**🍷 Dream wine comments search [[online demo](https://horasearch.com/#Demos)], have a try!**
+
+<div align="center">
+  <img src="asset/demo2.gif" width="100%"/>
+</div>
+
+# Features
+
+- **Performant** ⚡️
+
+ 
