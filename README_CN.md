@@ -44,4 +44,8 @@
   - `Swift` (WIP)
   - `R` (WIP)
   - `Julia` (WIP)
-  - *
+  - **Can also be used as a service**
+
+- **Supports Multiple Indexes** 🚀
+
+  - `Hierarchical Navigable Small World Graph Index (HNSWIndex)` ([details](h
