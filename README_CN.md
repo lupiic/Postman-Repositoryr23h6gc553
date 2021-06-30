@@ -30,4 +30,6 @@
 
 - **Performant** ⚡️
 
- 
+  - **SIMD-Accelerated ([packed_simd](https://github.com/rust-lang/packed_simd))**
+  - **Stable algorithm implementation**
+  - **Multiple threads design*
