@@ -32,4 +32,16 @@
 
   - **SIMD-Accelerated ([packed_simd](https://github.com/rust-lang/packed_simd))**
   - **Stable algorithm implementation**
-  - **Multiple threads design*
+  - **Multiple threads design**
+
+- **Supports Multiple Languages** ☄️
+
+  - `Python`
+  - `Javascript`
+  - `Java`
+  - `Go` (WIP)
+  - `Ruby` (WIP)
+  - `Swift` (WIP)
+  - `R` (WIP)
+  - `Julia` (WIP)
+  - *
