@@ -48,4 +48,6 @@
 
 - **Supports Multiple Indexes** 🚀
 
-  - `Hierarchical Navigable Small World Graph Index (HNSWIndex)` ([details](h
+  - `Hierarchical Navigable Small World Graph Index (HNSWIndex)` ([details](https://arxiv.org/abs/1603.09320))
+  - `Satellite System Graph (SSGIndex)` ([details](https://arxiv.org/abs/1907.06146))
+  - `Product Quan
