@@ -72,4 +72,6 @@
   - `Dot Product Distance`
     - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Csum%7B%28x*y%29%7D)
   - `Euclidean Distance`
-    - ![equation](https://latex.code
+    - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Csqrt%7B%5Csum%7B%28x-y%29%5E2%7D%7D)
+  - `Manhattan Distance`
+    - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2
