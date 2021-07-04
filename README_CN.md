@@ -69,4 +69,7 @@
 
 - **Supports Multiple Distances** 🧮
 
-  - `Dot Product Distanc
+  - `Dot Product Distance`
+    - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Csum%7B%28x*y%29%7D)
+  - `Euclidean Distance`
+    - ![equation](https://latex.code
