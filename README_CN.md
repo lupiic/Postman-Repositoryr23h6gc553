@@ -102,4 +102,16 @@ $ pip install horapy
 **`Javascript (WebAssembly)`**
 
 ```Bash
-$ npm 
+$ npm i horajs
+```
+
+**`Building from source`**
+
+```bash
+$ git clone https://github.com/hora-search/hora
+$ cargo build
+```
+
+# Benchmarks
+
+<img src="asset/fashion-mnist-784-euclidean_10
