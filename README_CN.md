@@ -76,4 +76,14 @@
   - `Manhattan Distance`
     - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Csum%7B%7C%28x-y%29%7C%7D)
   - `Cosine Similarity`
-    - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Cfrac%7Bx%2
+    - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Cfrac%7Bx%20*y%7D%7B%7C%7Cx%7C%7C*%7C%7Cy%7C%7C%7D)
+
+- **Productive** ⭐
+  - Well documented
+  - Elegant, simple and easy to learn API
+
+# Installation
+
+**`Rust`**
+
+in 
