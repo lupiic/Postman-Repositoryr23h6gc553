@@ -86,4 +86,20 @@
 
 **`Rust`**
 
-in 
+in `Cargo.toml`
+
+```toml
+[dependencies]
+hora = "0.1.1"
+```
+
+**`Python`**
+
+```Bash
+$ pip install horapy
+```
+
+**`Javascript (WebAssembly)`**
+
+```Bash
+$ npm 
