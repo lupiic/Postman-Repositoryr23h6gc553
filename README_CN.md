@@ -131,4 +131,8 @@ pub fn demo() {
     let n = 1000;
     let dimension = 64;
 
-    // make 
+    // make sample points
+    let mut samples = Vec::with_capacity(n);
+    let normal = Normal::new(0.0, 10.0).unwrap();
+    for _i in 0..n {
+        let mut 
