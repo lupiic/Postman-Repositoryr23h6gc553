@@ -139,4 +139,10 @@ pub fn demo() {
         for _j in 0..dimension {
             sample.push(normal.sample(&mut rand::thread_rng()));
         }
-        sample
+        samples.push(sample);
+    }
+
+    // init index
+    let mut index = hora::index::hnsw_idx::HNSWIndex::<f32, usize>::new(
+        dimension,
+        &hora::i
