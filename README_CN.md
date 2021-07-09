@@ -149,4 +149,9 @@ pub fn demo() {
     );
     for (i, sample) in samples.iter().enumerate().take(n) {
         // add point
-        index.ad
+        index.add(sample, i).unwrap();
+    }
+    index.build(hora::core::metrics::Metric::Euclidean).unwrap();
+
+    let mut rng = thread_rng();
+   
