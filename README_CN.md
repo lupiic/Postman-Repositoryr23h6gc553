@@ -159,4 +159,9 @@ pub fn demo() {
     println!(
         "{:?} has neighbors: {:?}",
         target,
-  
+        index.search(&samples[target], 10) // search for k nearest neighbors
+    );
+}
+```
+
+感谢 @vaaaaanquish 这个完整的纯 `Rust 🦀` 图片检索 [example](https://github.com/vaaaaanqui
