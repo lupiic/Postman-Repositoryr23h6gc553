@@ -164,4 +164,6 @@ pub fn demo() {
 }
 ```
 
-感谢 @vaaaaanquish 这个完整的纯 `Rust 🦀` 图片检索 [example](https://github.com/vaaaaanqui
+感谢 @vaaaaanquish 这个完整的纯 `Rust 🦀` 图片检索 [example](https://github.com/vaaaaanquish/rust-ann-search-example), 想了解更多可以点击 [Pure Rustな近似最近傍探索ライブラリhoraを用いた画像検索を実装する](https://vaaaaaanquish.hatenablog.com/entry/2021/08/10/065117)
+
+**`Python` example** [[more info]
