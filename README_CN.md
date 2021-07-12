@@ -183,4 +183,7 @@ for i in range(0, len(samples)):
     # add node
     index.add(np.float32(samples[i]), i)
 
-index.build("euc
+index.build("euclidean")  # build index
+
+target = np.random.randint(0, n)
+# 410 in Hora ANNIndex <HNSWIndexUsize> (dimension: 50, dtype: usize, max_item: 1
