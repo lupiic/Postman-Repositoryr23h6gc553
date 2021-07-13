@@ -193,4 +193,12 @@ print("{} in {} \nhas neighbors: {}".format(
 
 ```
 
-**`JavaScript` example** [[more info](https://github.com/hora-search/hor
+**`JavaScript` example** [[more info](https://github.com/hora-search/hora-wasm)]
+
+```JavaScript
+import * as horajs from "horajs";
+
+const demo = () => {
+    const dimension = 50;
+    var bf_idx = horajs.BruteForceIndexUsize.new(dimension);
+    
