@@ -201,4 +201,6 @@ import * as horajs from "horajs";
 const demo = () => {
     const dimension = 50;
     var bf_idx = horajs.BruteForceIndexUsize.new(dimension);
-    
+    // var hnsw_idx = horajs.HNSWIndexUsize.new(dimension, 1000000, 32, 64, 20, 500, 16, false);
+    for (var i = 0; i < 1000; i++) {
+        var feature = [];
