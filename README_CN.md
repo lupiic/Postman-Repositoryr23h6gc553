@@ -209,4 +209,9 @@ const demo = () => {
         }
         bf_idx.add(feature, i); // add point 
     }
-    bf_idx.build("euclidean")
+    bf_idx.build("euclidean"); // build index
+    var feature = [];
+    for (var j = 0; j < dimension; j++) {
+        feature.push(Math.random());
+    }
+    console.log("bf result", bf_idx.
