@@ -214,4 +214,10 @@ const demo = () => {
     for (var j = 0; j < dimension; j++) {
         feature.push(Math.random());
     }
-    console.log("bf result", bf_idx.
+    console.log("bf result", bf_idx.search(feature, 10)); //bf result Uint32Array(10) [704, 113, 358, 835, 408, 379, 117, 414, 808, 826]
+}
+
+(async () => {
+    await horajs.default();
+    await horajs.init_env();
+   
