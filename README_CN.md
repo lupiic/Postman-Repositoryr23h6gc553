@@ -204,3 +204,9 @@ const demo = () => {
     // var hnsw_idx = horajs.HNSWIndexUsize.new(dimension, 1000000, 32, 64, 20, 500, 16, false);
     for (var i = 0; i < 1000; i++) {
         var feature = [];
+        for (var j = 0; j < dimension; j++) {
+            feature.push(Math.random());
+        }
+        bf_idx.add(feature, i); // add point 
+    }
+    bf_idx.build("euclidean")
