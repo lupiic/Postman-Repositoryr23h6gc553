@@ -220,4 +220,13 @@ const demo = () => {
 (async () => {
     await horajs.default();
     await horajs.init_env();
-   
+    demo();
+})();
+```
+
+**`Java` example** [[more info](https://github.com/hora-search/hora-java)]
+
+```Java
+public void demo() {
+    final int dimension = 2;
+    final float varia
