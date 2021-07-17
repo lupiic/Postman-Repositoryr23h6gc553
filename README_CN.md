@@ -241,4 +241,8 @@ public void demo() {
             for (int j = 0; j < dimension; j++) {
                 features[j] = getGaussian(fRandom, (float) (i * 10), variance);
             }
-            bruteforce
+            bruteforce_idx.add("bf", features, i * 10 + p); // add point
+            tmp.add(features);
+          }
+    }
+    bruteforce_idx.build("bf", "euclidean"); // build index
