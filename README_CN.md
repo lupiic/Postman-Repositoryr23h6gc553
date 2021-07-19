@@ -270,4 +270,5 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 
 # Related Projects and Comparison
 
-- [Faiss](https://github.com/facebookresearch/faiss), [Annoy](https://
+- [Faiss](https://github.com/facebookresearch/faiss), [Annoy](https://github.com/spotify/annoy), [ScaNN](https://github.com/google-research/google-research/tree/master/scann):
+  - **`Hora` 的实现受到这些库的强烈启发。**
