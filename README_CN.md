@@ -254,4 +254,12 @@ public void demo() {
     log.info("demo bruteforce_idx" + Arrays.toString(result));
 }
 
-private s
+private static float getGaussian(Random fRandom, float aMean, float variance) {
+    float r = (float) fRandom.nextGaussian();
+    return aMean + r * variance;
+}
+```
+
+# Roadmap
+
+- [
