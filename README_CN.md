@@ -262,4 +262,6 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 
 # Roadmap
 
-- [
+- [ ] Full test coverage
+- [ ] Implement [EFANNA](http://arxiv.org/abs/1609.07228) algorithm to achieve faster KNN graph building
+- [ ] Swift support and iOS/macOS depl
