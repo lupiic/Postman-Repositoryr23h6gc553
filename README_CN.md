@@ -272,3 +272,7 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 
 - [Faiss](https://github.com/facebookresearch/faiss), [Annoy](https://github.com/spotify/annoy), [ScaNN](https://github.com/google-research/google-research/tree/master/scann):
   - **`Hora` 的实现受到这些库的强烈启发。**
+  - `Faiss` 更侧重于 GPU 场景，`Hora` 比 Faiss 更轻（**无重度依赖）**。
+  - `Hora` 期待支持更多的语言，与性能相关的一切都会由 Rust🦀 实现。
+  - `Annoy` 只支持 `LSH (Random Projection)` 算法。
+  - `ScaNN` 和 `Faiss` 
