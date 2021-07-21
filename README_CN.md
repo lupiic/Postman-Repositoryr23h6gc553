@@ -286,4 +286,15 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 
 **We appreciate your help!**
 
-我们很高兴您的参与，欢迎任何贡献，包括文档
+我们很高兴您的参与，欢迎任何贡献，包括文档和测试。
+您可以在 GitHub 上创建 `Pull Request` 或 `Issue`，我们会尽快审核。
+
+我们使用 GitHub 问题来跟踪建议和错误。
+
+#### Clone the repo
+
+```bash
+git clone https://github.com/hora-search/hora
+```
+
+####
