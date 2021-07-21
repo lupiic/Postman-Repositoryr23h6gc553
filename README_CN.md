@@ -278,4 +278,12 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
   - `ScaNN` 和 `Faiss` 不太用户友好，（例如缺乏文档）。
   - Hora is **ALL IN RUST** 🦀.
 
-- [Milvus](https://github.com/milvus-io/milvus), [Vald](https://github.com/vdaas/vald), [Jina AI](https://github.com/jina-ai/ji
+- [Milvus](https://github.com/milvus-io/milvus), [Vald](https://github.com/vdaas/vald), [Jina AI](https://github.com/jina-ai/jina)
+  - `Milvus` 和 `Vald` 也支持多种语言，但作为服务而不是库
+  - `Milvus` 是建立在一些库上的，比如 `Faiss`，而 `Hora` 是一个库，所有算法都是自己实现的
+
+# Contribute
+
+**We appreciate your help!**
+
+我们很高兴您的参与，欢迎任何贡献，包括文档
