@@ -297,4 +297,25 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 git clone https://github.com/hora-search/hora
 ```
 
-####
+#### Build
+
+```bash
+cargo build
+```
+
+#### Test
+
+```bash
+cargo test --lib
+```
+
+#### Try the changes
+
+```bash
+cd examples
+cargo run
+```
+
+# License
+
+The entire reposito
