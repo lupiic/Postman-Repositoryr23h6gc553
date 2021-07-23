@@ -8,4 +8,4 @@
 
 **_Hora Search Everywhere!_**
 
-Hora est un **algorithme de recherche du voisin le plus proche approximatif** ([wiki](https://en.wikip
+Hora est un **algorithme de recherche du voisin le plus proche approximatif** ([wiki](https://en.wikipedia.org/wiki/Nearest_neighbor_search)). Nous implémentons tout le code dans `Rust🦀` pour une fiabilité, une abstraction de haut niveau e
