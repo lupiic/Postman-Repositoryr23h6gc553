@@ -4,4 +4,8 @@
 
 # Hora
 
-**[[Homepage](http://horasearch.com/)]** **[[Document](https://horasearch.com/doc)]** **[[Examples](https:/
+**[[Homepage](http://horasearch.com/)]** **[[Document](https://horasearch.com/doc)]** **[[Examples](https://horasearch.com/doc/example.html)]**
+
+**_Hora Search Everywhere!_**
+
+Hora est un **algorithme de recherche du voisin le plus proche approximatif** ([wiki](https://en.wikip
