@@ -30,4 +30,8 @@ Hora, **`「ほら」`** en japonais, sonne comme `[hōlə]`, et signifie `Wow`,
 
 - **Performant** ⚡️
 
-  - **SIMD-Accelerated ([packed_simd](https://git
+  - **SIMD-Accelerated ([packed_simd](https://github.com/rust-lang/packed_simd))**
+  - **Implémentation d'algorithme stable**
+  - **Multiple threads design**
+
+- **Prend en charge plusieurs langages de programmation Lib** ☄
