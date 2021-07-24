@@ -22,4 +22,12 @@ Hora, **`「ほら」`** en japonais, sonne comme `[hōlə]`, et signifie `Wow`,
 
 **🍷 Recherche de commentaires sur le vin de rêve [[online demo](https://horasearch.com/#Demos)], Essaye!**
 
-<div align="center"
+<div align="center">
+  <img src="asset/demo2.gif" width="100%"/>
+</div>
+
+# Principales caractéristiques
+
+- **Performant** ⚡️
+
+  - **SIMD-Accelerated ([packed_simd](https://git
