@@ -34,4 +34,16 @@ Hora, **`「ほら」`** en japonais, sonne comme `[hōlə]`, et signifie `Wow`,
   - **Implémentation d'algorithme stable**
   - **Multiple threads design**
 
-- **Prend en charge plusieurs langages de programmation Lib** ☄
+- **Prend en charge plusieurs langages de programmation Lib** ☄️
+
+  - `Python`
+  - `Javascript`
+  - `Java`
+  - `Go` (WIP)
+  - `Ruby` (WIP)
+  - `Swift` (WIP)
+  - `R` (WIP)
+  - `Julia` (WIP)
+  - **Peut également être utilisé comme un service**
+
+- *
