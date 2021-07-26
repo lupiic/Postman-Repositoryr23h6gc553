@@ -65,4 +65,9 @@ Hora, **`「ほら」`** en japonais, sonne comme `[hōlə]`, et signifie `Wow`,
 - **Fiabilité** 🔒
 
   - Le compilateur `Rust` sécurise tout le code
-  - Mémoire gérée par `Rust` pour toutes les b
+  - Mémoire gérée par `Rust` pour toutes les bibliothèques de langage telles que `Python's`
+  - Large couverture de test
+
+- **Prend en charge plusieurs distances** 🧮
+
+  - `Distance du 
