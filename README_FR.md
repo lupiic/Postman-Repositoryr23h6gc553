@@ -60,4 +60,9 @@ Hora, **`「ほら」`** en japonais, sonne comme `[hōlə]`, et signifie `Wow`,
   - Supports `Windows`, `Linux` and `OS X`
   - Supports `IOS` and `Android` (WIP)
   - Supports `no_std` (WIP, partial)
-  - Pas de dépendances
+  - Pas de dépendances lourdes, telles que `BLAS`
+
+- **Fiabilité** 🔒
+
+  - Le compilateur `Rust` sécurise tout le code
+  - Mémoire gérée par `Rust` pour toutes les b
