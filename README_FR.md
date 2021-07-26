@@ -54,4 +54,10 @@ Hora, **`「ほら」`** en japonais, sonne comme `[hōlə]`, et signifie `Wow`,
   - `Random Projection Tree(RPTIndex)` (LSH, WIP)
   - `BruteForce (BruteForceIndex)` (naive implementation with SIMD)
 
-- **Portabl
+- **Portable** 💼
+
+  - Supports `WebAssembly`
+  - Supports `Windows`, `Linux` and `OS X`
+  - Supports `IOS` and `Android` (WIP)
+  - Supports `no_std` (WIP, partial)
+  - Pas de dépendances
