@@ -73,4 +73,6 @@ Hora, **`「ほら」`** en japonais, sonne comme `[hōlə]`, et signifie `Wow`,
   - `Distance du produit de point`
     - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Csum%7B%28x*y%29%7D)
   - `Distance euclidienne`
-    - ![equation](https://latex.codecogs.com/gif.lat
+    - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Csqrt%7B%5Csum%7B%28x-y%29%5E2%7D%7D)
+  - `Distance de Manhattan`
+    - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3
