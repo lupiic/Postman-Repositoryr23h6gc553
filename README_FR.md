@@ -77,4 +77,18 @@ Hora, **`「ほら」`** en japonais, sonne comme `[hōlə]`, et signifie `Wow`,
   - `Distance de Manhattan`
     - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Csum%7B%7C%28x-y%29%7C%7D)
   - `Similitude de cosinus`
-    - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Cfrac%7Bx%20*y%7D%7B%7C%7Cx%7C%7C*%7C%7Cy%
+    - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Cfrac%7Bx%20*y%7D%7B%7C%7Cx%7C%7C*%7C%7Cy%7C%7C%7D)
+
+- **Productive** ⭐
+  - Bien documenté
+  - API élégante, simple et facile à apprendre
+
+# Installation
+
+**`Rust`**
+
+in `Cargo.toml`
+
+```toml
+[dependencies]
+hora =
