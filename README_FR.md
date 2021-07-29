@@ -91,4 +91,22 @@ in `Cargo.toml`
 
 ```toml
 [dependencies]
-hora =
+hora = "0.1.1"
+```
+
+**`Python`**
+
+```Bash
+$ pip install horapy
+```
+
+**`Javascript (WebAssembly)`**
+
+```Bash
+$ npm i horajs
+```
+
+**`Building from source`**
+
+```bash
+$ git clone https
