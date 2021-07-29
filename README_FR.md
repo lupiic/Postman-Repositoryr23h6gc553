@@ -109,4 +109,12 @@ $ npm i horajs
 **`Building from source`**
 
 ```bash
-$ git clone https
+$ git clone https://github.com/hora-search/hora
+$ cargo build
+```
+
+# Repères
+
+<img src="asset/fashion-mnist-784-euclidean_10_euclidean.png"/>
+
+by `aws t2.medium (CPU
