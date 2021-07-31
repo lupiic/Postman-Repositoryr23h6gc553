@@ -121,4 +121,13 @@ by `aws t2.medium (CPU: Intel(R) Xeon(R) CPU E5-2686 v4 @ 2.30GHz)` [more inform
 
 # Exemples
 
-**`Rust` exemple** [[more info]
+**`Rust` exemple** [[more info](https://github.com/hora-search/hora/tree/main/examples)]
+
+```Rust
+use hora::core::ann_index::ANNIndex;
+use rand::{thread_rng, Rng};
+use rand_distr::{Distribution, Normal};
+
+pub fn demo() {
+    let n = 1000;
+    l
