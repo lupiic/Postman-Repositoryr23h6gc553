@@ -130,4 +130,9 @@ use rand_distr::{Distribution, Normal};
 
 pub fn demo() {
     let n = 1000;
-    l
+    let dimension = 64;
+
+    // make sample points
+    let mut samples = Vec::with_capacity(n);
+    let normal = Normal::new(0.0, 10.0).unwrap();
+    for _i in 0..n
