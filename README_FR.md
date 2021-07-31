@@ -135,4 +135,7 @@ pub fn demo() {
     // make sample points
     let mut samples = Vec::with_capacity(n);
     let normal = Normal::new(0.0, 10.0).unwrap();
-    for _i in 0..n
+    for _i in 0..n {
+        let mut sample = Vec::with_capacity(dimension);
+        for _j in 0..dimension {
+            sample.push(normal.sample(&mut rand::thread_rng()
