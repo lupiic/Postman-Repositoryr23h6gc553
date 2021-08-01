@@ -138,4 +138,12 @@ pub fn demo() {
     for _i in 0..n {
         let mut sample = Vec::with_capacity(dimension);
         for _j in 0..dimension {
-            sample.push(normal.sample(&mut rand::thread_rng()
+            sample.push(normal.sample(&mut rand::thread_rng()));
+        }
+        samples.push(sample);
+    }
+
+    // init index
+    let mut index = hora::index::hnsw_idx::HNSWIndex::<f32, usize>::new(
+        dimension,
+     
