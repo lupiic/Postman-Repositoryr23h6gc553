@@ -149,4 +149,10 @@ pub fn demo() {
         &hora::index::hnsw_params::HNSWParams::<f32>::default(),
     );
     for (i, sample) in samples.iter().enumerate().take(n) {
-        // a
+        // add point
+        index.add(sample, i).unwrap();
+    }
+    index.build(hora::core::metrics::Metric::Euclidean).unwrap();
+
+    let mut rng = thread_rng();
+   
