@@ -159,4 +159,10 @@ pub fn demo() {
     // 523 has neighbors: [523, 762, 364, 268, 561, 231, 380, 817, 331, 246]
     println!(
         "{:?} has neighbors: {:?}",
-   
+        target,
+        index.search(&samples[target], 10) // search for k nearest neighbors
+    );
+}
+```
+
+merci @vaaaaanquish pour cette recherche complète d'
