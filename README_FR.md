@@ -165,4 +165,4 @@ pub fn demo() {
 }
 ```
 
-merci @vaaaaanquish pour cette recherche complète d'
+merci @vaaaaanquish pour cette recherche complète d'images de rouille pure [exemple] (https://github.com/vaaaaanquish/rust-ann-search-example), Pour plus d'informations sur cet exemple, veuillez cliquer sur [Pure Rustな近似
