@@ -179,4 +179,11 @@ n = 1000
 # init index instance
 index = HNSWIndex(dimension, "usize")
 
-samples = np.fl
+samples = np.float32(np.random.rand(n, dimension))
+for i in range(0, len(samples)):
+    # add node
+    index.add(np.float32(samples[i]), i)
+
+index.build("euclidean")  # build index
+
+target = np.random.
