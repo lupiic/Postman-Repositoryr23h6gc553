@@ -199,4 +199,7 @@ print("{} in {} \nhas neighbors: {}".format(
 ```JavaScript
 import * as horajs from "horajs";
 
-const demo = () =>
+const demo = () => {
+    const dimension = 50;
+    var bf_idx = horajs.BruteForceIndexUsize.new(dimension);
+    // var hnsw_idx = horajs.HNSWIndexUsize.new(dimension, 1000000, 
