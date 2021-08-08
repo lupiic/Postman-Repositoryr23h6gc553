@@ -222,3 +222,12 @@ const demo = () => {
     await horajs.default();
     await horajs.init_env();
     demo();
+})();
+```
+
+**`Java` exemple** [[more info](https://github.com/hora-search/hora-java)]
+
+```Java
+public void demo() {
+    final int dimension = 2;
+    final float vari
