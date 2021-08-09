@@ -247,3 +247,7 @@ public void demo() {
           }
     }
     bruteforce_idx.build("bf", "euclidean"); // build index
+
+    int search_index = fRandom.nextInt(tmp.size());
+    // nearest neighbor search
+    int[] result = bruteforce_idx.search("bf", 10, t
