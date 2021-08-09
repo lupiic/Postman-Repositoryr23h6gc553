@@ -238,4 +238,8 @@ public void demo() {
     List<float[]> tmp = new ArrayList<>();
     for (int i = 0; i < 5; i++) {
         for (int p = 0; p < 10; p++) {
-            float[] features = new float[di
+            float[] features = new float[dimension];
+            for (int j = 0; j < dimension; j++) {
+                features[j] = getGaussian(fRandom, (float) (i * 10), variance);
+            }
+  
