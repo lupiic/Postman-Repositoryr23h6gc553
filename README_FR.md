@@ -252,4 +252,9 @@ public void demo() {
     // nearest neighbor search
     int[] result = bruteforce_idx.search("bf", 10, tmp.get(search_index));
     // [main] INFO com.hora.app.ANNIndexTest  - demo bruteforce_idx[7, 8, 0, 5, 3, 9, 1, 6, 4, 2]
-    log.info("demo bruteforce_idx" + A
+    log.info("demo bruteforce_idx" + Arrays.toString(result));
+}
+
+private static float getGaussian(Random fRandom, float aMean, float variance) {
+    float r = (float) fRandom.nextGaussian();
+    return aMean
