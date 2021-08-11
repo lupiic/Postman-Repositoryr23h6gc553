@@ -257,4 +257,11 @@ public void demo() {
 
 private static float getGaussian(Random fRandom, float aMean, float variance) {
     float r = (float) fRandom.nextGaussian();
-    return aMean
+    return aMean + r * variance;
+}
+```
+
+# Feuille de route
+
+- [ ] Couverture complète des tests
+- [ ] Implémentez l'algorithme [EFANNA](http://arxiv.org/abs/1609.07228) 
