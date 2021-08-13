@@ -271,4 +271,7 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 
 # Projets connexes et comparaison
 
-- [Faiss](https://github.com/facebookresearch/faiss), [Annoy](https://github.com/spotify/annoy), [ScaNN](https://github.com/google-research/google-
+- [Faiss](https://github.com/facebookresearch/faiss), [Annoy](https://github.com/spotify/annoy), [ScaNN](https://github.com/google-research/google-research/tree/master/scann):
+
+  - **L'implémentation de `Hora` est fortement inspirée de ces bibliothèques.**
+  - `Faiss` se concentre davantage sur la scène GPU
