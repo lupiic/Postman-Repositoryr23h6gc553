@@ -277,4 +277,7 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
   - `Faiss` se concentre davantage sur la scène GPU, et `Hora` est plus léger que Faiss (**pas de dépendances lourdes)**.
   - `Hora` s'attend à prendre en charge plus de langues, et tout ce qui concerne les performances sera implémenté par Rust🦀.
   - `Annoy` ne prend en charge que l'algorithme `LSH (Random Projection)`.
-  - `ScaNN` et `Faiss` sont moins conviviaux (pa
+  - `ScaNN` et `Faiss` sont moins conviviaux (par exemple, manque de documentation).
+  - Hora is **ALL IN RUST** 🦀.
+
+- [Milvus](https://github.com/milvus-io/milvus), [Vald](https://github.com/vdaas/vald), [Jina AI](https://github.com/ji
