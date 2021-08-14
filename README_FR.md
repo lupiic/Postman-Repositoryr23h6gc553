@@ -282,4 +282,7 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 
 - [Milvus](https://github.com/milvus-io/milvus), [Vald](https://github.com/vdaas/vald), [Jina AI](https://github.com/jina-ai/jina)
   - `Milvus` et `Vald` prennent également en charge plusieurs langues, mais servent de service au lieu d'une bibliothèque
-  - `Milvus` 
+  - `Milvus` est construit sur certaines bibliothèques telles que `Faiss`, tandis que `Hora` est une bibliothèque avec tous les algorithmes implémentés elle-même
+
+# Contribute
+
