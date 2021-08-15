@@ -286,3 +286,7 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 
 # Contribute
 
+**Nous apprécions votre aide!**
+
+Nous sommes ravis de votre participation, toutes les contributions sont les bienvenues, y compris les documentations et les tests.
+V
