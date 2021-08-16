@@ -291,4 +291,24 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 Nous sommes ravis de votre participation, toutes les contributions sont les bienvenues, y compris les documentations et les tests.
 Vous pouvez créer une `Pull Request` ou un `Issue` sur GitHub, et nous l'examinerons dès que possible.
 
-Nous utilisons les problèmes GitHub pour suivre les suggestions et les bogue
+Nous utilisons les problèmes GitHub pour suivre les suggestions et les bogues.
+
+#### Clone the repo
+
+```bash
+git clone https://github.com/hora-search/hora
+```
+
+#### Build
+
+```bash
+cargo build
+```
+
+#### Test
+
+```bash
+cargo test --lib
+```
+
+#### Try the
