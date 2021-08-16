@@ -311,4 +311,13 @@ cargo build
 cargo test --lib
 ```
 
-#### Try the
+#### Try the changes
+
+```bash
+cd examples
+cargo run
+```
+
+# License
+
+The entire repository is licensed under the [Apache License](https://github.com/hora-search/hora/blob/m
