@@ -286,3 +286,37 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 # 貢献に参加する
 
 **We appreciate your participation!**
+
+皆様のご参加をお待ちしております。ドキュメントやテストなど、あらゆる貢献を歓迎します。
+GitHub でPull RequestsまたはIssuesを作成できます。できるだけ早く確認します。
+
+提案やバグを管理するためにGitHubのIssuesを使用します。
+
+#### リポジトリのclone
+
+```bash
+git clone https://github.com/hora-search/hora
+```
+
+#### ビルド
+
+```bash
+cargo build
+```
+
+#### テスト
+
+```bash
+cargo test --lib
+```
+
+#### 変更の確認
+
+```bash
+cd examples
+cargo run
+```
+
+# ライセンス
+
+このリポジトリは[Apache License](https://github.com/hora-search/hora/blob/main/LICENSE)でライセンスされています。
