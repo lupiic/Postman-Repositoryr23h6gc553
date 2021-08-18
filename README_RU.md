@@ -4,4 +4,8 @@
 
 # Hora
 
-**[[Homepage](http://horasearch.com/)]** **[[Document]
+**[[Homepage](http://horasearch.com/)]** **[[Document](https://horasearch.com/doc)]** **[[Examples](https://horasearch.com/doc/example.html)]**
+
+**_Hora Search Everywhere!_**
+
+Hora - это **приблизительный алг
