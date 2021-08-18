@@ -304,3 +304,20 @@ git clone https://github.com/hora-search/hora
 ```bash
 cargo build
 ```
+
+#### Test
+
+```bash
+cargo test --lib
+```
+
+#### Try the changes
+
+```bash
+cd examples
+cargo run
+```
+
+# License
+
+The entire repository is licensed under the [Apache License](https://github.com/hora-search/hora/blob/main/LICENSE).
