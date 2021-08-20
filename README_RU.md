@@ -14,4 +14,10 @@ Hora, **`「ほら」`** на японском языке, звучит как `
 
 # Демо
 
-**👩 Face-Match [[online demo](https://horasearch.com/#Demos)], по
+**👩 Face-Match [[online demo](https://horasearch.com/#Demos)], попробуй!**
+
+<div align="center">
+  <img src="asset/demo3.gif" width="100%"/>
+</div>
+
+**🍷 Dream wine comments search [[online demo](https://horasearch.com/#Demos
