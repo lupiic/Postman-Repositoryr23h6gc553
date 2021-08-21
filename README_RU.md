@@ -50,4 +50,6 @@ Hora, **`「ほら」`** на японском языке, звучит как `
 
   - `Hierarchical Navigable Small World Graph Index (HNSWIndex)` ([details](https://arxiv.org/abs/1603.09320))
   - `Satellite System Graph (SSGIndex)` ([details](https://arxiv.org/abs/1907.06146))
-  - `Product Quantization Inverted File(PQIVFIndex)` ([details
+  - `Product Quantization Inverted File(PQIVFIndex)` ([details](https://lear.inrialpes.fr/pubs/2011/JDS11/jegou_searching_with_quantization.pdf))
+  - `Random Projection Tree(RPTIndex)` (LSH, WIP)
+  - `BruteFo
