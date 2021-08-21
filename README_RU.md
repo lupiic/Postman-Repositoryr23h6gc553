@@ -48,4 +48,6 @@ Hora, **`「ほら」`** на японском языке, звучит как `
 
 - **Поддерживает несколько индексов** 🚀
 
-  - `Hierarchical Navigable Small World Graph Index (HNSWIndex)` ([details](h
+  - `Hierarchical Navigable Small World Graph Index (HNSWIndex)` ([details](https://arxiv.org/abs/1603.09320))
+  - `Satellite System Graph (SSGIndex)` ([details](https://arxiv.org/abs/1907.06146))
+  - `Product Quantization Inverted File(PQIVFIndex)` ([details
