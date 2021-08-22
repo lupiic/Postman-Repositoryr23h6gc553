@@ -58,4 +58,11 @@ Hora, **`「ほら」`** на японском языке, звучит как `
 
   - Supports `WebAssembly`
   - Supports `Windows`, `Linux` and `OS X`
-  - Supports `IOS` and `And
+  - Supports `IOS` and `Android` (WIP)
+  - Supports `no_std` (WIP, partial)
+  - Никаких тяжелых зависимостей, таких как `BLAS`
+
+- **Надежность** 🔒
+
+  - Компилятор `Rust` защищает весь код
+  - Па
