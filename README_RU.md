@@ -82,3 +82,22 @@ Hora, **`「ほら」`** на японском языке, звучит как `
 - **Продуктивный** ⭐
   - Хорошо задокументированы
   - Элегантный, простой и легкий в освоении API
+
+# Монтаж
+
+**`Rust`**
+
+in `Cargo.toml`
+
+```toml
+[dependencies]
+hora = "0.1.1"
+```
+
+**`Python`**
+
+```Bash
+$ pip install horapy
+```
+
+**`Javascript (WebAssembly
