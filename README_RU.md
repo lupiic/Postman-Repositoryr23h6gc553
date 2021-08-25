@@ -77,4 +77,8 @@ Hora, **`「ほら」`** на японском языке, звучит как `
   - `Манхэттен Расстояние`
     - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Csum%7B%7C%28x-y%29%7C%7D)
   - `Косинусное подобие`
-    - ![equation](https://latex.codecogs.com/gif.late
+    - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Cfrac%7Bx%20*y%7D%7B%7C%7Cx%7C%7C*%7C%7Cy%7C%7C%7D)
+
+- **Продуктивный** ⭐
+  - Хорошо задокументированы
+  - Элегантный, простой и легкий в освоении API
