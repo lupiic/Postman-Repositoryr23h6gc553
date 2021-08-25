@@ -75,4 +75,6 @@ Hora, **`「ほら」`** на японском языке, звучит как `
   - `Евклидово расстояние`
     - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Csqrt%7B%5Csum%7B%28x-y%29%5E2%7D%7D)
   - `Манхэттен Расстояние`
-    - ![equation](https://latex.codecogs.co
+    - ![equation](https://latex.codecogs.com/gif.latex?D%28x%2Cy%29%20%3D%20%5Csum%7B%7C%28x-y%29%7C%7D)
+  - `Косинусное подобие`
+    - ![equation](https://latex.codecogs.com/gif.late
