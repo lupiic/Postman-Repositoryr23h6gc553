@@ -113,4 +113,8 @@ $ git clone https://github.com/hora-search/hora
 $ cargo build
 ```
 
-# Контрольный 
+# Контрольный показатель
+
+<img src="asset/fashion-mnist-784-euclidean_10_euclidean.png"/>
+
+by `aws t2.medium (CPU: Intel(R) Xeon(R) CPU E5-2686 v4 @ 2.30GHz)` 
