@@ -100,4 +100,17 @@ hora = "0.1.1"
 $ pip install horapy
 ```
 
-**`Javascript (WebAssembly
+**`Javascript (WebAssembly)`**
+
+```Bash
+$ npm i horajs
+```
+
+**`Building from source`**
+
+```bash
+$ git clone https://github.com/hora-search/hora
+$ cargo build
+```
+
+# Контрольный 
