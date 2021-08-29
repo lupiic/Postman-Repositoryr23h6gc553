@@ -156,4 +156,8 @@ pub fn demo() {
 
     let mut rng = thread_rng();
     let target: usize = rng.gen_range(0..n);
-    // 523 has neighbors: [523, 762, 364, 268, 561, 23
+    // 523 has neighbors: [523, 762, 364, 268, 561, 231, 380, 817, 331, 246]
+    println!(
+        "{:?} has neighbors: {:?}",
+        target,
+        index.search(&samples[target], 10) // searc
