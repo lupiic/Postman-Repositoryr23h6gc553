@@ -160,4 +160,13 @@ pub fn demo() {
     println!(
         "{:?} has neighbors: {:?}",
         target,
-        index.search(&samples[target], 10) // searc
+        index.search(&samples[target], 10) // search for k nearest neighbors
+    );
+}
+```
+
+**`Python` Примеры** [[more info](https://github.com/hora-search/horapy)]
+
+```Python
+import numpy as np
+from horapy import H
