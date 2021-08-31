@@ -169,4 +169,12 @@ pub fn demo() {
 
 ```Python
 import numpy as np
-from horapy import H
+from horapy import HNSWIndex
+
+dimension = 50
+n = 1000
+
+# init index instance
+index = HNSWIndex(dimension, "usize")
+
+samples = np.float32(np.random.rand(n, dime
