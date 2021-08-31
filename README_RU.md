@@ -184,4 +184,5 @@ for i in range(0, len(samples)):
 
 index.build("euclidean")  # build index
 
-ta
+target = np.random.randint(0, n)
+# 410 in Hora ANNIndex <HNSWIndexUsize> (dimension: 50, dtype: usize, max_item: 1000000, n_neigh: 32, n_neigh0: 64, ef_buil
