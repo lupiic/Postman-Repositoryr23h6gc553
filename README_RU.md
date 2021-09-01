@@ -195,4 +195,9 @@ print("{} in {} \nhas neighbors: {}".format(
 **`JavaScript` Примеры** [[more info](https://github.com/hora-search/hora-wasm)]
 
 ```JavaScript
-import * as h
+import * as horajs from "horajs";
+
+const demo = () => {
+    const dimension = 50;
+    var bf_idx = horajs.BruteForceIndexUsize.new(dimension);
+    // var hnsw_idx = horajs.HNSWIndexUsize.n
