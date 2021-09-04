@@ -233,3 +233,7 @@ public void demo() {
 
     BruteForceIndex bruteforce_idx = new BruteForceIndex(dimension); // init index instance
 
+    List<float[]> tmp = new ArrayList<>();
+    for (int i = 0; i < 5; i++) {
+        for (int p = 0; p < 10; p++) {
+            float[] features = new fl
