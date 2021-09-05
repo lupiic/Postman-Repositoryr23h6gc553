@@ -244,4 +244,8 @@ public void demo() {
             tmp.add(features);
           }
     }
-    bruteforce_idx.build("bf", "e
+    bruteforce_idx.build("bf", "euclidean"); // build index
+
+    int search_index = fRandom.nextInt(tmp.size());
+    // nearest neighbor search
+    int[] result = bruteforce_i
