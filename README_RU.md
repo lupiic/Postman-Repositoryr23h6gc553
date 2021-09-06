@@ -254,4 +254,12 @@ public void demo() {
 }
 
 private static float getGaussian(Random fRandom, float aMean, float variance) {
-    float r = (float) fRandom.nextGa
+    float r = (float) fRandom.nextGaussian();
+    return aMean + r * variance;
+}
+```
+
+# Дорожная карта
+
+- [ ] Полное тестовое покрытие
+- [ ] Внедрить алгоритм [EFANNA](http://arxiv.org/abs/1609.0
