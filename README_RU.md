@@ -267,4 +267,6 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 - [ ] Поддержка `R`
 - [ ] поддержка `mmap`
 
-# Связан
+# Связанные проекты и сравнение
+
+- [Faiss](https://github.com/facebookresearch/faiss), [Annoy](https://github.com/spotify/annoy), [ScaNN](https://github.com/google-research/google-research/tree/master
