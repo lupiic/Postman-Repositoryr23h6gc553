@@ -262,4 +262,9 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 # Дорожная карта
 
 - [ ] Полное тестовое покрытие
-- [ ] Внедрить алгоритм [EFANNA](http://arxiv.org/abs/1609.0
+- [ ] Внедрить алгоритм [EFANNA](http://arxiv.org/abs/1609.07228) для более быстрого построения графа KNN.
+- [ ] Поддержка`Swift` и пример развертывания `iOS` / `macOS`
+- [ ] Поддержка `R`
+- [ ] поддержка `mmap`
+
+# Связан
