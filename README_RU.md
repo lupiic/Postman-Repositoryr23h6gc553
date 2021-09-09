@@ -289,4 +289,19 @@ private static float getGaussian(Random fRandom, float aMean, float variance) {
 Мы рады, что вы участвуете, приветствуются любые взносы, включая документацию и тесты.
 Вы можете создать `Pull Request` или `Issue` на GitHub, и мы рассмотрим его как можно скорее.
 
-Мы используем проблемы GitHub 
+Мы используем проблемы GitHub для отслеживания предложений и ошибок.
+
+#### Clone the repo
+
+```bash
+git clone https://github.com/hora-search/hora
+```
+
+#### Build
+
+```bash
+cargo build
+```
+
+#### Test
+
