@@ -305,3 +305,17 @@ cargo build
 
 #### Test
 
+```bash
+cargo test --lib
+```
+
+#### Try the changes
+
+```bash
+cd examples
+cargo run
+```
+
+# License
+
+The entire repository is licensed under the [Apache License](ht
