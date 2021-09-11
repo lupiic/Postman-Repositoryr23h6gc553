@@ -137,3 +137,113 @@ fn bench_hnsw<E: core::node::FloatElement>(
         make_idx_baseline(train, &mut hnsw_idx);
         metrics_stats.push(bench_calc(hnsw_idx, test, neighbors));
         println!("finish params {:?}", params);
+    }
+
+    for i in 0..metrics_stats.len() {
+        println!(
+            "idx hnsw params {:?} result {:?}/{:?} {:?}ms qps {:?}",
+            params_set[i],
+            metrics_stats[i].Accuracy,
+            metrics_stats[i].TestSize,
+            metrics_stats[i].Cost,
+            metrics_stats[i].QPS,
+        );
+    }
+}
+
+fn bench_ivfpq<E: core::node::FloatElement>(
+    train: &Vec<Vec<E>>,
+    test: &Vec<Vec<E>>,
+    neighbors: &Vec<HashSet<usize>>,
+) {
+    let params_set = vec![hora::index::pq_params::IVFPQParams::<E>::default()
+        .n_sub(16)
+        .sub_bits(4)
+        .n_kmeans_center(256)
+        .search_n_center(4)
+        .train_epoch(100)];
+
+    let mut metrics_stats: Vec<StatMetrics> = Vec::new();
+    for params in params_set.iter() {
+        let mut ivfpq_idx = Box::new(hora::index::pq_idx::IVFPQIndex::<E, usize>::new(
+            dimension, params,
+        ));
+        make_idx_baseline(train, &mut ivfpq_idx);
+        metrics_stats.push(bench_calc(ivfpq_idx, test, neighbors));
+        println!("finish params {:?}", params);
+    }
+
+    for i in 0..metrics_stats.len() {
+        println!(
+            "idx ivfpq params {:?} result {:?}/{:?} {:?}ms qps {:?}",
+            params_set[i],
+            metrics_stats[i].Accuracy,
+            metrics_stats[i].TestSize,
+            metrics_stats[i].Cost,
+            metrics_stats[i].QPS,
+        );
+    }
+}
+
+fn bench_calc<E: core::node::FloatElement, T: ANNIndex<E, usize> + ?Sized>(
+    ann_idx: Box<T>,
+    test: &Vec<Vec<E>>,
+    neighbors: &Vec<HashSet<usize>>,
+) -> StatMetrics {
+    let mut accuracy = 0;
+    let mut cost = 0.0;
+
+    for idx in 0..test.len() {
+        let start = SystemTime::now();
+        let result = ann_idx.search(test[idx].as_slice(), K);
+        let since_start = SystemTime::now().duration_since(start).expect("error");
+        cost += (since_start.as_micros() as f64) / 1000.0;
+        let true_set = &neighbors[idx];
+        result.iter().for_each(|candidate| {
+            if true_set.contains(candidate) {
+                accuracy += 1;
+            }
+        });
+    }
+    println!("cost: {:?}", cost);
+    println!("cost: {:?}", cost);
+    println!(
+        "{:?} result {:?}/{:?} {:?}ms qps {:?}",
+        ann_idx.name(),
+        accuracy,
+        test.len() * K,
+        cost,
+        1.0 / (((cost as f32) / 1000.0) / test.len() as f32)
+    );
+    StatMetrics {
+        QPS: 1.0 / (((cost as f64) / 1000.0) / test.len() as f64),
+        Accuracy: accuracy,
+        TestSize: test.len() * K,
+        Cost: cost,
+        BuildCost: 0.0,
+    }
+}
+
+fn make_idx_baseline<E: core::node::FloatElement, T: ANNIndex<E, usize> + ?Sized>(
+    embs: &Vec<Vec<E>>,
+    idx: &mut Box<T>,
+) {
+    let start = SystemTime::now();
+    for i in 0..embs.len() {
+        idx.add_node(&core::node::Node::<E, usize>::new_with_idx(
+            embs[i].as_slice(),
+            i,
+        ))
+        .unwrap();
+    }
+    idx.build(core::metrics::Metric::DotProduct).unwrap();
+    let since_start = SystemTime::now()
+        .duration_since(start)
+        .expect("Time went backwards");
+
+    println!(
+        "index {:?} build time {:?} ms",
+        idx.name(),
+        since_start.as_millis() as f64
+    );
+}
