@@ -83,3 +83,77 @@ pub trait ANNIndex<E: node::FloatElement, T: node::IdxType>: Send + Sync {
         assert_eq!(item.len(), self.dimension());
         self.node_search_k(&node::Node::new(item), k)
     }
+
+    /// search for k nearest neighbors
+    ///
+    /// it only return the idx of the nearest node
+    ///
+    /// it require the item is the slice with the same dimension with index dimension, otherwise it will panic
+    fn search(&self, item: &[E], k: usize) -> Vec<T> {
+        assert_eq!(item.len(), self.dimension());
+        self.node_search_k(&node::Node::new(item), k)
+            .iter()
+            .map(|x| x.0.idx().as_ref().unwrap().clone())
+            .collect::<Vec<T>>()
+    }
+
+    /// return the name of the Index
+    /// format like this
+    /// `HNSWIndex(Hierarchical Navigable Small World Index)`
+    fn name(&self) -> &'static str;
+
+    /// internal nodes' size
+    fn nodes_size(&self) -> usize {
+        0
+    }
+
+    /// clear all nodes and index built before
+    fn clear(&mut self) {}
+
+    /// return String of Index statistics informations
+    fn idx_info(&self) -> String {
+        "not implement".to_string()
+    }
+
+    /// return the dimension it require
+    fn dimension(&self) -> usize {
+        0
+    }
+}
+
+/// SerializableIndex provide the `Serialization` and `Deserialization` method for the index
+/// SerializableIndex is the main trait that all index have to implement
+///
+/// call `.dump` method to dump a binary format file in the disk, and the binary file include all nodes which have added into
+/// call `.load' method to load a binary format file to load back the Index built before, and the Index loaded have all Nodes' info the binary file have
+///
+///
+/// Example:
+///
+/// ```
+/// let mut bf_idx = Box::new(bf::bf::BruteForceIndex::<f32, usize>::new()); // use BruteForceIndex
+/// for i in 0..embs.len() {
+///    bf_idx.add_node(&core::node::Node::<E, usize>::new_with_idx(&embs[i], i)); // add index
+/// }
+/// bf_idx.dump("bf_idx.idx", &arguments::Args::new());
+/// let bf_idx2 = Box::new(bf::bf::BruteForceIndex::<f32, usize>::load("bf_idx.idx", &argument).unwrap());
+/// ```
+///
+pub trait SerializableIndex<
+    E: node::FloatElement + DeserializeOwned,
+    T: node::IdxType + DeserializeOwned,
+>: Send + Sync + ANNIndex<E, T>
+{
+    /// load file with path
+    fn load(_path: &str) -> Result<Self, &'static str>
+    where
+        Self: Sized,
+    {
+        Err("empty implementation")
+    }
+
+    /// dump the file into the path
+    fn dump(&mut self, _path: &str) -> Result<(), &'static str> {
+        Err("empty implementation")
+    }
+}
