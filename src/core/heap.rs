@@ -19,4 +19,7 @@ impl<T: Ord> BinaryHeap<T> {
     }
 
     pub fn pop(&mut self) -> Option<T> {
-        self.data.po
+        self.data.pop().map(|mut item| {
+            if !self.is_empty() {
+                swap(&mut item, &mut self.data[0]);
+                self.sift_down_to_bottom(0)
