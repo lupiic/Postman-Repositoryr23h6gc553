@@ -38,4 +38,6 @@ impl<T: Ord> BinaryHeap<T> {
         let mut end = self.len();
         while end > 1 {
             end -= 1;
- 
+            // SAFETY: `end` goes from `self.len() - 1` to 1 (both included),
+            //  so it's always a valid index to access.
+            //  It is safe to access
