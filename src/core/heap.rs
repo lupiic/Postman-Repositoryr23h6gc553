@@ -30,4 +30,12 @@ impl<T: Ord> BinaryHeap<T> {
 
     pub fn push(&mut self, item: T) {
         let old_len = self.len();
-        self.data.
+        self.data.push(item);
+        self.sift_up(0, old_len);
+    }
+
+    pub fn into_sorted_vec(mut self) -> Vec<T> {
+        let mut end = self.len();
+        while end > 1 {
+            end -= 1;
+ 
