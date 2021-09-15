@@ -54,4 +54,8 @@ impl<T: Ord> BinaryHeap<T> {
     fn sift_up(&mut self, start: usize, pos: usize) -> usize {
         unsafe {
             // Take out the value at `pos` and create a hole.
-            let mut hole = Hole::new(&mu
+            let mut hole = Hole::new(&mut self.data, pos);
+
+            while hole.pos() > start {
+                let parent = (hole.pos() - 1) / 2;
+                if hole.element() <= hole.get(p
