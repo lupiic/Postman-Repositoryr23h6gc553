@@ -43,4 +43,12 @@ impl<T: Ord> BinaryHeap<T> {
             //  It is safe to access index 0 (i.e. `ptr`), because
             //  1 <= end < self.len(), which means self.len() >= 2.
             unsafe {
-                let ptr = self.data.as_mut_ptr()
+                let ptr = self.data.as_mut_ptr();
+                ptr::swap(ptr, ptr.add(end));
+            }
+            self.sift_down_range(0, end);
+        }
+        self.into_vec()
+    }
+
+    fn sift_
