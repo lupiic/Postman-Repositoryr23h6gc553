@@ -51,4 +51,7 @@ impl<T: Ord> BinaryHeap<T> {
         self.into_vec()
     }
 
-    fn sift_
+    fn sift_up(&mut self, start: usize, pos: usize) -> usize {
+        unsafe {
+            // Take out the value at `pos` and create a hole.
+            let mut hole = Hole::new(&mu
