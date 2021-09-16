@@ -67,4 +67,7 @@ impl<T: Ord> BinaryHeap<T> {
         }
     }
 
-    fn sif
+    fn sift_down_range(&mut self, pos: usize, end: usize) {
+        unsafe {
+            let mut hole = Hole::new(&mut self.data, pos);
+            let mut child
