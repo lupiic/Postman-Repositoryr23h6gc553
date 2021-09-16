@@ -58,4 +58,13 @@ impl<T: Ord> BinaryHeap<T> {
 
             while hole.pos() > start {
                 let parent = (hole.pos() - 1) / 2;
-                if hole.element() <= hole.get(p
+                if hole.element() <= hole.get(parent) {
+                    break;
+                }
+                hole.move_to(parent);
+            }
+            hole.pos()
+        }
+    }
+
+    fn sif
