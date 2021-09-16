@@ -73,4 +73,7 @@ impl<T: Ord> BinaryHeap<T> {
             let mut child = 2 * pos + 1;
             while child < end - 1 {
                 // compare with the greater of the two children
-                child += (hole.get(child) 
+                child += (hole.get(child) <= hole.get(child + 1)) as usize;
+                // if we are already in order, stop.
+                if hole.element() >= hole.get(child) {
+                   
