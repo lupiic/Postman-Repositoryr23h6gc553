@@ -70,4 +70,7 @@ impl<T: Ord> BinaryHeap<T> {
     fn sift_down_range(&mut self, pos: usize, end: usize) {
         unsafe {
             let mut hole = Hole::new(&mut self.data, pos);
-            let mut child
+            let mut child = 2 * pos + 1;
+            while child < end - 1 {
+                // compare with the greater of the two children
+                child += (hole.get(child) 
