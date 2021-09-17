@@ -76,4 +76,9 @@ impl<T: Ord> BinaryHeap<T> {
                 child += (hole.get(child) <= hole.get(child + 1)) as usize;
                 // if we are already in order, stop.
                 if hole.element() >= hole.get(child) {
-                   
+                    return;
+                }
+                hole.move_to(child);
+                child = 2 * hole.pos() + 1;
+            }
+            if child == end 
