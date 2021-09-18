@@ -81,4 +81,11 @@ impl<T: Ord> BinaryHeap<T> {
                 hole.move_to(child);
                 child = 2 * hole.pos() + 1;
             }
-            if child == end 
+            if child == end - 1 && hole.element() < hole.get(child) {
+                hole.move_to(child);
+            }
+        }
+    }
+
+    fn sift_down(&mut self, pos: usize) {
+        let len = self.len();
