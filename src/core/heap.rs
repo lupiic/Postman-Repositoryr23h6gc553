@@ -94,4 +94,9 @@ impl<T: Ord> BinaryHeap<T> {
 
     fn sift_down_to_bottom(&mut self, mut pos: usize) {
         let end = self.len();
-        let start = pos
+        let start = pos;
+        unsafe {
+            let mut hole = Hole::new(&mut self.data, pos);
+            let mut child = 2 * pos + 1;
+            while child < end - 1 {
+                child += (hole
