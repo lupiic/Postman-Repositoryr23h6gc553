@@ -89,3 +89,9 @@ impl<T: Ord> BinaryHeap<T> {
 
     fn sift_down(&mut self, pos: usize) {
         let len = self.len();
+        self.sift_down_range(pos, len);
+    }
+
+    fn sift_down_to_bottom(&mut self, mut pos: usize) {
+        let end = self.len();
+        let start = pos
