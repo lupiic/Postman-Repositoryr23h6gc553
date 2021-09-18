@@ -99,4 +99,8 @@ impl<T: Ord> BinaryHeap<T> {
             let mut hole = Hole::new(&mut self.data, pos);
             let mut child = 2 * pos + 1;
             while child < end - 1 {
-                child += (hole
+                child += (hole.get(child) <= hole.get(child + 1)) as usize;
+                hole.move_to(child);
+                child = 2 * hole.pos() + 1;
+            }
+            if child == end
