@@ -112,4 +112,11 @@ impl<T: Ord> BinaryHeap<T> {
     }
 
     fn rebuild(&mut self) {
-  
+        let mut n = self.len() / 2;
+        while n > 0 {
+            n -= 1;
+            self.sift_down(n);
+        }
+    }
+
+    pub fn retain<F>(&mut self, f: F
