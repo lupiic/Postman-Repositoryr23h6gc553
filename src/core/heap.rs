@@ -119,4 +119,14 @@ impl<T: Ord> BinaryHeap<T> {
         }
     }
 
-    pub fn retain<F>(&mut self, f: F
+    pub fn retain<F>(&mut self, f: F)
+    where
+        F: FnMut(&T) -> bool,
+    {
+        self.data.retain(f);
+        self.rebuild();
+    }
+}
+
+impl<T> BinaryHeap<T> {
+    // pub fn iter(&se
