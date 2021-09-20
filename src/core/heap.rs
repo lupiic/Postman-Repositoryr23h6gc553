@@ -136,4 +136,9 @@ impl<T> BinaryHeap<T> {
         self.data.get(0)
     }
 
-    pub fn cap
+    pub fn capacity(&self) -> usize {
+        self.data.capacity()
+    }
+
+    pub fn reserve_exact(&mut self, additional: usize) {
+        self.data.reserve_exact(additional)
