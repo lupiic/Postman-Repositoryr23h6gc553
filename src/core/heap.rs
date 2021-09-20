@@ -141,4 +141,12 @@ impl<T> BinaryHeap<T> {
     }
 
     pub fn reserve_exact(&mut self, additional: usize) {
-        self.data.reserve_exact(additional)
+        self.data.reserve_exact(additional);
+    }
+
+    pub fn reserve(&mut self, additional: usize) {
+        self.data.reserve(additional);
+    }
+
+    pub fn shrink_to_fit(&mut self) {
+        self.data.shrink
