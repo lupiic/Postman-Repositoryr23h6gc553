@@ -129,4 +129,11 @@ impl<T: Ord> BinaryHeap<T> {
 }
 
 impl<T> BinaryHeap<T> {
-    // pub fn iter(&se
+    // pub fn iter(&self) -> Iter<'_, T> {
+    //     Iter { iter: self.data.iter() }
+    // }
+    pub fn peek(&self) -> Option<&T> {
+        self.data.get(0)
+    }
+
+    pub fn cap
