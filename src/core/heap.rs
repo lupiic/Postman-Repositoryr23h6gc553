@@ -169,4 +169,7 @@ impl<T> BinaryHeap<T> {
     }
 }
 
-/// Hole represents a hole in a sl
+/// Hole represents a hole in a slice i.e., an index without valid value
+/// (because it was moved from or duplicated).
+/// In drop, `Hole` will restore the slice by filling the hole
+/// position with the val
