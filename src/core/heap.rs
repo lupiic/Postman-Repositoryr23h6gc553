@@ -149,4 +149,15 @@ impl<T> BinaryHeap<T> {
     }
 
     pub fn shrink_to_fit(&mut self) {
-        self.data.shrink
+        self.data.shrink_to_fit();
+    }
+
+    pub fn into_vec(self) -> Vec<T> {
+        self.into()
+    }
+
+    pub fn len(&self) -> usize {
+        self.data.len()
+    }
+
+    pub fn is_emp
