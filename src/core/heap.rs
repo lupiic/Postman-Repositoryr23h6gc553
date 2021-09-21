@@ -160,4 +160,13 @@ impl<T> BinaryHeap<T> {
         self.data.len()
     }
 
-    pub fn is_emp
+    pub fn is_empty(&self) -> bool {
+        self.len() == 0
+    }
+
+    pub fn clear(&mut self) {
+        self.data.drain(..);
+    }
+}
+
+/// Hole represents a hole in a sl
