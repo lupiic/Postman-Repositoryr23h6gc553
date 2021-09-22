@@ -187,4 +187,13 @@ impl<'a, T> Hole<'a, T> {
     unsafe fn new(data: &'a mut [T], pos: usize) -> Self {
         debug_assert!(pos < data.len());
         // SAFE: pos should be inside the slice
-        let elt = unsafe { ptr::read(data.get_unchecked(p
+        let elt = unsafe { ptr::read(data.get_unchecked(pos)) };
+        Hole {
+            data,
+            elt: ManuallyDrop::new(elt),
+            pos,
+        }
+    }
+
+    #[inline]
+    fn pos(&self) -> usize
