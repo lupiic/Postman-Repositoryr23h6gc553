@@ -196,4 +196,11 @@ impl<'a, T> Hole<'a, T> {
     }
 
     #[inline]
-    fn pos(&self) -> usize
+    fn pos(&self) -> usize {
+        self.pos
+    }
+
+    /// Returns a reference to the element removed.
+    #[inline]
+    fn element(&self) -> &T {
+        &self.elt
