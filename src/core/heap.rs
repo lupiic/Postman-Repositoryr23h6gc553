@@ -208,4 +208,8 @@ impl<'a, T> Hole<'a, T> {
 
     /// Returns a reference to the element at `index`.
     ///
-    /// Unsafe because index must be within the data s
+    /// Unsafe because index must be within the data slice and not equal to pos.
+    #[inline]
+    unsafe fn get(&self, index: usize) -> &T {
+        debug_assert!(index != self.pos);
+        debug_assert!(index < 
