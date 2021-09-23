@@ -204,3 +204,8 @@ impl<'a, T> Hole<'a, T> {
     #[inline]
     fn element(&self) -> &T {
         &self.elt
+    }
+
+    /// Returns a reference to the element at `index`.
+    ///
+    /// Unsafe because index must be within the data s
