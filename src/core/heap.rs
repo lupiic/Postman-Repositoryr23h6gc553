@@ -212,4 +212,10 @@ impl<'a, T> Hole<'a, T> {
     #[inline]
     unsafe fn get(&self, index: usize) -> &T {
         debug_assert!(index != self.pos);
-        debug_assert!(index < 
+        debug_assert!(index < self.data.len());
+        unsafe { self.data.get_unchecked(index) }
+    }
+
+    /// Move hole to new location
+    ///
+    /// Unsafe because index must be within t
