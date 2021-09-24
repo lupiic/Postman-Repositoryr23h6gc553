@@ -218,4 +218,8 @@ impl<'a, T> Hole<'a, T> {
 
     /// Move hole to new location
     ///
-    /// Unsafe because index must be within t
+    /// Unsafe because index must be within the data slice and not equal to pos.
+    #[inline]
+    unsafe fn move_to(&mut self, index: usize) {
+        debug_assert!(index != self.pos);
+ 
