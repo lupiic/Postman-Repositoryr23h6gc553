@@ -239,4 +239,10 @@ impl<T> Drop for Hole<'_, T> {
         // fill the hole again
         unsafe {
             let pos = self.pos;
-            ptr
+            ptr::copy_nonoverlapping(&*self.elt, self.data.get_unchecked_mut(pos), 1);
+        }
+    }
+}
+
+impl<T: Ord> From<Vec<T>> for BinaryHeap<T> {
+    /// Converts 
