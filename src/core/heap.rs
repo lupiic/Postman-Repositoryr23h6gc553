@@ -226,4 +226,11 @@ impl<'a, T> Hole<'a, T> {
         unsafe {
             let ptr = self.data.as_mut_ptr();
             let index_ptr: *const _ = ptr.add(index);
-      
+            let hole_ptr = ptr.add(self.pos);
+            ptr::copy_nonoverlapping(index_ptr, hole_ptr, 1);
+        }
+        self.pos = index;
+    }
+}
+
+impl<T> Drop for Hole<'_
