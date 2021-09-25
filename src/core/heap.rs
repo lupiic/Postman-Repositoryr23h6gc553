@@ -233,4 +233,10 @@ impl<'a, T> Hole<'a, T> {
     }
 }
 
-impl<T> Drop for Hole<'_
+impl<T> Drop for Hole<'_, T> {
+    #[inline]
+    fn drop(&mut self) {
+        // fill the hole again
+        unsafe {
+            let pos = self.pos;
+            ptr
