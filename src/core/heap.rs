@@ -222,4 +222,8 @@ impl<'a, T> Hole<'a, T> {
     #[inline]
     unsafe fn move_to(&mut self, index: usize) {
         debug_assert!(index != self.pos);
- 
+        debug_assert!(index < self.data.len());
+        unsafe {
+            let ptr = self.data.as_mut_ptr();
+            let index_ptr: *const _ = ptr.add(index);
+      
