@@ -245,4 +245,7 @@ impl<T> Drop for Hole<'_, T> {
 }
 
 impl<T: Ord> From<Vec<T>> for BinaryHeap<T> {
-    /// Converts 
+    /// Converts a `Vec<T>` into a `BinaryHeap<T>`.
+    ///
+    /// This conversion happens in-place, and has *O*(*n*) time complexity.
+    fn from(vec: Vec<T>) -> BinaryHeap<T> {
