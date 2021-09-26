@@ -249,3 +249,11 @@ impl<T: Ord> From<Vec<T>> for BinaryHeap<T> {
     ///
     /// This conversion happens in-place, and has *O*(*n*) time complexity.
     fn from(vec: Vec<T>) -> BinaryHeap<T> {
+        let mut heap = BinaryHeap { data: vec };
+        heap.rebuild();
+        heap
+    }
+}
+
+impl<T> From<BinaryHeap<T>> for Vec<T> {
+    /// Converts a `BinaryHea
