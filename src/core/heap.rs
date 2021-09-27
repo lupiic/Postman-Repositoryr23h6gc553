@@ -260,4 +260,7 @@ impl<T> From<BinaryHeap<T>> for Vec<T> {
     ///
     /// This conversion requires no data movement or allocation, and has
     /// constant time complexity.
-    fn from(heap: BinaryHeap<T>) ->
+    fn from(heap: BinaryHeap<T>) -> Vec<T> {
+        heap.data
+    }
+}
