@@ -256,4 +256,8 @@ impl<T: Ord> From<Vec<T>> for BinaryHeap<T> {
 }
 
 impl<T> From<BinaryHeap<T>> for Vec<T> {
-    /// Converts a `BinaryHea
+    /// Converts a `BinaryHeap<T>` into a `Vec<T>`.
+    ///
+    /// This conversion requires no data movement or allocation, and has
+    /// constant time complexity.
+    fn from(heap: BinaryHeap<T>) ->
