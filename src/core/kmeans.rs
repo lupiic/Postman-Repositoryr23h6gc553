@@ -14,4 +14,8 @@ pub struct Kmeans<E: node::FloatElement> {
     _data_range_end: usize,
     _has_residual: bool,
     _residual: Vec<E>,
-   
+    mt: metrics::Metric, //compute metrics
+}
+
+impl<E: node::FloatElement> Kmeans<E> {
+    pub fn new(dimension: usize, n_center: usize, mt: metrics::Metric) -> Kmean
