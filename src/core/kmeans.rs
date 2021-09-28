@@ -9,4 +9,9 @@ use std::sync::Mutex;
 pub struct Kmeans<E: node::FloatElement> {
     _dimension: usize,
     _n_center: usize,
-    _cente
+    _centers: Vec<Vec<E>>,
+    _data_range_begin: usize,
+    _data_range_end: usize,
+    _has_residual: bool,
+    _residual: Vec<E>,
+   
