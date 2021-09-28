@@ -18,4 +18,10 @@ pub struct Kmeans<E: node::FloatElement> {
 }
 
 impl<E: node::FloatElement> Kmeans<E> {
-    pub fn new(dimension: usize, n_center: usize, mt: metrics::Metric) -> Kmean
+    pub fn new(dimension: usize, n_center: usize, mt: metrics::Metric) -> Kmeans<E> {
+        Kmeans {
+            _dimension: dimension,
+            _n_center: n_center,
+            _data_range_begin: 0,
+            _data_range_end: dimension,
+           
