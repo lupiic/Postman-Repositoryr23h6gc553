@@ -33,4 +33,7 @@ impl<E: node::FloatElement> Kmeans<E> {
         &self._centers
     }
 
-    pub fn get_distance_from_vec(&self,
+    pub fn get_distance_from_vec(&self, x: &[E], y: &[E]) -> E {
+        let mut z = x[self._data_range_begin..self._data_range_end].to_vec();
+        if self._has_residual {
+            (0..self.
