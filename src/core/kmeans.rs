@@ -39,4 +39,10 @@ impl<E: node::FloatElement> Kmeans<E> {
             (0..self._data_range_end - self._data_range_begin)
                 .for_each(|i| z[i] -= self._residual[i + self._data_range_begin]);
         }
-        ret
+        return metric(&z, y, self.mt).unwrap();
+    }
+
+    pub fn set_residual(&mut self, residual: Vec<E>) {
+        self._has_residual = true;
+        self._residual = residual;
+ 
