@@ -24,4 +24,13 @@ impl<E: node::FloatElement> Kmeans<E> {
             _n_center: n_center,
             _data_range_begin: 0,
             _data_range_end: dimension,
-           
+            mt,
+            ..Default::default()
+        }
+    }
+
+    pub fn centers(&self) -> &Vec<Vec<E>> {
+        &self._centers
+    }
+
+    pub fn get_distance_from_vec(&self,
