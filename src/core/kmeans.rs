@@ -45,4 +45,8 @@ impl<E: node::FloatElement> Kmeans<E> {
     pub fn set_residual(&mut self, residual: Vec<E>) {
         self._has_residual = true;
         self._residual = residual;
- 
+    }
+
+    pub fn init_center(&mut self, batch_size: usize, batch_data: &[Vec<E>]) {
+        let dimension = self._dimension;
+        let n_center = self._n_center;
