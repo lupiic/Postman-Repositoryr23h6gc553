@@ -50,3 +50,7 @@ impl<E: node::FloatElement> Kmeans<E> {
     pub fn init_center(&mut self, batch_size: usize, batch_data: &[Vec<E>]) {
         let dimension = self._dimension;
         let n_center = self._n_center;
+        let begin = self._data_range_begin;
+        let mut mean_center: Vec<E> = vec![E::from_f32(0.0).unwrap(); dimension];
+
+        (0..batch_size).for_ea
