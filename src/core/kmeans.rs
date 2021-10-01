@@ -53,4 +53,8 @@ impl<E: node::FloatElement> Kmeans<E> {
         let begin = self._data_range_begin;
         let mut mean_center: Vec<E> = vec![E::from_f32(0.0).unwrap(); dimension];
 
-        (0..batch_size).for_ea
+        (0..batch_size).for_each(|i| {
+            let cur_data = &batch_data[i];
+            (0..dimension).for_each(|j| {
+                if self._has_residual {
+                    mean_
