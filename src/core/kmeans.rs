@@ -59,4 +59,11 @@ impl<E: node::FloatElement> Kmeans<E> {
                 if self._has_residual {
                     mean_center[j] += cur_data[begin + j] - self._residual[begin + j];
                 } else {
-                    mean_center[j] += cur_data[be
+                    mean_center[j] += cur_data[begin + j];
+                }
+            });
+        });
+
+        (0..dimension).for_each(|i| {
+            mean_center[i] /= E::from_usize(batch_size).unwrap();
+        }
