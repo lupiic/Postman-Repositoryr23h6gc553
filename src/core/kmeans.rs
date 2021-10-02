@@ -57,4 +57,6 @@ impl<E: node::FloatElement> Kmeans<E> {
             let cur_data = &batch_data[i];
             (0..dimension).for_each(|j| {
                 if self._has_residual {
-                    mean_
+                    mean_center[j] += cur_data[begin + j] - self._residual[begin + j];
+                } else {
+                    mean_center[j] += cur_data[be
