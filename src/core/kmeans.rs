@@ -66,4 +66,8 @@ impl<E: node::FloatElement> Kmeans<E> {
 
         (0..dimension).for_each(|i| {
             mean_center[i] /= E::from_usize(batch_size).unwrap();
-        }
+        });
+
+        let mut new_centers: Vec<Vec<E>> = Vec::with_capacity(n_center);
+        (0..n_center).for_each(|i| {
+            let mut cur_center
