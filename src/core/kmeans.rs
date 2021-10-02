@@ -70,4 +70,8 @@ impl<E: node::FloatElement> Kmeans<E> {
 
         let mut new_centers: Vec<Vec<E>> = Vec::with_capacity(n_center);
         (0..n_center).for_each(|i| {
-            let mut cur_center
+            let mut cur_center: Vec<E> = Vec::new();
+            (0..dimension).for_each(|j| {
+                let mut val = mean_center[j];
+                if i & (1 << j) == 1 {
+            
