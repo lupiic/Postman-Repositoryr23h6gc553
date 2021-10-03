@@ -78,4 +78,11 @@ impl<E: node::FloatElement> Kmeans<E> {
                 } else {
                     val -= E::from_f32(1.0).unwrap();
                 }
-                cur_
+                cur_center.push(val);
+            });
+            new_centers.push(cur_center);
+        });
+        self._centers = new_centers;
+    }
+
+    pub fn update_
