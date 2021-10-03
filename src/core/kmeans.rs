@@ -92,4 +92,7 @@ impl<E: node::FloatElement> Kmeans<E> {
         assigned_center: &[usize],
     ) -> Vec<usize> {
         let dimension = self._dimension;
- 
+        let n_center = self._n_center;
+        let begin = self._data_range_begin;
+        let mut new_centers: Vec<Vec<E>> = Vec::with_capacity(n_center);
+        (0..n_center
