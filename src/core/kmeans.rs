@@ -85,4 +85,11 @@ impl<E: node::FloatElement> Kmeans<E> {
         self._centers = new_centers;
     }
 
-    pub fn update_
+    pub fn update_center(
+        &mut self,
+        batch_size: usize,
+        batch_data: &[Vec<E>],
+        assigned_center: &[usize],
+    ) -> Vec<usize> {
+        let dimension = self._dimension;
+ 
