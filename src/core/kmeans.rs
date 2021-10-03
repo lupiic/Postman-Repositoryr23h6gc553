@@ -74,4 +74,8 @@ impl<E: node::FloatElement> Kmeans<E> {
             (0..dimension).for_each(|j| {
                 let mut val = mean_center[j];
                 if i & (1 << j) == 1 {
-            
+                    val += E::from_f32(1.0).unwrap();
+                } else {
+                    val -= E::from_f32(1.0).unwrap();
+                }
+                cur_
