@@ -102,4 +102,7 @@ impl<E: node::FloatElement> Kmeans<E> {
         (0..batch_size).for_each(|i| {
             let cur_data = &batch_data[i];
             let cur_center = assigned_center[i];
-            n_as
+            n_assigned_per_center[cur_center] += 1;
+            (0..dimension).for_each(|j| {
+                if self._has_residual {
+                    new_centers[cur_center][j] += c
