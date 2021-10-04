@@ -98,4 +98,8 @@ impl<E: node::FloatElement> Kmeans<E> {
         (0..n_center).for_each(|_| {
             new_centers.push(vec![E::from_f32(0.0).unwrap(); dimension]);
         });
-        let mut n_assigned_per_center: Vec<usize> = vec![0; n
+        let mut n_assigned_per_center: Vec<usize> = vec![0; n_center];
+        (0..batch_size).for_each(|i| {
+            let cur_data = &batch_data[i];
+            let cur_center = assigned_center[i];
+            n_as
