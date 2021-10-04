@@ -105,4 +105,7 @@ impl<E: node::FloatElement> Kmeans<E> {
             n_assigned_per_center[cur_center] += 1;
             (0..dimension).for_each(|j| {
                 if self._has_residual {
-                    new_centers[cur_center][j] += c
+                    new_centers[cur_center][j] += cur_data[begin + j] - self._residual[begin + j];
+                } else {
+                    new_centers[cur_center][j] += cur_data[begin + j];
+     
