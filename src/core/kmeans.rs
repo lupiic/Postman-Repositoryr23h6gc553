@@ -95,4 +95,7 @@ impl<E: node::FloatElement> Kmeans<E> {
         let n_center = self._n_center;
         let begin = self._data_range_begin;
         let mut new_centers: Vec<Vec<E>> = Vec::with_capacity(n_center);
-        (0..n_center
+        (0..n_center).for_each(|_| {
+            new_centers.push(vec![E::from_f32(0.0).unwrap(); dimension]);
+        });
+        let mut n_assigned_per_center: Vec<usize> = vec![0; n
