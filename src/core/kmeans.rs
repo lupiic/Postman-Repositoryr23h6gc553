@@ -115,4 +115,9 @@ impl<E: node::FloatElement> Kmeans<E> {
         (0..n_center).for_each(|i| {
             if n_assigned_per_center[i] == 0 {
                 return;
-   
+            }
+            (0..dimension).for_each(|j| {
+                new_centers[i][j] /= E::from_usize(n_assigned_per_center[i]).unwrap();
+            });
+        });
+        self.
