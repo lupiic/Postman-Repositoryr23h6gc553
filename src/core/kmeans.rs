@@ -120,4 +120,12 @@ impl<E: node::FloatElement> Kmeans<E> {
                 new_centers[i][j] /= E::from_usize(n_assigned_per_center[i]).unwrap();
             });
         });
-        self.
+        self._centers = new_centers;
+        n_assigned_per_center
+    }
+
+    pub fn search_data(
+        &mut self,
+        batch_size: usize,
+        batch_data: &[Vec<E>],
+      
