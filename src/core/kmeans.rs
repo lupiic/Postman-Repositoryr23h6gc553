@@ -136,4 +136,6 @@ impl<E: node::FloatElement> Kmeans<E> {
             let mut nearist_center_id: usize = 0;
             (1..n_center).for_each(|j| {
                 let cur_center = &self._centers[j];
-                let nearist_
+                let nearist_center = &self._centers[nearist_center_id];
+                if self.get_distance_from_vec(&batch_data[i], cur_center)
+                    < self.get_distance_from_vec(&batch_d
