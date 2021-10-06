@@ -138,4 +138,9 @@ impl<E: node::FloatElement> Kmeans<E> {
                 let cur_center = &self._centers[j];
                 let nearist_center = &self._centers[nearist_center_id];
                 if self.get_distance_from_vec(&batch_data[i], cur_center)
-                    < self.get_distance_from_vec(&batch_d
+                    < self.get_distance_from_vec(&batch_data[i], nearist_center)
+                {
+                    nearist_center_id = j;
+                }
+            });
+            assigned_center.push
