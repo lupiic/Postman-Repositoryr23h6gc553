@@ -128,4 +128,9 @@ impl<E: node::FloatElement> Kmeans<E> {
         &mut self,
         batch_size: usize,
         batch_data: &[Vec<E>],
-      
+        assigned_center: &mut Vec<usize>,
+    ) {
+        let n_center = self._n_center;
+        let _dimension = self._dimension;
+        (0..batch_size).for_each(|i| {
+     
