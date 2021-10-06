@@ -133,4 +133,7 @@ impl<E: node::FloatElement> Kmeans<E> {
         let n_center = self._n_center;
         let _dimension = self._dimension;
         (0..batch_size).for_each(|i| {
-     
+            let mut nearist_center_id: usize = 0;
+            (1..n_center).for_each(|j| {
+                let cur_center = &self._centers[j];
+                let nearist_
