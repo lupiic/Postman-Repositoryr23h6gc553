@@ -143,4 +143,12 @@ impl<E: node::FloatElement> Kmeans<E> {
                     nearist_center_id = j;
                 }
             });
-            assigned_center.push
+            assigned_center.push(nearist_center_id);
+        });
+    }
+
+    pub fn split_center(
+        &mut self,
+        batch_size: usize,
+        n_assigned_per_center: &mut Vec<usize>,
+ 
