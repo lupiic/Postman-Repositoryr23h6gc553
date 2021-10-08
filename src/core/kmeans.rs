@@ -156,4 +156,9 @@ impl<E: node::FloatElement> Kmeans<E> {
         let n_center = self._n_center;
 
         if batch_size == 0 {
-            return Err("None 
+            return Err("None to assigned impossible split center");
+        }
+
+        const EPS: f32 = 1.0 / 1024.0;
+        (0..n_center).for_each(|i| {
+            if n_assigned_p
