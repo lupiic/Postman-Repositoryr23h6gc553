@@ -161,4 +161,8 @@ impl<E: node::FloatElement> Kmeans<E> {
 
         const EPS: f32 = 1.0 / 1024.0;
         (0..n_center).for_each(|i| {
-            if n_assigned_p
+            if n_assigned_per_center[i] == 0 {
+                //rand pick split center
+                let mut split_center_id = (i + 1) % n_center;
+                loop {
+                    let
