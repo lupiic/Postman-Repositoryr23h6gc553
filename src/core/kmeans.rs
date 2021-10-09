@@ -176,4 +176,6 @@ impl<E: node::FloatElement> Kmeans<E> {
 
                 (0..dimension).for_each(|j| {
                     if j % 2 == 0 {
-               
+                        self._centers[i][j] =
+                            self._centers[split_center_id][j] * E::from_f32(1.0 - EPS).unwrap();
+                        
