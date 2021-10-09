@@ -171,4 +171,9 @@ impl<E: node::FloatElement> Kmeans<E> {
                     if rng.gen_range(0.0..1.0) < pick_percent {
                         break;
                     }
-                    split_center_id = (
+                    split_center_id = (split_center_id + 1) % n_center;
+                }
+
+                (0..dimension).for_each(|j| {
+                    if j % 2 == 0 {
+               
