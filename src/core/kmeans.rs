@@ -165,4 +165,6 @@ impl<E: node::FloatElement> Kmeans<E> {
                 //rand pick split center
                 let mut split_center_id = (i + 1) % n_center;
                 loop {
-                    let
+                    let mut rng = rand::thread_rng();
+                    let pick_percent =
+                        n_assigned_per_center[split_center_id] as f64 / batch_size as f64;
