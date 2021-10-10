@@ -178,4 +178,7 @@ impl<E: node::FloatElement> Kmeans<E> {
                     if j % 2 == 0 {
                         self._centers[i][j] =
                             self._centers[split_center_id][j] * E::from_f32(1.0 - EPS).unwrap();
-                        
+                        self._centers[split_center_id][j] *= E::from_f32(1.0 + EPS).unwrap();
+                    } else {
+                        self._centers[i][j] =
+                         
