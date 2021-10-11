@@ -186,4 +186,10 @@ impl<E: node::FloatElement> Kmeans<E> {
                     }
                 });
                 n_assigned_per_center[i] = n_assigned_per_center[split_center_id] / 2;
-  
+                n_assigned_per_center[split_center_id] -= n_assigned_per_center[i];
+            }
+        });
+        Ok(())
+    }
+
+    pub fn train(&mut self, batch_si
