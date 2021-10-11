@@ -195,4 +195,6 @@ impl<E: node::FloatElement> Kmeans<E> {
     pub fn train(&mut self, batch_size: usize, batch_data: &[Vec<E>], n_epoch: usize) {
         self.init_center(batch_size, batch_data);
         (0..n_epoch).for_each(|epoch| {
-            let mut ass
+            let mut assigned_center: Vec<usize> = Vec::with_capacity(batch_size);
+            self.search_data(batch_size, batch_data, &mut assigned_center);
+            let mu
