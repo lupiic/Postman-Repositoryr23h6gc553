@@ -192,4 +192,7 @@ impl<E: node::FloatElement> Kmeans<E> {
         Ok(())
     }
 
-    pub fn train(&mut self, batch_si
+    pub fn train(&mut self, batch_size: usize, batch_data: &[Vec<E>], n_epoch: usize) {
+        self.init_center(batch_size, batch_data);
+        (0..n_epoch).for_each(|epoch| {
+            let mut ass
