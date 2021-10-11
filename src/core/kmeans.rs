@@ -182,4 +182,8 @@ impl<E: node::FloatElement> Kmeans<E> {
                     } else {
                         self._centers[i][j] =
                             self._centers[split_center_id][j] * E::from_f32(1.0 + EPS).unwrap();
-                        self._centers[split_center_id][j] *= E::from_f32(1.0 - EPS)
+                        self._centers[split_center_id][j] *= E::from_f32(1.0 - EPS).unwrap();
+                    }
+                });
+                n_assigned_per_center[i] = n_assigned_per_center[split_center_id] / 2;
+  
