@@ -200,4 +200,10 @@ impl<E: node::FloatElement> Kmeans<E> {
             let mut n_assigned_per_center =
                 self.update_center(batch_size, batch_data, &assigned_center);
             if epoch < n_epoch - 1 {
-                sel
+                self.split_center(batch_size, &mut n_assigned_per_center)
+                    .unwrap();
+            }
+        });
+    }
+
+    pub fn set_range(&mut self,
