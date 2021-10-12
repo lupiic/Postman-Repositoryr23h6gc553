@@ -206,4 +206,11 @@ impl<E: node::FloatElement> Kmeans<E> {
         });
     }
 
-    pub fn set_range(&mut self,
+    pub fn set_range(&mut self, begin: usize, end: usize) {
+        assert!(end - begin == self._dimension);
+        self._data_range_begin = begin;
+        self._data_range_end = end;
+    }
+}
+
+pub fn general_kmeans<
