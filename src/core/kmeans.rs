@@ -197,4 +197,7 @@ impl<E: node::FloatElement> Kmeans<E> {
         (0..n_epoch).for_each(|epoch| {
             let mut assigned_center: Vec<usize> = Vec::with_capacity(batch_size);
             self.search_data(batch_size, batch_data, &mut assigned_center);
-            let mu
+            let mut n_assigned_per_center =
+                self.update_center(batch_size, batch_data, &assigned_center);
+            if epoch < n_epoch - 1 {
+                sel
