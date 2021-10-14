@@ -219,4 +219,11 @@ pub fn general_kmeans<E: node::FloatElement, T: node::IdxType>(
     nodes: &[Box<node::Node<E, T>>],
     mt: metrics::Metric,
 ) -> Vec<usize> {
-    if nodes.is_empt
+    if nodes.is_empty() {
+        return Vec::new();
+    }
+
+    let mut rng = rand::thread_rng();
+    let mut means = Vec::with_capacity(k);
+
+    (0..k).for_each(|_i| {
