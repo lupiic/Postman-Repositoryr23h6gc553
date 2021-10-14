@@ -227,3 +227,8 @@ pub fn general_kmeans<E: node::FloatElement, T: node::IdxType>(
     let mut means = Vec::with_capacity(k);
 
     (0..k).for_each(|_i| {
+        means.push(Box::new(nodes[rng.gen_range(0..nodes.len())].clone()));
+    });
+
+    (0..epoch).for_each(|_| {
+        let cluster_count: Vec<Mutex<usize>> = (0..k).m
