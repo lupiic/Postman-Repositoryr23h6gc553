@@ -233,4 +233,8 @@ pub fn general_kmeans<E: node::FloatElement, T: node::IdxType>(
     (0..epoch).for_each(|_| {
         let cluster_count: Vec<Mutex<usize>> = (0..k).map(|_| Mutex::new(0)).collect();
         let mut cluster_features: Vec<Mutex<Vec<E>>> = (0..k)
-            .map(|_| Mutex::new(vec![E::zero(); nodes[0].vectors()
+            .map(|_| Mutex::new(vec![E::zero(); nodes[0].vectors().len()]))
+            .collect();
+        nodes.par_iter().zip(0..nodes.len()).for_each(|(node, _j)| {
+            let mut idx = 0;
+            let 
