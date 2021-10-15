@@ -237,4 +237,7 @@ pub fn general_kmeans<E: node::FloatElement, T: node::IdxType>(
             .collect();
         nodes.par_iter().zip(0..nodes.len()).for_each(|(node, _j)| {
             let mut idx = 0;
-            let 
+            let mut distance = E::max_value();
+            for (i, _item) in means.iter().enumerate() {
+                let _distance = node.metric(&means[i], mt).unwrap();
+                i
