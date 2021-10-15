@@ -240,4 +240,10 @@ pub fn general_kmeans<E: node::FloatElement, T: node::IdxType>(
             let mut distance = E::max_value();
             for (i, _item) in means.iter().enumerate() {
                 let _distance = node.metric(&means[i], mt).unwrap();
-                i
+                if _distance < distance {
+                    idx = i;
+                    distance = _distance;
+                }
+            }
+            cluster_features[idx]
+   
