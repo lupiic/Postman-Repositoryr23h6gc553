@@ -257,4 +257,9 @@ pub fn general_kmeans<E: node::FloatElement, T: node::IdxType>(
         cluster_features
             .iter_mut()
             .zip(cluster_count)
-            .for_each
+            .for_each(|(features, cnt)| {
+                features
+                    .lock()
+                    .unwrap()
+                    .iter_mut()
+                    .for
