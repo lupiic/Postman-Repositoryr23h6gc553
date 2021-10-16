@@ -262,4 +262,9 @@ pub fn general_kmeans<E: node::FloatElement, T: node::IdxType>(
                     .lock()
                     .unwrap()
                     .iter_mut()
-                    .for
+                    .for_each(|f| *f /= E::from_usize(*cnt.lock().unwrap()).unwrap())
+            });
+
+        means
+            .iter_mut()
+            .zip(cluster_feat
