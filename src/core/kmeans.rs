@@ -251,4 +251,10 @@ pub fn general_kmeans<E: node::FloatElement, T: node::IdxType>(
                 .iter_mut()
                 .zip(node.vectors())
                 .for_each(|(i, j)| *i += *j);
-           
+            *cluster_count[idx].lock().unwrap() += 1;
+        });
+
+        cluster_features
+            .iter_mut()
+            .zip(cluster_count)
+            .for_each
