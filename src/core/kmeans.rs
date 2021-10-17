@@ -267,4 +267,11 @@ pub fn general_kmeans<E: node::FloatElement, T: node::IdxType>(
 
         means
             .iter_mut()
-            .zip(cluster_feat
+            .zip(cluster_features)
+            .for_each(|(mean, features)| mean.set_vectors(&features.lock().unwrap()));
+    });
+
+    means
+        .iter()
+        .map(|mean| {
+       
