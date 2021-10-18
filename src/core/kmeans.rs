@@ -274,4 +274,7 @@ pub fn general_kmeans<E: node::FloatElement, T: node::IdxType>(
     means
         .iter()
         .map(|mean| {
-       
+            let mut mean_idx = 0;
+            let mut mean_distance = E::max_value();
+            nodes.iter().zip(0..nodes.len()).for_each(|(node, i)| {
+                let distance = node.met
