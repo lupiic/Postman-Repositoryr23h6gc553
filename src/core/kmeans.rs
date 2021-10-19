@@ -280,4 +280,15 @@ pub fn general_kmeans<E: node::FloatElement, T: node::IdxType>(
                 let distance = node.metric(mean, mt).unwrap();
                 if distance < mean_distance {
                     mean_idx = i;
-                    mean_distance = distan
+                    mean_distance = distance;
+                }
+            });
+            mean_idx
+        })
+        .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rand::distributions::Stand
