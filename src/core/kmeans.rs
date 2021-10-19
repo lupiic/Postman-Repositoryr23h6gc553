@@ -299,4 +299,10 @@ mod tests {
         node_n: usize,
         dimension: usize,
         range: f64,
-  
+    ) -> (
+        Vec<Vec<f32>>, // center of cluster
+        Vec<Vec<f32>>, // cluster data
+    ) {
+        let _rng = rand::thread_rng();
+
+        let mut bases: Vec<
