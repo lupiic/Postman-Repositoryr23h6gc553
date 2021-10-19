@@ -305,4 +305,7 @@ mod tests {
     ) {
         let _rng = rand::thread_rng();
 
-        let mut bases: Vec<
+        let mut bases: Vec<Vec<f32>> = Vec::new();
+        let mut ns: Vec<Vec<f32>> = Vec::new();
+        for _i in 0..clustering_n {
+            let mut rng = rand::thread_r
