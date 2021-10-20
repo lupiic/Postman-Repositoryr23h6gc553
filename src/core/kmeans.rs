@@ -311,4 +311,10 @@ mod tests {
             let mut rng = rand::thread_rng();
             let mut base: Vec<f32> = Vec::with_capacity(dimension);
             for _i in 0..dimension {
-                let n: f64 = rng.gen::<f64>() * r
+                let n: f64 = rng.gen::<f64>() * range; // base number
+                base.push(n as f32);
+            }
+
+            let v_iter: Vec<f64> = rng
+                .sample_iter(&Standard)
+                .
