@@ -317,4 +317,8 @@ mod tests {
 
             let v_iter: Vec<f64> = rng
                 .sample_iter(&Standard)
-                .
+                .take(dimension * node_n)
+                .collect::<Vec<f64>>()
+                .clone();
+            for _i in 0..node_n {
+                let mut vec_ite
