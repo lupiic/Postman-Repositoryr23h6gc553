@@ -308,4 +308,7 @@ mod tests {
         let mut bases: Vec<Vec<f32>> = Vec::new();
         let mut ns: Vec<Vec<f32>> = Vec::new();
         for _i in 0..clustering_n {
-            let mut rng = rand::thread_r
+            let mut rng = rand::thread_rng();
+            let mut base: Vec<f32> = Vec::with_capacity(dimension);
+            for _i in 0..dimension {
+                let n: f64 = rng.gen::<f64>() * r
