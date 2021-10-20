@@ -321,4 +321,6 @@ mod tests {
                 .collect::<Vec<f64>>()
                 .clone();
             for _i in 0..node_n {
-                let mut vec_ite
+                let mut vec_item = Vec::with_capacity(dimension);
+                for i in 0..dimension {
+                    let vv = (v_iter[_i * dimension..(_i + 1) * dimension][i] as
