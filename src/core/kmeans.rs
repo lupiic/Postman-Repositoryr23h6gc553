@@ -323,4 +323,9 @@ mod tests {
             for _i in 0..node_n {
                 let mut vec_item = Vec::with_capacity(dimension);
                 for i in 0..dimension {
-                    let vv = (v_iter[_i * dimension..(_i + 1) * dimension][i] as
+                    let vv = (v_iter[_i * dimension..(_i + 1) * dimension][i] as f32) + base[i]; // add normal distribution noise
+                    vec_item.push(vv);
+                }
+                ns.push(vec_item);
+            }
+            bases.push(base
