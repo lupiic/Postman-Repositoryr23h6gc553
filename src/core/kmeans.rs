@@ -328,4 +328,14 @@ mod tests {
                 }
                 ns.push(vec_item);
             }
-            bases.push(base
+            bases.push(base);
+        }
+
+        (bases, ns)
+    }
+
+    #[test]
+    fn test_general_kmeans() {
+        let dimension = 2;
+        let nodes_every_cluster = 5;
+    
