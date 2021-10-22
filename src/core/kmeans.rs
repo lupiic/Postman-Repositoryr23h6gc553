@@ -347,4 +347,7 @@ mod tests {
             .map(|x| x.iter().map(|p| *p as f32).collect())
             .collect();
 
-        let
+        let nodes: Vec<Box<node::Node<f32, usize>>> = ns
+            .iter()
+            .zip(0..ns.len())
+            .map(|(vs, idx)| Box::new(node::Node::new_with_i
