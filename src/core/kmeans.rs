@@ -342,4 +342,9 @@ mod tests {
         let (_, nso) =
             make_normal_distribution_clustering(node_n, nodes_every_cluster, dimension, 100000.0);
         println!("{:?}", nso);
-    
+        let ns: Vec<Vec<f32>> = nso
+            .iter()
+            .map(|x| x.iter().map(|p| *p as f32).collect())
+            .collect();
+
+        let
