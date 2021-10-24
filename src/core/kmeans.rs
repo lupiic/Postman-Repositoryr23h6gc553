@@ -350,4 +350,8 @@ mod tests {
         let nodes: Vec<Box<node::Node<f32, usize>>> = ns
             .iter()
             .zip(0..ns.len())
-            .map(|(vs, idx)| Box::new(node::Node::new_with_i
+            .map(|(vs, idx)| Box::new(node::Node::new_with_idx(vs, idx)))
+            .collect();
+        println!(
+            "{:?}",
+            general_kmeans(node_n, 30, &nodes, metrics::Metric::E
