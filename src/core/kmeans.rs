@@ -354,4 +354,7 @@ mod tests {
             .collect();
         println!(
             "{:?}",
-            general_kmeans(node_n, 30, &nodes, metrics::Metric::E
+            general_kmeans(node_n, 30, &nodes, metrics::Metric::Euclidean)
+        );
+    }
+}
