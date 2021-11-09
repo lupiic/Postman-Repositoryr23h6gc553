@@ -310,3 +310,137 @@ impl<'a, E: FloatElement, T: IdxType> NNDescentHandler<'a, E, T> {
                         .contains(self.nodes.len() * i + the_graph_item.idx())
                     {
                         nn_new_neighbors.push(j);
+                    } else {
+                        nn_old_neighbors.push(the_graph_item.idx());
+                    }
+                }
+
+                tt += nn_new_neighbors.len();
+
+                if nn_new_neighbors.len() > self.s {
+                    let mut rng = rand::thread_rng();
+                    nn_new_neighbors.shuffle(&mut rng);
+                    nn_new_neighbors = nn_new_neighbors[self.s..].to_vec();
+                }
+
+                nn_new_neighbors.iter_mut().for_each(|j| {
+                    flags.push(i * self.nodes.len() + graph_item[*j].idx());
+                    *j = graph_item[*j].idx();
+                });
+
+                s.send((i, nn_new_neighbors, nn_old_neighbors, flags))
+                    .unwrap();
+                tt
+                // (i, tt, nn_new_neighbors, nn_old_neighbors, flags)
+            })
+            // .collect();
+            .sum::<usize>();
+
+        // t += pending_status2
+        //     .iter()
+        //     .map(|(i, tt, nn_new_neighbors, nn_old_neighbors, flags)| {
+        //         self.nn_new_neighbors[*i] = nn_new_neighbors.to_vec();
+        //         self.nn_old_neighbors[*i] = nn_old_neighbors.to_vec();
+        //         flags.iter().for_each(|j| {
+        //             self.visited_id.set(*j, false);
+        //         });
+        //         tt
+        //     })
+        //     .sum::<usize>();
+
+        receiver2
+            .iter()
+            .for_each(|(i, nn_new_neighbors, nn_old_neighbors, flags)| {
+                self.calculation_context[i].0 = nn_new_neighbors;
+                self.calculation_context[i].1 = nn_old_neighbors;
+                flags.iter().for_each(|j| {
+                    self.visited_id.set(*j, false);
+                });
+            });
+
+        let reversed_new_neighbors = vec![Arc::new(Mutex::new(Vec::new())); self.nodes.len()];
+        let reversed_old_neighbors = vec![Arc::new(Mutex::new(Vec::new())); self.nodes.len()];
+
+        (0..self.nodes.len()).into_par_iter().for_each(|i| {
+            for e in 0..self.calculation_context[i].1.len() {
+                reversed_old_neighbors[self.calculation_context[i].1[e]]
+                    .lock()
+                    .unwrap()
+                    .push(i);
+            }
+            for e in 0..self.calculation_context[i].0.len() {
+                reversed_new_neighbors[self.calculation_context[i].0[e]]
+                    .lock()
+                    .unwrap()
+                    .push(i);
+            }
+        });
+
+        (0..self.nodes.len()).into_par_iter().for_each(|i| {
+            let mut rng = rand::thread_rng();
+            if reversed_old_neighbors[i].lock().unwrap().len() > self.s {
+                reversed_old_neighbors[i].lock().unwrap().shuffle(&mut rng);
+                reversed_old_neighbors[i].lock().unwrap().resize(self.s, 0);
+            }
+            if reversed_new_neighbors[i].lock().unwrap().len() > self.s {
+                reversed_new_neighbors[i].lock().unwrap().shuffle(&mut rng);
+                reversed_new_neighbors[i].lock().unwrap().resize(self.s, 0);
+            }
+        });
+
+        (0..self.nodes.len()).for_each(|i| {
+            self.calculation_context[i].2 = reversed_new_neighbors[i]
+                .lock()
+                .unwrap()
+                .iter()
+                .copied()
+                .collect();
+            self.calculation_context[i].3 = reversed_old_neighbors[i]
+                .lock()
+                .unwrap()
+                .iter()
+                .copied()
+                .collect();
+        });
+
+        t
+    }
+
+    fn graph(&self) -> Vec<Vec<Neighbor<E, usize>>> {
+        let mut graph: Vec<Vec<Neighbor<E, usize>>> = Vec::with_capacity(self.graph.len());
+        for iter in self.graph.iter() {
+            graph.push(iter.lock().unwrap().iter().cloned().collect());
+        }
+        graph
+    }
+
+    fn cost(&self) -> &usize {
+        &self.cost
+    }
+
+    fn ths_update_cnt(&self) -> &usize {
+        &self.update_cnt
+    }
+}
+
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
+
+//     use crate::core::node;
+//     use rand::distributions::{Distribution, Standard};
+//     use rand::Rng;
+//     use std::collections::HashMap;
+//     use std::collections::HashSet;
+
+//     use std::iter::FromIterator;
+//     use std::time::SystemTime;
+//     fn make_normal_distribution_clustering(
+//         clustering_n: usize,
+//         node_n: usize,
+//         dimension: usize,
+//         range: f64,
+//     ) -> (
+//         Vec<Vec<f64>>, // center of cluster
+//         Vec<Vec<f64>>, // cluster data
+//     ) {
