@@ -132,3 +132,181 @@ impl<'a, E: FloatElement, T: IdxType> NNDescentHandler<'a, E, T> {
                     let rand_val = rand::thread_rng().gen_range(0..self.nodes.len());
                     nn_new_neighbors.push(rand_val);
                 }
+
+                let mut reversed_new_neighbors: Vec<usize> = Vec::with_capacity(self.s);
+                let reversed_old_neighbors: Vec<usize> = Vec::with_capacity(self.s);
+                for _j in 0..self.s {
+                    let rand_val = rand::thread_rng().gen_range(0..self.nodes.len());
+                    reversed_new_neighbors.push(rand_val);
+                }
+                (
+                    nn_new_neighbors,
+                    nn_old_neighbors,
+                    reversed_new_neighbors,
+                    reversed_old_neighbors,
+                )
+            })
+            .collect();
+    }
+
+    fn iterate_nn(&self) -> (usize, FixedBitSet) {
+        let my_graph = &self.graph;
+        let length = self.nodes.len();
+        // let (sender, receiver) = mpsc::channel();
+
+        // cc += (0..self.nodes.len())
+        self.calculation_context
+            .par_iter()
+            .map(
+                |(
+                    nn_new_neighbors,
+                    nn_old_neighbors,
+                    reversed_new_neighbors,
+                    reversed_old_neighbors,
+                )| {
+                    let mut flags = FixedBitSet::with_capacity(length * length);
+                    let mut ccc: usize = 0;
+                    for j in 0..nn_new_neighbors.len() {
+                        for k in j..nn_new_neighbors.len() {
+                            if self.update(nn_new_neighbors[j], nn_new_neighbors[k], my_graph) {
+                                ccc += 1;
+                            }
+                            flags.insert(nn_new_neighbors[j] * length + nn_new_neighbors[k]);
+                            flags.insert(nn_new_neighbors[k] * length + nn_new_neighbors[j]);
+                        }
+                    }
+
+                    nn_new_neighbors.iter().for_each(|j| {
+                        nn_old_neighbors.iter().for_each(|k| {
+                            if self.update(*j, *k, my_graph) {
+                                ccc += 1;
+                            }
+                            flags.insert(j * length + k);
+                            flags.insert(k * length + j);
+                        })
+                    });
+
+                    for j in 0..reversed_new_neighbors.len() {
+                        for k in j..reversed_new_neighbors.len() {
+                            if reversed_new_neighbors[j] >= reversed_new_neighbors[k] {
+                                continue;
+                            }
+                            if self.update(
+                                reversed_new_neighbors[j],
+                                reversed_new_neighbors[k],
+                                my_graph,
+                            ) {
+                                ccc += 1;
+                            }
+                            flags.insert(
+                                reversed_new_neighbors[j] * length + reversed_new_neighbors[k],
+                            );
+                            flags.insert(
+                                reversed_new_neighbors[k] * length + reversed_new_neighbors[j],
+                            );
+                        }
+                    }
+                    reversed_new_neighbors.iter().for_each(|j| {
+                        reversed_old_neighbors.iter().for_each(|k| {
+                            if self.update(*j, *k, my_graph) {
+                                ccc += 1;
+                            }
+                            flags.insert(j * length + k);
+                            flags.insert(k * length + j);
+                        })
+                    });
+
+                    nn_new_neighbors.iter().for_each(|j| {
+                        reversed_old_neighbors.iter().for_each(|k| {
+                            if self.update(*j, *k, my_graph) {
+                                ccc += 1;
+                            }
+                            flags.insert(j * length + k);
+                            flags.insert(k * length + j);
+                        })
+                    });
+
+                    nn_new_neighbors.iter().for_each(|j| {
+                        reversed_new_neighbors.iter().for_each(|k| {
+                            if self.update(*j, *k, my_graph) {
+                                ccc += 1;
+                            }
+                            flags.insert(j * length + k);
+                            flags.insert(k * length + j);
+                        })
+                    });
+
+                    nn_old_neighbors.iter().for_each(|j| {
+                        reversed_new_neighbors.iter().for_each(|k| {
+                            if self.update(*j, *k, my_graph) {
+                                ccc += 1;
+                            }
+                            flags.insert(j * length + k);
+                            flags.insert(k * length + j);
+                        })
+                    });
+                    (ccc, flags)
+                },
+            )
+            .reduce(
+                || (0, FixedBitSet::with_capacity(length * length)),
+                |(ccc1, mut flags1), (ccc2, flags2)| {
+                    flags1.union_with(&flags2);
+                    (ccc1 + ccc2, flags1)
+                },
+            )
+    }
+
+    fn iterate(&mut self) -> usize {
+        self.update_cnt = 0;
+        self.cost = 0;
+
+        let (cc, flags) = self.iterate_nn();
+        self.visited_id.union_with(&flags);
+
+        //         s.send(flags).unwrap();
+        //         ccc
+        //     })
+        //     .sum::<usize>();
+
+        // receiver.iter().for_each(|flags| {
+        //     flags.iter().for_each(|j| {
+        //         self.visited_id.set(*j, true);
+        //     });
+        // });
+
+        self.graph.par_iter().for_each(|graph| {
+            while graph.lock().unwrap().len() > self.k {
+                graph.lock().unwrap().pop();
+            }
+        });
+
+        self.cost += cc;
+        let mut t = 0;
+
+        let (sender2, receiver2) = mpsc::channel();
+        // let pending_status2: Vec<(usize, usize, Vec<usize>, Vec<usize>, Vec<usize>)> = (0..self
+        //     .nodes
+        //     .len())
+        t += (0..self.nodes.len())
+            .into_par_iter()
+            .map_with(sender2, |s, i| {
+                // .map(|i| {
+                let mut nn_new_neighbors = Vec::with_capacity(self.graph[i].lock().unwrap().len());
+                let mut nn_old_neighbors = Vec::with_capacity(self.graph[i].lock().unwrap().len());
+                let mut flags = Vec::with_capacity(self.graph[i].lock().unwrap().len());
+                let graph_item: Vec<Neighbor<E, usize>> =
+                    self.graph[i].lock().unwrap().clone().into_vec();
+
+                let mut tt: usize = 0;
+
+                for (j, the_graph_item) in graph_item.iter().enumerate().take(self.k) {
+                    if the_graph_item.idx() == self.nodes.len() {
+                        // init value, pass
+                        continue;
+                    }
+                    if self
+                        .visited_id
+                        .contains(self.nodes.len() * i + the_graph_item.idx())
+                    {
+                        nn_new_neighbors.push(j);
