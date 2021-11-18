@@ -8,4 +8,9 @@ macro_rules! vec_iter {
     };
 }
 
-#
+#[macro_export]
+macro_rules! vec_iter_mut {
+    (  $v:expr, $d: ident) => {
+        #[cfg(not(feature = "no_thread"))]
+        let $d = $v.par_iter_mut();
+      
