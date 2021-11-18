@@ -21,4 +21,9 @@ macro_rules! vec_iter_mut {
 #[macro_export]
 macro_rules! into_iter {
     (  $v:expr, $d: ident) => {
-        #[cfg(not(feature 
+        #[cfg(not(feature = "no_thread"))]
+        let $d = $v.into_par_iter();
+        #[cfg(feature = "no_thread")]
+        let $d = $v.into_iter();
+    };
+}
