@@ -6,4 +6,9 @@ use core::cmp::Ordering;
 ///
 #[derive(Default, Clone, PartialEq, Debug)]
 pub struct Neighbor<E: node::FloatElement, T: node::IdxType> {
-    pub 
+    pub _idx: T,
+    pub _distance: E,
+}
+
+impl<E: node::FloatElement, T: node::IdxType> Neighbor<E, T> {
+    pub fn new(idx: T, distance: E) -> Ne
