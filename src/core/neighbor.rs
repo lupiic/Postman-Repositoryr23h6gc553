@@ -21,3 +21,11 @@ impl<E: node::FloatElement, T: node::IdxType> Neighbor<E, T> {
     pub fn idx(&self) -> T {
         self._idx.clone()
     }
+
+    pub fn distance(&self) -> E {
+        self._distance
+    }
+}
+
+impl<E: node::FloatElement, T: node::IdxType> Ord for Neighbor<E, T> {
+    fn cmp(&self, other: &
