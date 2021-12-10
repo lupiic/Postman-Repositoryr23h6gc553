@@ -28,4 +28,9 @@ impl<E: node::FloatElement, T: node::IdxType> Neighbor<E, T> {
 }
 
 impl<E: node::FloatElement, T: node::IdxType> Ord for Neighbor<E, T> {
-    fn cmp(&self, other: &
+    fn cmp(&self, other: &Neighbor<E, T>) -> Ordering {
+        self._distance.partial_cmp(&other._distance).unwrap()
+    }
+}
+
+impl<E: node::FloatElement, T: node::IdxType> PartialOrd for Neighbor<E, 
