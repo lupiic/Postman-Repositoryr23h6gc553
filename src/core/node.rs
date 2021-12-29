@@ -155,3 +155,33 @@ impl<E: FloatElement, T: IdxType> Node<E, T> {
     fn set_idx(&mut self, id: T) {
         self.idx = Option::Some(id);
     }
+
+    fn valid_elements(vectors: &[E]) -> bool {
+        for e in vectors.iter() {
+            if e.is_nan() || e.is_infinite() {
+                //TODO: log
+                panic!("invalid float element");
+            }
+        }
+        true
+    }
+}
+
+impl<E: FloatElement, T: IdxType> core::fmt::Display for Node<E, T> {
+    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+        write!(f, "(key: {:#?}, vectors: {:#?})", self.idx, self.vectors)
+    }
+}
+
+// general method
+
+#[cfg(test)]
+#[test]
+fn node_test() {
+    // f64
+    let v = vec![1.0, 1.0];
+    let v2 = vec![2.0, 2.0];
+    let n = Node::<f64, usize>::new(&v);
+    let n2 = Node::<f64, usize>::new(&v2);
+    assert_eq!(n.metric(&n2, metrics::Metric::Manhattan).unwrap(), 2.0);
+}
