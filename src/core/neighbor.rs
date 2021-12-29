@@ -39,4 +39,4 @@ impl<E: node::FloatElement, T: node::IdxType> PartialOrd for Neighbor<E, T> {
     }
 }
 
-impl<E: node::FloatElement, T: node::IdxType> Eq for Neigh
+impl<E: node::FloatElement, T: node::IdxType> Eq for Neighbor<E, T> {}
