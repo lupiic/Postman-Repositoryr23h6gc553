@@ -6,4 +6,11 @@ pub trait Random<T> {
     fn index(n: usize) -> usize;
 }
 
-// TODO: u
+// TODO: use random
+pub fn flip() -> bool {
+    let mut rng = rand::thread_rng();
+    rng.gen_range(0..10) > 5
+}
+
+pub fn index(n: usize) -> usize {
+    let mut rng = 
