@@ -13,4 +13,6 @@ pub fn flip() -> bool {
 }
 
 pub fn index(n: usize) -> usize {
-    let mut rng = 
+    let mut rng = rand::thread_rng();
+    rng.gen_range(0..n)
+}
