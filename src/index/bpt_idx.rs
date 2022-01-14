@@ -189,3 +189,151 @@ impl<E: node::FloatElement, T: node::IdxType> BPTIndex<E, T> {
     pub fn new(dimension: usize, params: &BPTParams) -> BPTIndex<E, T> {
         BPTIndex {
             _built: false,
+            _dimension: dimension,
+            _leaf_max_items: ((dimension / 2) as i32) + 2,
+            _tree_num: params.tree_num,
+            _candidate_size: params.candidate_size,
+            leaves: vec![Leaf::new()], // the id count should start from 1, use a node as placeholder
+            ..Default::default()
+        }
+    }
+
+    fn _add_item(&mut self, w: &node::Node<E, T>) -> Result<(), &'static str> {
+        // TODO: remove
+        if w.len() != self._dimension {
+            return Err("dimension is different");
+        }
+
+        let mut nn = Leaf::new_with_item(w);
+
+        nn.children[0] = 0; // TODO: as const value
+        nn.children[1] = 0;
+        nn.n_descendants = 1; // only the leaf itself, so the n_descendants include it self
+
+        // no update method
+        self._tot_items_cnt += 1;
+
+        self.leaves.push(nn);
+
+        Ok(())
+    }
+
+    fn build(&mut self, mt: metrics::Metric) -> Result<(), &'static str> {
+        if self._built {
+            return Err("has built");
+        }
+
+        self.mt = mt;
+        self._tot_leaves_cnt = self._tot_items_cnt; // init with build.
+        self._build(self._tree_num, self.mt);
+        self._built = true;
+        Ok(())
+    }
+
+    fn clear(&mut self) {
+        self._roots.clear();
+        self._tot_leaves_cnt = self._tot_items_cnt;
+        self._built = false;
+    }
+    fn get_distance(&self, i: i32, j: i32) -> E {
+        let ni = self.get_leaf(i).unwrap();
+        let nj = self.get_leaf(j).unwrap();
+        return metrics::metric(ni.node.vectors(), nj.node.vectors(), self.mt).unwrap();
+    }
+
+    fn get_tot_items_cnt(&self) -> i32 {
+        self._tot_items_cnt
+    }
+    fn get_n_tree(&self) -> i32 {
+        self._roots.len() as i32
+    }
+
+    fn get_dimension(&self) -> usize {
+        self._dimension
+    }
+
+    fn get_k(&self) -> i32 {
+        self._leaf_max_items
+    }
+
+    fn get_leaf_mut(&mut self, i: i32) -> &mut Leaf<E, T> {
+        if self.leaves.len() <= i as usize {
+            self.extent_leaves(i as usize);
+        }
+        &mut self.leaves[i as usize]
+    }
+
+    fn extent_leaf(&mut self) -> &mut Leaf<E, T> {
+        let i = self.leaves.len();
+        self.extent_leaves(self.leaves.len());
+        if self.leaves[i].is_empty() {
+            self.leaves[i].init();
+        }
+        &mut self.leaves[i]
+    }
+
+    fn get_leaf(&self, i: i32) -> Option<&Leaf<E, T>> {
+        if self.leaves.len() < i as usize {
+            return None;
+        }
+        if self.leaves[i as usize].is_empty() {
+            return None;
+        }
+        Some(&self.leaves[i as usize])
+    }
+
+    fn extent_leaves(&mut self, i: usize) {
+        let diff = i - self.leaves.len() + 1;
+        if diff > 0 {
+            for _i in 0..diff {
+                self.leaves.push(Leaf::new());
+            }
+        }
+    }
+
+    // q => tree count
+    // TODO: build failed
+    fn _build(&mut self, tree_num: i32, mt: metrics::Metric) {
+        let mut this_root: Vec<i32> = Vec::new();
+
+        loop {
+            if tree_num == -1 {
+                if self._tot_leaves_cnt >= 2 * self._tot_items_cnt {
+                    break;
+                }
+            } else if this_root.len() >= (tree_num as usize) {
+                break;
+            }
+
+            let mut indices: Vec<i32> = Vec::new();
+            for i in 1..self._tot_items_cnt {
+                let leaf = self.get_leaf(i).unwrap();
+                if leaf.n_descendants >= 1 {
+                    indices.push(i as i32);
+                }
+            }
+
+            let tree = self.make_tree(&indices, true, mt).unwrap();
+            this_root.push(tree);
+        }
+
+        // thread lock
+        self._roots.extend_from_slice(&this_root);
+    }
+
+    fn make_tree(
+        &mut self,
+        indices: &[i32],
+        is_root: bool,
+        mt: metrics::Metric,
+    ) -> Result<i32, &'static str> {
+        if indices.is_empty() {
+            return Err("empty indices");
+        }
+        if indices.len() == 1 && !is_root {
+            return Ok(indices[0]);
+        }
+
+        // the batch is a leaf cluster, make a parent node
+        if (indices.len() as i32) <= self._leaf_max_items
+            && (!is_root || self._tot_items_cnt <= self._leaf_max_items || indices.len() == 1)
