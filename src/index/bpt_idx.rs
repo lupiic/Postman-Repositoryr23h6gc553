@@ -503,3 +503,130 @@ impl<E: node::FloatElement, T: node::IdxType> BPTIndex<E, T> {
         nns_vec.sort_by(|a, b| a.distance().partial_cmp(&b.distance()).unwrap());
         let return_size = if n < nns_vec.len() { n } else { nns_vec.len() };
         let mut result: Vec<(node::Node<E, T>, E)> = Vec::new();
+
+        for item in nns_vec.iter().take(return_size) {
+            result.push((
+                self.get_leaf(item._idx as i32).unwrap().clone_node(),
+                item._distance,
+            ));
+        }
+
+        Ok(result)
+    }
+
+    fn show_trees(&self) {
+        let mut v = self._roots.clone();
+        while !v.is_empty() {
+            let i = v.pop().unwrap();
+            let item = self.get_leaf(i).unwrap();
+            if item.n_descendants == 1 {
+                continue;
+            }
+            if !(item.children[0] == 0 && item.children[1] == 0) {
+                v.extend(&item.children);
+            }
+        }
+    }
+
+    // means same side?
+    fn margin(&self, src: &Leaf<E, T>, dst: &[E]) -> Result<E, &'static str> {
+        calc::dot(src.node.vectors(), dst)
+    }
+
+    fn side(&self, src: &Leaf<E, T>, dst: &[E]) -> bool {
+        match self.margin(src, dst) {
+            Ok(x) => x > E::float_zero(),
+            Err(_e) => random::flip(),
+        }
+    }
+
+    fn create_split(
+        &self,
+        leaves: &[Leaf<E, T>],
+        new_mean_leaf: &mut Leaf<E, T>,
+        mt: metrics::Metric,
+    ) -> Result<(), &'static str> {
+        let (p, q) = two_means(leaves, mt)?;
+
+        // TODO: remove
+        if new_mean_leaf.node.len() != 0 && new_mean_leaf.node.len() != p.node.len() {
+            return Err("empty leaf input");
+        }
+
+        // // get mean point between p and q.
+        let mut v = Vec::with_capacity(p.node.len());
+        for i in 0..p.node.len() {
+            v.push(p.node.vectors()[i] - q.node.vectors()[i]);
+        }
+        new_mean_leaf.node.set_vectors(&v);
+        new_mean_leaf.normalize();
+        Ok(())
+    }
+
+    fn pq_distance(&self, distance: E, mut margin: E, child_nr: usize) -> E {
+        if child_nr == 0 {
+            margin = -margin;
+        }
+        if distance < margin {
+            distance
+        } else {
+            margin
+        }
+    }
+
+    fn pq_initial_value(&self) -> E {
+        E::max_value()
+    }
+}
+
+impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for BPTIndex<E, T> {
+    fn build(&mut self, mt: metrics::Metric) -> Result<(), &'static str> {
+        self.build(mt)
+    }
+    fn add_node(&mut self, item: &node::Node<E, T>) -> Result<(), &'static str> {
+        self._add_item(item)
+    }
+    fn built(&self) -> bool {
+        self._built
+    }
+
+    fn node_search_k(&self, item: &node::Node<E, T>, k: usize) -> Vec<(node::Node<E, T>, E)> {
+        self._search_k(item.vectors(), k).unwrap()
+    }
+
+    fn name(&self) -> &'static str {
+        "BPForestIndex"
+    }
+
+    fn dimension(&self) -> usize {
+        self._dimension
+    }
+}
+
+impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwned>
+    ann_index::SerializableIndex<E, T> for BPTIndex<E, T>
+{
+    fn load(path: &str) -> Result<Self, &'static str> {
+        let file = File::open(path).unwrap_or_else(|_| panic!("unable to open file {:?}", path));
+        let mut instance: BPTIndex<E, T> = bincode::deserialize_from(&file).unwrap();
+
+        for i in 0..instance.leaves.len() {
+            instance.leaves[i].node =
+                Box::new(instance.leaves[i].tmp_node.as_ref().unwrap().clone());
+            instance.leaves[i].tmp_node = None;
+        }
+
+        Ok(instance)
+    }
+
+    fn dump(&mut self, path: &str) -> Result<(), &'static str> {
+        self.leaves
+            .iter_mut()
+            .for_each(|x| x.tmp_node = Some(*x.node.clone()));
+        let encoded_bytes = bincode::serialize(&self).unwrap();
+        let mut file = File::create(path).unwrap();
+        file.write_all(&encoded_bytes)
+            .unwrap_or_else(|_| panic!("unable to write file {:?}", path));
+        Result::Ok(())
+    }
+}
