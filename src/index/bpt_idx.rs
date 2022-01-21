@@ -337,3 +337,169 @@ impl<E: node::FloatElement, T: node::IdxType> BPTIndex<E, T> {
         // the batch is a leaf cluster, make a parent node
         if (indices.len() as i32) <= self._leaf_max_items
             && (!is_root || self._tot_items_cnt <= self._leaf_max_items || indices.len() == 1)
+        {
+            self._tot_leaves_cnt += 1;
+            let item_cnt = self._tot_items_cnt;
+            let mut n = self.extent_leaf();
+
+            n.n_descendants = if is_root {
+                item_cnt
+            } else {
+                indices.len() as i32
+            };
+            n.children = indices.to_vec();
+
+            return Ok(self._tot_leaves_cnt);
+        }
+
+        let mut children: Vec<Leaf<E, T>> = Vec::new();
+        for j in indices.iter().skip(1) {
+            match self.get_leaf(*j) {
+                None => continue,
+                Some(leaf) => {
+                    children.push(leaf.clone());
+                }
+            }
+        }
+
+        let mut new_parent_leaf = Leaf::new();
+        let mut children_indices: [Vec<i32>; 2] = [Vec::new(), Vec::new()];
+
+        const ATTEMPT: usize = 5;
+        // find split hyperplane
+        for _i in 0..ATTEMPT {
+            children_indices[0].clear();
+            children_indices[1].clear();
+            self.create_split(children.as_slice(), &mut new_parent_leaf, mt)
+                .unwrap();
+
+            for leaf_idx in indices.iter().skip(1) {
+                let leaf = self.get_leaf(*leaf_idx as i32).unwrap();
+                let side = self.side(&new_parent_leaf, leaf.node.vectors());
+                children_indices[(side as usize)].push(*leaf_idx);
+            }
+
+            if calc::split_imbalance(&children_indices[0], &children_indices[1]) < 0.85 {
+                break;
+            }
+        }
+
+        // don't get correct hyperplane situation
+        // TODO: record
+        while calc::split_imbalance(&children_indices[0], &children_indices[1]) > 0.98 {
+            children_indices[0].clear();
+            children_indices[1].clear();
+
+            let is_initial = new_parent_leaf.node.len() == 0;
+            for z in 0..self._dimension {
+                if is_initial {
+                    new_parent_leaf.node.push(&E::float_zero()); // TODO: make it const value
+                } else {
+                    new_parent_leaf.node.mut_vectors()[z] = E::float_zero();
+                }
+            }
+
+            for j in indices.iter().skip(1) {
+                children_indices[random::flip() as usize].push(*j);
+            }
+        }
+
+        let flip = (children_indices[0].len() > children_indices[1].len()) as bool;
+
+        new_parent_leaf.n_descendants = if is_root {
+            self._tot_items_cnt
+        } else {
+            indices.len() as i32
+        };
+
+        for side in 0..2 {
+            match self.make_tree(&children_indices[side ^ (flip as usize)], false, mt) {
+                Ok(tree) => {
+                    new_parent_leaf.children[side ^ (flip as usize)] = tree;
+                }
+                Err(_e) => {
+                    // TODO: log
+                    continue;
+                }
+            }
+        }
+        self._tot_leaves_cnt += 1;
+        self.leaves.push(new_parent_leaf);
+
+        Ok((self._tot_leaves_cnt) as i32)
+    }
+
+    fn _search_k(
+        &self,
+        vectors: &[E],
+        n: usize,
+    ) -> Result<Vec<(node::Node<E, T>, E)>, &'static str> {
+        let mut v_leaf = Leaf::<E, T>::new();
+
+        v_leaf.node.set_vectors(&vectors.to_vec());
+
+        if self._roots.is_empty() || !self._built {
+            return Err("empty tree");
+        }
+
+        let mut candidate_size = self._candidate_size;
+        if candidate_size <= 0 {
+            candidate_size = (n * self._roots.len() * 2) as i32;
+        }
+
+        let mut heap: BinaryHeap<neighbor::Neighbor<E, i32>> = BinaryHeap::new(); // max-heap
+        self._roots.iter().for_each(|root| {
+            heap.push(neighbor::Neighbor {
+                _distance: self.pq_initial_value(), // float MAX
+                _idx: *root,
+            });
+        });
+
+        // it use a heap to ensure the minest distance node will pop up
+        let mut nns: Vec<i32> = Vec::new();
+        while nns.len() < (candidate_size as usize) && !(heap.is_empty()) {
+            let top = heap.peek().unwrap();
+            let top_idx = top._idx;
+            let top_distance = top._distance;
+
+            let nd = self.get_leaf(top_idx).unwrap();
+            heap.pop();
+
+            if nd.n_descendants == 1 && (top_idx) < self._tot_items_cnt {
+                nns.push(top_idx);
+            } else if nd.n_descendants <= self._leaf_max_items {
+                nns.extend_from_slice(&nd.children); // push all of its children
+            } else {
+                let margin = self.margin(nd, vectors)?;
+                // put two children into heap, and use distance to sort the order for poping up.
+                heap.push(neighbor::Neighbor {
+                    _distance: self.pq_distance(top_distance, margin, 1),
+                    _idx: nd.children[1],
+                });
+                heap.push(neighbor::Neighbor {
+                    _distance: self.pq_distance(top_distance, margin, 0),
+                    _idx: nd.children[0],
+                });
+            }
+        }
+
+        nns.sort_unstable(); // sort id and filter dup to avoid same id;
+        let mut nns_vec: Vec<neighbor::Neighbor<E, usize>> = Vec::new();
+        let mut last = -1;
+        for j in nns.iter() {
+            if *j == last {
+                continue;
+            }
+            last = *j;
+            let leaf = self.get_leaf(*j).unwrap();
+            if leaf.n_descendants == 1 {
+                nns_vec.push(neighbor::Neighbor::new(
+                    *j as usize,
+                    metrics::metric(v_leaf.node.vectors(), leaf.node.vectors(), self.mt).unwrap(),
+                ))
+            }
+        }
+
+        nns_vec.sort_by(|a, b| a.distance().partial_cmp(&b.distance()).unwrap());
+        let return_size = if n < nns_vec.len() { n } else { nns_vec.len() };
+        let mut result: Vec<(node::Node<E, T>, E)> = Vec::new();
