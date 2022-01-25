@@ -10,4 +10,9 @@ pub struct BPTParams {
 }
 
 impl BPTParams {
-    pub fn tree_num(mut self, new_t
+    pub fn tree_num(mut self, new_tree_num: i32) -> Self {
+        self.tree_num = new_tree_num;
+        self
+    }
+    pub fn candidate_size(mut self, new_candidate_size: i32) -> Self {
+        self.candidate_
