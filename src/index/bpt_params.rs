@@ -15,4 +15,13 @@ impl BPTParams {
         self
     }
     pub fn candidate_size(mut self, new_candidate_size: i32) -> Self {
-        self.candidate_
+        self.candidate_size = new_candidate_size;
+        self
+    }
+}
+
+impl Default for BPTParams {
+    fn default() -> Self {
+        BPTParams {
+            tree_num: 0,
+            c
