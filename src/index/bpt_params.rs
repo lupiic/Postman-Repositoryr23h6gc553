@@ -24,4 +24,7 @@ impl Default for BPTParams {
     fn default() -> Self {
         BPTParams {
             tree_num: 0,
-            c
+            candidate_size: 0,
+        }
+    }
+}
