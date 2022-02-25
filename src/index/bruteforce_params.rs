@@ -8,4 +8,7 @@ pub struct BruteForceParams {}
 impl BruteForceParams {}
 
 impl Default for BruteForceParams {
-  
+    fn default() -> Self {
+        BruteForceParams {}
+    }
+}
