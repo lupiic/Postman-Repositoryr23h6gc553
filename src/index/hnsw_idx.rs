@@ -7,4 +7,10 @@ use crate::index::hnsw_params::HNSWParams;
 use crate::into_iter;
 use fixedbitset::FixedBitSet;
 use rand::prelude::*;
-#[cfg(n
+#[cfg(not(feature = "no_thread"))]
+use rayon::prelude::*;
+use serde::de::DeserializeOwned;
+use serde::{Deserialize, Serialize};
+use std::collections::BinaryHeap;
+
+use 
