@@ -20,4 +20,7 @@ use std::io::Write;
 
 use std::sync::RwLock;
 
-#[derive(Default, Debug, Seriali
+#[derive(Default, Debug, Serialize, Deserialize)]
+pub struct HNSWIndex<E: node::FloatElement, T: node::IdxType> {
+    _dimension: usize, // dimension
+    _n_items: usize,   // next item cou
