@@ -23,4 +23,9 @@ use std::sync::RwLock;
 #[derive(Default, Debug, Serialize, Deserialize)]
 pub struct HNSWIndex<E: node::FloatElement, T: node::IdxType> {
     _dimension: usize, // dimension
-    _n_items: usize,   // next item cou
+    _n_items: usize,   // next item count
+    _n_constructed_items: usize,
+    _max_item: usize,
+    _n_neighbor: usize,  // neighbor num except level 0
+    _n_neighbor0: usize, // neight num of level 0
+    _max_level: 
