@@ -28,4 +28,7 @@ pub struct HNSWIndex<E: node::FloatElement, T: node::IdxType> {
     _max_item: usize,
     _n_neighbor: usize,  // neighbor num except level 0
     _n_neighbor0: usize, // neight num of level 0
-    _max_level: 
+    _max_level: usize,   //max level
+    _cur_level: usize,   //current level
+    #[serde(skip_serializing, skip_deserializing)]
+    _id2neighbor: Vec<Vec<RwLock<Vec<usize>>
