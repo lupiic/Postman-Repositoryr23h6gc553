@@ -34,4 +34,7 @@ pub struct HNSWIndex<E: node::FloatElement, T: node::IdxType> {
     _id2neighbor: Vec<Vec<RwLock<Vec<usize>>>>, //neight_id from level 1 to level _max_level
     #[serde(skip_serializing, skip_deserializing)]
     _id2neighbor0: Vec<RwLock<Vec<usize>>>, //neigh_id at level 0
-    #[serd
+    #[serde(skip_serializing, skip_deserializing)]
+    _nodes: Vec<Box<node::Node<E, T>>>, // data saver
+    #[serde(skip_serializing, skip_deserializing)]
+    _item2id: HashMap<
