@@ -37,4 +37,8 @@ pub struct HNSWIndex<E: node::FloatElement, T: node::IdxType> {
     #[serde(skip_serializing, skip_deserializing)]
     _nodes: Vec<Box<node::Node<E, T>>>, // data saver
     #[serde(skip_serializing, skip_deserializing)]
-    _item2id: HashMap<
+    _item2id: HashMap<T, usize>, //item_id to id in Hnsw
+    _root_id: usize,     //root of hnsw
+    _id2level: Vec<usize>,
+    _has_removed: bool,
+    _ef_build
