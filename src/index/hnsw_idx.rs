@@ -41,4 +41,7 @@ pub struct HNSWIndex<E: node::FloatElement, T: node::IdxType> {
     _root_id: usize,     //root of hnsw
     _id2level: Vec<usize>,
     _has_removed: bool,
-    _ef_build
+    _ef_build: usize,  // num of max candidates when building
+    _ef_search: usize, // num of max candidates when searching
+    #[serde(skip_serializing, skip_deserializing)]
+   
