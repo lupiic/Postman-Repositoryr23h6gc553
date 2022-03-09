@@ -48,4 +48,11 @@ pub struct HNSWIndex<E: node::FloatElement, T: node::IdxType> {
     mt: metrics::Metric, //compute metrics
 
     // use for serde
-    _id2neighbor_tmp
+    _id2neighbor_tmp: Vec<Vec<Vec<usize>>>,
+    _id2neighbor0_tmp: Vec<Vec<usize>>,
+    _nodes_tmp: Vec<node::Node<E, T>>,
+    _item2id_tmp: Vec<(T, usize)>,
+    _delete_ids_tmp: Vec<usize>,
+}
+
+impl<E:
