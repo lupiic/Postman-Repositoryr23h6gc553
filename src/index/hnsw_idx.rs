@@ -44,4 +44,8 @@ pub struct HNSWIndex<E: node::FloatElement, T: node::IdxType> {
     _ef_build: usize,  // num of max candidates when building
     _ef_search: usize, // num of max candidates when searching
     #[serde(skip_serializing, skip_deserializing)]
-   
+    _delete_ids: HashSet<usize>, //save deleted ids
+    mt: metrics::Metric, //compute metrics
+
+    // use for serde
+    _id2neighbor_tmp
