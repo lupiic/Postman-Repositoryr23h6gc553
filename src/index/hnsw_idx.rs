@@ -57,4 +57,9 @@ pub struct HNSWIndex<E: node::FloatElement, T: node::IdxType> {
 
 impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     pub fn new(dimension: usize, params: &HNSWParams<E>) -> HNSWIndex<E, T> {
-        
+        HNSWIndex {
+            _dimension: dimension,
+            _n_items: 0,
+            _n_constructed_items: 0,
+            _max_item: params.max_item,
+            _n_n
