@@ -55,4 +55,6 @@ pub struct HNSWIndex<E: node::FloatElement, T: node::IdxType> {
     _delete_ids_tmp: Vec<usize>,
 }
 
-impl<E:
+impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
+    pub fn new(dimension: usize, params: &HNSWParams<E>) -> HNSWIndex<E, T> {
+        
