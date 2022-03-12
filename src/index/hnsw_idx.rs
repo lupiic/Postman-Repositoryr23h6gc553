@@ -62,4 +62,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             _n_items: 0,
             _n_constructed_items: 0,
             _max_item: params.max_item,
-            _n_n
+            _n_neighbor: params.n_neighbor,
+            _n_neighbor0: params.n_neighbor0,
+            _max_level: params.max_level,
+            _cur_level: 0,
+            _root_id: 
