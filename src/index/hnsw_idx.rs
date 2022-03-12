@@ -66,4 +66,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             _n_neighbor0: params.n_neighbor0,
             _max_level: params.max_level,
             _cur_level: 0,
-            _root_id: 
+            _root_id: 0,
+            _has_removed: params.has_deletion,
+            _ef_build: params.ef_build,
+            _ef_search: params.ef_search,
+            mt: metrics::Met
