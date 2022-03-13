@@ -70,4 +70,11 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             _has_removed: params.has_deletion,
             _ef_build: params.ef_build,
             _ef_search: params.ef_search,
-            mt: metrics::Met
+            mt: metrics::Metric::Unknown,
+            ..Default::default()
+        }
+    }
+
+    fn get_random_level(&self) -> usize {
+        let mut rng = rand::thread_rng();
+        let mut ret = 
