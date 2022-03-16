@@ -85,3 +85,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                 break;
             }
         }
+        ret
+    }
+    //input top_candidate as max top heap
+    //return min top heap in top_candidates, delete part candidate
+    fn get_neighbors_by_heuristic2(
+        &self,
+     
