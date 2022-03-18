@@ -95,4 +95,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         ret_size: usize,
     ) -> Vec<Neighbor<E, usize>> {
         let sorted_list_len = sorted_list.len();
-        let mut return_
+        let mut return_list: Vec<Neighbor<E, usize>> = Vec::with_capacity(sorted_list_len);
+
+        for iter in sorted_list.iter() {
+            if return_list.len() >= ret_size {
+ 
