@@ -91,4 +91,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     //return min top heap in top_candidates, delete part candidate
     fn get_neighbors_by_heuristic2(
         &self,
-     
+        sorted_list: &[Neighbor<E, usize>],
+        ret_size: usize,
+    ) -> Vec<Neighbor<E, usize>> {
+        let sorted_list_len = sorted_list.len();
+        let mut return_
