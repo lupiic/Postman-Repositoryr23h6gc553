@@ -99,4 +99,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
         for iter in sorted_list.iter() {
             if return_list.len() >= ret_size {
- 
+                break;
+            }
+
+            let idx = iter.idx();
+            let distance = iter._distance;
+            if sorted_list_len 
