@@ -104,4 +104,11 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
             let idx = iter.idx();
             let distance = iter._distance;
-            if sorted_list_len 
+            if sorted_list_len < ret_size {
+                return_list.push(Neighbor::new(idx, distance));
+                continue;
+            }
+
+            let mut good = true;
+
+            for ret_neighbor in 
