@@ -111,4 +111,6 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
             let mut good = true;
 
-            for ret_neighbor in 
+            for ret_neighbor in return_list.iter() {
+                let cur2ret_dis = self.get_distance_from_id(idx, ret_neighbor.idx());
+                if cur2ret_dis < distanc
