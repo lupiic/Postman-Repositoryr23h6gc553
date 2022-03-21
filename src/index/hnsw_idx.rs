@@ -120,4 +120,12 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             }
 
             if good {
-                return_list.push(Neighbor::new(idx, dista
+                return_list.push(Neighbor::new(idx, distance));
+            }
+        }
+
+        return_list // from small to large
+    }
+
+    fn get_neighbor(&self, id: usize, level: usize) -> &RwLock<Vec<usize>> {
+        i
