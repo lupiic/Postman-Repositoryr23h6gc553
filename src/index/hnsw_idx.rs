@@ -128,4 +128,11 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     }
 
     fn get_neighbor(&self, id: usize, level: usize) -> &RwLock<Vec<usize>> {
-        i
+        if level == 0 {
+            return &self._id2neighbor0[id];
+        }
+        &self._id2neighbor[id][level - 1]
+    }
+
+    #[allow(dead_code)]
+    fn get
