@@ -135,4 +135,12 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     }
 
     #[allow(dead_code)]
-    fn get
+    fn get_level(&self, id: usize) -> usize {
+        self._id2level[id]
+    }
+
+    fn connect_neighbor(
+        &self,
+        cur_id: usize,
+        sorted_candidates: &[Neighbor<E, usize>],
+    
