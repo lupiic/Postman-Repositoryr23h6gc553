@@ -143,4 +143,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         &self,
         cur_id: usize,
         sorted_candidates: &[Neighbor<E, usize>],
-    
+        level: usize,
+        is_update: bool,
+    ) -> Result<usize, &'static str> {
+        let n_neigh = if level == 0 {
+            sel
