@@ -147,4 +147,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         is_update: bool,
     ) -> Result<usize, &'static str> {
         let n_neigh = if level == 0 {
-            sel
+            self._n_neighbor0
+        } else {
+            self._n_neighbor
+        };
+        let selected_neighbors = self.get_neighbors_by_heuristic2(sorted_cand
