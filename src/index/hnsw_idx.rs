@@ -151,4 +151,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         } else {
             self._n_neighbor
         };
-        let selected_neighbors = self.get_neighbors_by_heuristic2(sorted_cand
+        let selected_neighbors = self.get_neighbors_by_heuristic2(sorted_candidates, n_neigh);
+        if selected_neighbors.len() > n_neigh {
+            return Err("Should be not be more than M_ candidates returned by the heuristic");
+        }
+      
