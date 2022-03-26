@@ -155,4 +155,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         if selected_neighbors.len() > n_neigh {
             return Err("Should be not be more than M_ candidates returned by the heuristic");
         }
-      
+        if selected_neighbors.is_empty() {
+            return Err("top candidate is empty, impossible!");
+        }
+
+        let next_closest_
