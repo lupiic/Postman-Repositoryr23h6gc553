@@ -159,4 +159,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             return Err("top candidate is empty, impossible!");
         }
 
-        let next_closest_
+        let next_closest_entry_point = selected_neighbors[0].idx();
+
+        {
+            let mut cur_neigh = self.get_neighbor(cur_id, level).write().unwrap();
+            cur_neigh.clear();
+  
