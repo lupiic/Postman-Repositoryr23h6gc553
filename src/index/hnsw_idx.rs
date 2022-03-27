@@ -164,4 +164,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         {
             let mut cur_neigh = self.get_neighbor(cur_id, level).write().unwrap();
             cur_neigh.clear();
-  
+            selected_neighbors.iter().for_each(|selected_neighbor| {
+                cur_neigh.push(selected_neighbor.idx());
+            });
+        }
+
+      
