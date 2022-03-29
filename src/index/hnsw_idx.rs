@@ -171,4 +171,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
         for selected_neighbor in selected_neighbors.iter() {
             let mut neighbor_of_selected_neighbors = self
-                .get_neighbor(selected_neighbor.idx(), 
+                .get_neighbor(selected_neighbor.idx(), level)
+                .write()
+                .unwrap();
+            if neighbor_of_selected_neighbors.len() > n_neigh {
+                return Err("Bad Value
