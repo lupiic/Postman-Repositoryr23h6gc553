@@ -175,4 +175,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                 .write()
                 .unwrap();
             if neighbor_of_selected_neighbors.len() > n_neigh {
-                return Err("Bad Value
+                return Err("Bad Value of neighbor_of_selected_neighbors");
+            }
+            if selected_neighbor.idx() == cur_id {
+                return Err("Trying to connect an ele
