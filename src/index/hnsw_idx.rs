@@ -178,4 +178,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                 return Err("Bad Value of neighbor_of_selected_neighbors");
             }
             if selected_neighbor.idx() == cur_id {
-                return Err("Trying to connect an ele
+                return Err("Trying to connect an element to itself");
+            }
+
+            let mut is_cur_id_present = false;
+
+            if is_update {
+                for iter in neighbor_of_selected_neigh
