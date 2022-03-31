@@ -189,4 +189,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                         is_cur_id_present = true;
                         break;
                     }
-    
+                }
+            }
+
+            if !is_cur_id_present {
+                if neighbor_of_selected_neighbors.len() < n_
