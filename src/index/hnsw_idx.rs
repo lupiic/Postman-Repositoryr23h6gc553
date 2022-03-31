@@ -184,4 +184,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             let mut is_cur_id_present = false;
 
             if is_update {
-                for iter in neighbor_of_selected_neigh
+                for iter in neighbor_of_selected_neighbors.iter() {
+                    if *iter == cur_id {
+                        is_cur_id_present = true;
+                        break;
+                    }
+    
