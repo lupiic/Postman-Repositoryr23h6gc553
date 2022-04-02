@@ -196,4 +196,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                 if neighbor_of_selected_neighbors.len() < n_neigh {
                     neighbor_of_selected_neighbors.push(cur_id);
                 } else {
-                    let d_max = self.get_distance_from_id(cur_id, selected_neighbor.id
+                    let d_max = self.get_distance_from_id(cur_id, selected_neighbor.idx());
+
+                    let mut candidates: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
+                    candidates.push(Neighbor::new(cur_id, 
