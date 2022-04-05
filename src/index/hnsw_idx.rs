@@ -202,4 +202,6 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                     candidates.push(Neighbor::new(cur_id, d_max));
                     for iter in neighbor_of_selected_neighbors.iter() {
                         let neighbor_id = *iter;
-                        let d_
+                        let d_neigh =
+                            self.get_distance_from_id(neighbor_id, selected_neighbor.idx());
+                        candidates.push(Neighbor::new(neigh
