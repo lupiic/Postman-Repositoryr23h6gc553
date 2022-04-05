@@ -199,4 +199,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                     let d_max = self.get_distance_from_id(cur_id, selected_neighbor.idx());
 
                     let mut candidates: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
-                    candidates.push(Neighbor::new(cur_id, 
+                    candidates.push(Neighbor::new(cur_id, d_max));
+                    for iter in neighbor_of_selected_neighbors.iter() {
+                        let neighbor_id = *iter;
+                        let d_
