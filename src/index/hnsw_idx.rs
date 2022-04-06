@@ -204,4 +204,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                         let neighbor_id = *iter;
                         let d_neigh =
                             self.get_distance_from_id(neighbor_id, selected_neighbor.idx());
-                        candidates.push(Neighbor::new(neigh
+                        candidates.push(Neighbor::new(neighbor_id, d_neigh));
+                    }
+                    let return_list =
+                        self.get_neighbors_by_heuristic2(&candidates.into_sorted_vec()
