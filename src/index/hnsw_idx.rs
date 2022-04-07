@@ -207,4 +207,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                         candidates.push(Neighbor::new(neighbor_id, d_neigh));
                     }
                     let return_list =
-                        self.get_neighbors_by_heuristic2(&candidates.into_sorted_vec()
+                        self.get_neighbors_by_heuristic2(&candidates.into_sorted_vec(), n_neigh);
+
+                    neighbor_of_selected_neighbors.clear();
+                    for neighbor_in_list in return_list {
+                        neighbor_of_selec
