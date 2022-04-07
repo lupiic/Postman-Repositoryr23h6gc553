@@ -211,4 +211,13 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
                     neighbor_of_selected_neighbors.clear();
                     for neighbor_in_list in return_list {
-                        neighbor_of_selec
+                        neighbor_of_selected_neighbors.push(neighbor_in_list.idx());
+                    }
+                }
+            }
+        }
+
+        Ok(next_closest_entry_point)
+    }
+
+    #[allow(dead_c
