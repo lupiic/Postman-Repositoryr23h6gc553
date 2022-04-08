@@ -220,4 +220,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         Ok(next_closest_entry_point)
     }
 
-    #[allow(dead_c
+    #[allow(dead_code)]
+    fn delete_id(&mut self, id: usize) -> Result<(), &'static str> {
+        if id > self._n_constructed_items {
+            return Err("Invalid delete id");
