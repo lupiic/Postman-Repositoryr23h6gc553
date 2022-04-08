@@ -224,3 +224,12 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     fn delete_id(&mut self, id: usize) -> Result<(), &'static str> {
         if id > self._n_constructed_items {
             return Err("Invalid delete id");
+        }
+        if self.is_deleted(id) {
+            return Err("id has deleted");
+        }
+        self._delete_ids.insert(id);
+        Ok(())
+    }
+
+ 
