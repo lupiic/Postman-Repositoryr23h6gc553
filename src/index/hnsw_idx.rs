@@ -232,4 +232,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         Ok(())
     }
 
- 
+    fn is_deleted(&self, id: usize) -> bool {
+        self._has_removed && self._delete_ids.contains(&id)
+    }
+
+    fn get_data(&self, id: usize) -> &node::
