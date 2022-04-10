@@ -236,4 +236,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         self._has_removed && self._delete_ids.contains(&id)
     }
 
-    fn get_data(&self, id: usize) -> &node::
+    fn get_data(&self, id: usize) -> &node::Node<E, T> {
+        &self._nodes[id]
+    }
+
+    fn get_distance_from_vec(&self, x: &node::Node<E, T>, y: &node::Node<E, T>) -> E {
+        return 
