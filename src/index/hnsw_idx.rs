@@ -253,4 +253,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         .unwrap();
     }
 
-    f
+    fn search_layer_with_candidate(
+        &self,
+        search_data: &node::Node<E, T>,
+        sorted_candidates: &[Neighbor<E, usize>],
+        visited_id
