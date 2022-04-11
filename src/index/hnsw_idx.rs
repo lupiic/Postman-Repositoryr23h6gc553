@@ -245,4 +245,12 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     }
 
     fn get_distance_from_id(&self, x: usize, y: usize) -> E {
-        return metrics
+        return metrics::metric(
+            self.get_data(x).vectors(),
+            self.get_data(y).vectors(),
+            self.mt,
+        )
+        .unwrap();
+    }
+
+    f
