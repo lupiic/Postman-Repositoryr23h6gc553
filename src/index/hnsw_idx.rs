@@ -257,4 +257,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         &self,
         search_data: &node::Node<E, T>,
         sorted_candidates: &[Neighbor<E, usize>],
-        visited_id
+        visited_id: &mut FixedBitSet,
+        level: usize,
+        ef: usize,
+        has_deletion: bool,
+    ) -> BinaryHeap<Neighbor<E, usize>> {
+        let mut
