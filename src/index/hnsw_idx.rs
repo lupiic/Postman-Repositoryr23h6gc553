@@ -264,4 +264,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     ) -> BinaryHeap<Neighbor<E, usize>> {
         let mut candidates: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
         let mut top_candidates: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
-        for ne
+        for neighbor in sorted_candidates.iter() {
+            let root = neighbor.idx();
+            if !has_deletion || !self.is_deleted(root) {
+                let dist = self.get_dist
