@@ -269,4 +269,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             if !has_deletion || !self.is_deleted(root) {
                 let dist = self.get_distance_from_vec(self.get_data(root), search_data);
                 top_candidates.push(Neighbor::new(root, dist));
-                candidates.push(Neighbor::new(root, -
+                candidates.push(Neighbor::new(root, -dist));
+            } else {
+                candidates.push(Neighbor::new(root, -E::max_value()))
+            }
+            visited_id.insert(root);
+        }
