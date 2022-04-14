@@ -267,4 +267,6 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         for neighbor in sorted_candidates.iter() {
             let root = neighbor.idx();
             if !has_deletion || !self.is_deleted(root) {
-                let dist = self.get_dist
+                let dist = self.get_distance_from_vec(self.get_data(root), search_data);
+                top_candidates.push(Neighbor::new(root, dist));
+                candidates.push(Neighbor::new(root, -
