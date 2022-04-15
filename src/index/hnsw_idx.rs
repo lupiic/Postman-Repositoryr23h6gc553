@@ -275,3 +275,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             }
             visited_id.insert(root);
         }
+        let mut lower_bound = if top_candidates.is_empty() {
+            E::max_value() //max dist in top_candidates
+        } else {
+            top_candidates.peek().
