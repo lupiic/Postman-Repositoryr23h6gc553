@@ -278,4 +278,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         let mut lower_bound = if top_candidates.is_empty() {
             E::max_value() //max dist in top_candidates
         } else {
-            top_candidates.peek().
+            top_candidates.peek().unwrap()._distance
+        };
+
+        while !candidates.is_empty() {
+            let cur_neigh = candidates.peek().unwrap();
+            let cur_dist = 
