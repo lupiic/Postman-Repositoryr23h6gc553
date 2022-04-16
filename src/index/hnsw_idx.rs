@@ -283,4 +283,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
         while !candidates.is_empty() {
             let cur_neigh = candidates.peek().unwrap();
-            let cur_dist = 
+            let cur_dist = -cur_neigh._distance;
+            let cur_id = cur_neigh.idx();
+            candidates.pop();
+            if cur_dist > lower_bound {
+                break;
+            }
+   
