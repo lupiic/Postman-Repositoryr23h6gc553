@@ -295,4 +295,6 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                     return;
                 }
                 visited_id.insert(*neigh);
-                let dist = self.get_distance_from_
+                let dist = self.get_distance_from_vec(self.get_data(*neigh), search_data);
+                if top_candidates.len() < ef || dist < lower_bound {
+                    candidates.push(Ne
