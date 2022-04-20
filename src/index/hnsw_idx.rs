@@ -308,4 +308,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                     }
 
                     if !top_candidates.is_empty() {
-     
+                        lower_bound = top_candidates.peek().unwrap()._distance;
+                    }
+                }
+            });
+        }
+
+        top_candidate
