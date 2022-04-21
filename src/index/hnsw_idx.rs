@@ -320,4 +320,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     fn search_layer(
         &self,
         root: usize,
-        search_data: &node::N
+        search_data: &node::Node<E, T>,
+        level: usize,
+        ef: usize,
+        has_deletion: bool,
+    ) -> BinaryHeap<Neighbor<E, usize>> {
+        let mut visited_id = FixedBitSet::wit
