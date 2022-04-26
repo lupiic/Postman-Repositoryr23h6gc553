@@ -325,4 +325,6 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         ef: usize,
         has_deletion: bool,
     ) -> BinaryHeap<Neighbor<E, usize>> {
-        let mut visited_id = FixedBitSet::wit
+        let mut visited_id = FixedBitSet::with_capacity(self._nodes.len());
+        let mut top_candidates: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
+        let mut candidates: BinaryHeap<Neighbor<E, usize>>
