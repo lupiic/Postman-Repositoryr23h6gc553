@@ -331,4 +331,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         let mut lower_bound: E;
 
         if !has_deletion || !self.is_deleted(root) {
-            let dist = self.get_distance_from_vec(self.get_data
+            let dist = self.get_distance_from_vec(self.get_data(root), search_data);
+            top_candidates.push(Neighbor::new(root, dist));
+            candidates.push(Neighbor::new(root, -dist));
+            lower_bo
