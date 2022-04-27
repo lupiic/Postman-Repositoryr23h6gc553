@@ -327,4 +327,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     ) -> BinaryHeap<Neighbor<E, usize>> {
         let mut visited_id = FixedBitSet::with_capacity(self._nodes.len());
         let mut top_candidates: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
-        let mut candidates: BinaryHeap<Neighbor<E, usize>>
+        let mut candidates: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
+        let mut lower_bound: E;
+
+        if !has_deletion || !self.is_deleted(root) {
+            let dist = self.get_distance_from_vec(self.get_data
