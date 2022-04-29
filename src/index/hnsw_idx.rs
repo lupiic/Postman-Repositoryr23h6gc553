@@ -334,4 +334,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             let dist = self.get_distance_from_vec(self.get_data(root), search_data);
             top_candidates.push(Neighbor::new(root, dist));
             candidates.push(Neighbor::new(root, -dist));
-            lower_bo
+            lower_bound = dist;
+        } else {
+            lower_bound = E::max_value(); //max dist in top_candidates
+            candidates.push(Neighbor::new(root, -lower_bound
