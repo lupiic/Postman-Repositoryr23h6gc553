@@ -337,4 +337,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             lower_bound = dist;
         } else {
             lower_bound = E::max_value(); //max dist in top_candidates
-            candidates.push(Neighbor::new(root, -lower_bound
+            candidates.push(Neighbor::new(root, -lower_bound))
+        }
+        visited_id.insert(root);
+
+        while !candidates.is_empty() {
+            let cur_neigh = candidates.peek().unwrap();
+            let cur_dist = -c
