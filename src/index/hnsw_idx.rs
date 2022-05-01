@@ -347,4 +347,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             let cur_id = cur_neigh.idx();
             candidates.pop();
             if cur_dist > lower_bound {
-                br
+                break;
+            }
+            let cur_neighbors = self.get_neighbor(cur_id, level).read().unwrap();
+            cur_neighbors.iter().for_each(|neigh| {
+       
