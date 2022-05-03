@@ -361,4 +361,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
                     if !self.is_deleted(*neigh) {
                         top_candidates.push(Neighbor::new(*neigh, dist))
-         
+                    }
+
+                    if top_candidates.len() > ef {
+                        top_candidates.pop();
+                    }
+
+                    if !top_candidates.is_empty() {
