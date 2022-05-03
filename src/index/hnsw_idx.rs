@@ -357,4 +357,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                 visited_id.insert(*neigh);
                 let dist = self.get_distance_from_vec(self.get_data(*neigh), search_data);
                 if top_candidates.len() < ef || dist < lower_bound {
-                    candidates.pu
+                    candidates.push(Neighbor::new(*neigh, -dist));
+
+                    if !self.is_deleted(*neigh) {
+                        top_candidates.push(Neighbor::new(*neigh, dist))
+         
