@@ -381,4 +381,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     //     &self,
     //     root: usize,
     //     search_data: &node::Node<E, T>,
-    
+    //     level: usize,
+    // ) -> BinaryHeap<Neighbor<E, usize>> {
+    //     return self.search_layer(root, search_data, level, self._ef_build, false);
+    // }
+
+  
