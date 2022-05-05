@@ -374,4 +374,11 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             });
         }
 
-   
+        top_candidates
+    }
+
+    // fn search_layer_default(
+    //     &self,
+    //     root: usize,
+    //     search_data: &node::Node<E, T>,
+    
