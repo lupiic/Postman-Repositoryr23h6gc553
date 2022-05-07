@@ -394,4 +394,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         let mut top_candidate: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
         if self._n_constructed_items == 0 {
             return Ok(top_candidate);
-       
+        }
+        let mut cur_id = self._root_id;
+        let mut cur_dist = self.get_distance_from_vec(self.get_data(cur_id), search_data);
+        let mut cur_level = self._cur_
