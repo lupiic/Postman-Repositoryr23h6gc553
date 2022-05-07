@@ -391,4 +391,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         search_data: &node::Node<E, T>,
         k: usize,
     ) -> Result<BinaryHeap<Neighbor<E, usize>>, &'static str> {
-        let 
+        let mut top_candidate: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
+        if self._n_constructed_items == 0 {
+            return Ok(top_candidate);
+       
