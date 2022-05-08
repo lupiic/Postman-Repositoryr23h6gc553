@@ -397,4 +397,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         }
         let mut cur_id = self._root_id;
         let mut cur_dist = self.get_distance_from_vec(self.get_data(cur_id), search_data);
-        let mut cur_level = self._cur_
+        let mut cur_level = self._cur_level;
+        loop {
+            let mut changed = true;
+            while changed {
+                changed = false;
+                let cur_neighs =
