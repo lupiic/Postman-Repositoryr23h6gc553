@@ -402,4 +402,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             let mut changed = true;
             while changed {
                 changed = false;
-                let cur_neighs =
+                let cur_neighs = self
+                    .get_neighbor(cur_id, cur_level as usize)
+                    .read()
+                    .unwrap();
+                for 
