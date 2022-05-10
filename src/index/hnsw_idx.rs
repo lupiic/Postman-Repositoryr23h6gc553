@@ -406,4 +406,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                     .get_neighbor(cur_id, cur_level as usize)
                     .read()
                     .unwrap();
-                for 
+                for neigh in cur_neighs.iter() {
+                    if *neigh > self._max_item {
+                        return Err("cand error");
+                    }
+ 
