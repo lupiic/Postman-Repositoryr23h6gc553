@@ -410,4 +410,6 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                     if *neigh > self._max_item {
                         return Err("cand error");
                     }
- 
+                    let dist = self.get_distance_from_vec(self.get_data(cur_id), search_data);
+                    if dist < cur_dist {
+                    
