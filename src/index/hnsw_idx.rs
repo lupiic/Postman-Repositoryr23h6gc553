@@ -412,4 +412,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                     }
                     let dist = self.get_distance_from_vec(self.get_data(cur_id), search_data);
                     if dist < cur_dist {
-                    
+                        cur_dist = dist;
+                        cur_id = *neigh;
+                        changed = true;
+                    }
+                }
+            }
+         
