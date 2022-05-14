@@ -426,4 +426,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
         let search_range = if self._ef_search > k {
             self._ef_search
-  
+        } else {
+            k
+        };
+
+        top_candidate = self.search_layer(cur_id, search_data, 0, search_range, self._has_removed);
+        while top_candidate.len
