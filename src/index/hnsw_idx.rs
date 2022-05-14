@@ -418,4 +418,12 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                     }
                 }
             }
-         
+            if cur_level == 0 {
+                break;
+            }
+            cur_level -= 1;
+        }
+
+        let search_range = if self._ef_search > k {
+            self._ef_search
+  
