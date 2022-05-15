@@ -431,4 +431,12 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         };
 
         top_candidate = self.search_layer(cur_id, search_data, 0, search_range, self._has_removed);
-        while top_candidate.len
+        while top_candidate.len() > k {
+            top_candidate.pop();
+        }
+
+        Ok(top_candidate)
+    }
+
+    fn init_item(&mut self, data: &node::Node<E, T>) -> usize {
+        let cu
