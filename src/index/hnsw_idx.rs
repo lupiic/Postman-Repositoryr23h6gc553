@@ -439,4 +439,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     }
 
     fn init_item(&mut self, data: &node::Node<E, T>) -> usize {
-        let cu
+        let cur_id = self._n_items;
+        let mut cur_level = self.get_random_level();
+        if cur_id == 0 {
+            cur_level = self._max_level;
+  
