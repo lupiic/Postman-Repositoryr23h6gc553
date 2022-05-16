@@ -443,4 +443,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         let mut cur_level = self.get_random_level();
         if cur_id == 0 {
             cur_level = self._max_level;
-  
+            self._cur_level = cur_level;
+            self._root_id = cur_id;
+        }
+        let neigh0: RwLock<Vec<usize>> = RwLock::new(Vec::with_capacity(self._n_nei
