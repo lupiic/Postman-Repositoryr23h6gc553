@@ -453,4 +453,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             neigh.push(level_neigh);
         }
         self._nodes.push(Box::new(data.clone()));
-        self
+        self._id2neighbor0.push(neigh0);
+        self._id2neighbor.push(neigh);
+        self._id2level.push(cur_level);
+        // self._item2id.insert(data.idx().unwrap(), cur_
