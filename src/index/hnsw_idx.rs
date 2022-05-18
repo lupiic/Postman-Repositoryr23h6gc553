@@ -449,4 +449,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         let neigh0: RwLock<Vec<usize>> = RwLock::new(Vec::with_capacity(self._n_neighbor0));
         let mut neigh: Vec<RwLock<Vec<usize>>> = Vec::with_capacity(cur_level);
         for _i in 0..cur_level {
-            let level_neigh: R
+            let level_neigh: RwLock<Vec<usize>> = RwLock::new(Vec::with_capacity(self._n_neighbor));
+            neigh.push(level_neigh);
+        }
+        self._nodes.push(Box::new(data.clone()));
+        self
