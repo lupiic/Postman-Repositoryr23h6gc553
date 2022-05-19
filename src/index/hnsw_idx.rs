@@ -456,4 +456,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         self._id2neighbor0.push(neigh0);
         self._id2neighbor.push(neigh);
         self._id2level.push(cur_level);
-        // self._item2id.insert(data.idx().unwrap(), cur_
+        // self._item2id.insert(data.idx().unwrap(), cur_id);
+        self._n_items += 1;
+        cur_id
+    }
+
+    fn batch_construct(&mut self, _mt: metrics::Metric) -> Result<(), &'static str> {
+        if self._n_items < self._n_constructed_
