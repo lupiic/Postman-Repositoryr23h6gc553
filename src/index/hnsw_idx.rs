@@ -462,4 +462,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     }
 
     fn batch_construct(&mut self, _mt: metrics::Metric) -> Result<(), &'static str> {
-        if self._n_items < self._n_constructed_
+        if self._n_items < self._n_constructed_items {
+            return Err("contruct error");
+        }
+
+        into_iter!((self._n_constructed_items..self._n_items), ctr);
+        ctr.for_each(|insert_id: usize| {
+           
