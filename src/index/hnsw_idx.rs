@@ -468,4 +468,11 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
         into_iter!((self._n_constructed_items..self._n_items), ctr);
         ctr.for_each(|insert_id: usize| {
-           
+            self.construct_single_item(insert_id).unwrap();
+        });
+
+        self._n_constructed_items = self._n_items;
+        Ok(())
+    }
+
+    fn add_item_not_constructed(&mut se
