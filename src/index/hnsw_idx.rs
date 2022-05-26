@@ -475,4 +475,6 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         Ok(())
     }
 
-    fn add_item_not_constructed(&mut se
+    fn add_item_not_constructed(&mut self, data: &node::Node<E, T>) -> Result<(), &'static str> {
+        if data.len() != self._dimension {
+            return Err("dimension is
