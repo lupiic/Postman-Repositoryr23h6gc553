@@ -477,4 +477,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
     fn add_item_not_constructed(&mut self, data: &node::Node<E, T>) -> Result<(), &'static str> {
         if data.len() != self._dimension {
-            return Err("dimension is
+            return Err("dimension is different");
+        }
+        {
+            // if self._item2id.contains_key(data.idx().unwrap()) {
+            //     //to_do update point
+            //     return Ok(self._item2id
