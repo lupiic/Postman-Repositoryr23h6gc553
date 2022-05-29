@@ -486,4 +486,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             // }
 
             if self._n_items >= self._max_item {
-                return Err("The number of elements ex
+                return Err("The number of elements exceeds the specified limit");
+            }
+        }
+
+        let insert_id = self.init_item(data);
+        let _insert_level = self.get_level(insert_id);
+      
