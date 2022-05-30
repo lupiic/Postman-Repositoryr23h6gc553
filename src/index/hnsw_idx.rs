@@ -492,4 +492,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
         let insert_id = self.init_item(data);
         let _insert_level = self.get_level(insert_id);
-      
+        Ok(())
+    }
+
+    fn add_single_item(&mut self, data: &node::Node<E, T>) -> Result<(), &'static str> {
+        //not support asysn
+        if data.len() != self._dimension {
+          
