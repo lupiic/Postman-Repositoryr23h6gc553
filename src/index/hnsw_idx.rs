@@ -498,4 +498,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
     fn add_single_item(&mut self, data: &node::Node<E, T>) -> Result<(), &'static str> {
         //not support asysn
         if data.len() != self._dimension {
-          
+            return Err("dimension is different");
+        }
+        {
+            // if self._item2id.contains_key(data.idx().unwrap()) {
+            //     //to_do update point
+         
