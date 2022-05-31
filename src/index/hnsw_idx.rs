@@ -503,4 +503,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         {
             // if self._item2id.contains_key(data.idx().unwrap()) {
             //     //to_do update point
-         
+            //     return Ok(self._item2id[data.idx().unwrap()]);
+            // }
+
+            if self._n_items >= self._max_item {
+                return Err("The number of elem
