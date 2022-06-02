@@ -520,4 +520,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         Ok(())
     }
 
-    fn construct_single_item(&self, insert_id: usize) -> Re
+    fn construct_single_item(&self, insert_id: usize) -> Result<(), &'static str> {
+        let insert_level = self._id2level[insert_id];
+        let mut cur_id = self._root_id;
+
+        if insert_id 
