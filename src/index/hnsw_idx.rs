@@ -513,4 +513,11 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
         let insert_id = self.init_item(data);
         let _insert_level = self.get_level(insert_id);
-        self.constr
+        self.construct_single_item(insert_id).unwrap();
+
+        self._n_constructed_items += 1;
+
+        Ok(())
+    }
+
+    fn construct_single_item(&self, insert_id: usize) -> Re
