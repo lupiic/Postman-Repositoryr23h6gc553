@@ -530,4 +530,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
 
         if insert_level < self._cur_level {
             let mut cur_dist = self.get_distance_from_id(cur_id, insert_id);
-            let mut cur_level
+            let mut cur_level = self._cur_level;
+            while cur_level > insert_level {
+                let mut changed = true;
+                while cha
