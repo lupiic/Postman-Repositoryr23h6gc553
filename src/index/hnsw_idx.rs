@@ -524,4 +524,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         let insert_level = self._id2level[insert_id];
         let mut cur_id = self._root_id;
 
-        if insert_id 
+        if insert_id == 0 {
+            return Ok(());
+        }
+
+        if insert_level < self._cur_level {
+            let mut cur_dist = self.get_distance_from_id(cur_id, insert_id);
+            let mut cur_level
