@@ -536,4 +536,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                 while changed {
                     changed = false;
                     let cur_neighs = self.get_neighbor(cur_id, cur_level).read().unwrap();
-                
+                    for cur_neigh in cur_neighs.iter() {
+                        if *cur_neigh > self._n_items {
+                            return Err("cand error");
+         
