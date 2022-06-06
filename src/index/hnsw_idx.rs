@@ -533,4 +533,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             let mut cur_level = self._cur_level;
             while cur_level > insert_level {
                 let mut changed = true;
-                while cha
+                while changed {
+                    changed = false;
+                    let cur_neighs = self.get_neighbor(cur_id, cur_level).read().unwrap();
+                
