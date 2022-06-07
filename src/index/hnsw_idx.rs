@@ -539,4 +539,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                     for cur_neigh in cur_neighs.iter() {
                         if *cur_neigh > self._n_items {
                             return Err("cand error");
-         
+                        }
+                        let neigh_dist = self.get_distance_from_id(*cur_neigh, insert_id);
+                        if neigh_dist < cur_dist {
+             
