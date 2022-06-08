@@ -545,4 +545,11 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                             cur_dist = neigh_dist;
                             cur_id = *cur_neigh;
                             changed = true;
-                       
+                        }
+                    }
+                }
+                cur_level -= 1;
+            }
+        }
+
+        let mut level = if insert_level < s
