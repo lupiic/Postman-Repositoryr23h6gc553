@@ -552,4 +552,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             }
         }
 
-        let mut level = if insert_level < s
+        let mut level = if insert_level < self._cur_level {
+            insert_level
+        } else {
+            self._cur_level
+        };
+        let mut visited_id = FixedBitSet::with_c
