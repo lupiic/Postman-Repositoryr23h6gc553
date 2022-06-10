@@ -557,4 +557,6 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         } else {
             self._cur_level
         };
-        let mut visited_id = FixedBitSet::with_c
+        let mut visited_id = FixedBitSet::with_capacity(self._nodes.len());
+        let mut sorted_candidates: Vec<Neighbor<E, usize>> = Vec::new();
+        let insert_data = self.get_data(insert_id)
