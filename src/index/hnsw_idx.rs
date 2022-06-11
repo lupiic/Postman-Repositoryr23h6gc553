@@ -559,4 +559,10 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
         };
         let mut visited_id = FixedBitSet::with_capacity(self._nodes.len());
         let mut sorted_candidates: Vec<Neighbor<E, usize>> = Vec::new();
-        let insert_data = self.get_data(insert_id)
+        let insert_data = self.get_data(insert_id);
+        visited_id.insert(insert_id);
+        sorted_candidates.push(Neighbor::new(
+            cur_id,
+            self.get_distance_from_id(cur_id, insert_id),
+        ));
+        l
