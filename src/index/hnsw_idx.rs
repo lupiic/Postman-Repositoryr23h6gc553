@@ -565,4 +565,7 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             cur_id,
             self.get_distance_from_id(cur_id, insert_id),
         ));
-        l
+        loop {
+            // let mut visited_id: HashSet<usize> = HashSet::new();
+            let mut top_candidates = self.search_layer_with_candidate(
+                insert_data,
