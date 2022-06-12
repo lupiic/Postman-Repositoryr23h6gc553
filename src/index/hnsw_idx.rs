@@ -569,3 +569,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             // let mut visited_id: HashSet<usize> = HashSet::new();
             let mut top_candidates = self.search_layer_with_candidate(
                 insert_data,
+                &sorted_candidates,
+                &mut visited_id,
+                level,
+                self._ef_build,
+                f
