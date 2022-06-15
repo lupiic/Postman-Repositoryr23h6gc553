@@ -573,4 +573,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                 &mut visited_id,
                 level,
                 self._ef_build,
-                f
+                false,
+            );
+            // let mut top_candidates = self.search_layer_default(cur_id, insert_data, level);
+            if self.is_deleted(cur_id) {
+                let cur_di
