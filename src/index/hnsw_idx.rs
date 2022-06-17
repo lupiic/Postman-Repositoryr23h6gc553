@@ -579,4 +579,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             if self.is_deleted(cur_id) {
                 let cur_dist = self.get_distance_from_id(cur_id, insert_id);
                 top_candidates.push(Neighbor::new(cur_id, cur_dist));
-                if top_candidates
+                if top_candidates.len() > self._ef_build {
+                    top_candidates.pop();
+                }
+            }
+            sorted_candidates = top_candidates.into_sorted_vec(
