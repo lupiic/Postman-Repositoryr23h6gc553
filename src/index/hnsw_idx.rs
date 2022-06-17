@@ -577,4 +577,6 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
             );
             // let mut top_candidates = self.search_layer_default(cur_id, insert_data, level);
             if self.is_deleted(cur_id) {
-                let cur_di
+                let cur_dist = self.get_distance_from_id(cur_id, insert_id);
+                top_candidates.push(Neighbor::new(cur_id, cur_dist));
+                if top_candidates
