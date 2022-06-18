@@ -583,4 +583,9 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                     top_candidates.pop();
                 }
             }
-            sorted_candidates = top_candidates.into_sorted_vec(
+            sorted_candidates = top_candidates.into_sorted_vec();
+            if sorted_candidates.is_empty() {
+                return Err("sorted sorted_candidate is empty");
+            }
+            cur_id = self
+                .conn
