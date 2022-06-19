@@ -592,4 +592,12 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                 .unwrap();
             if level == 0 {
                 break;
-         
+            }
+            level -= 1;
+        }
+        Ok(())
+    }
+}
+
+impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for HNSWIndex<E, T> {
+    fn 
