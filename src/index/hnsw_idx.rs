@@ -588,4 +588,8 @@ impl<E: node::FloatElement, T: node::IdxType> HNSWIndex<E, T> {
                 return Err("sorted sorted_candidate is empty");
             }
             cur_id = self
-                .conn
+                .connect_neighbor(insert_id, &sorted_candidates, level, false)
+                .unwrap();
+            if level == 0 {
+                break;
+         
