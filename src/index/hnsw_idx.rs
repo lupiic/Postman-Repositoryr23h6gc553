@@ -604,4 +604,11 @@ impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for HNSW
         self.mt = mt;
         self.batch_construct(mt)
     }
-    fn add_node(&mut self, it
+    fn add_node(&mut self, item: &node::Node<E, T>) -> Result<(), &'static str> {
+        self.add_item_not_constructed(item)
+    }
+    fn built(&self) -> bool {
+        true
+    }
+
+    fn node
