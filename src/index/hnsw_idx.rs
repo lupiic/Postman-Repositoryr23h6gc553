@@ -614,4 +614,8 @@ impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for HNSW
     fn node_search_k(&self, item: &node::Node<E, T>, k: usize) -> Vec<(node::Node<E, T>, E)> {
         let mut ret: BinaryHeap<Neighbor<E, usize>> = self.search_knn(item, k).unwrap();
         let mut result: Vec<(node::Node<E, T>, E)> = Vec::with_capacity(k);
-        let mut result_idx: Vec<(usize, E)
+        let mut result_idx: Vec<(usize, E)> = Vec::with_capacity(k);
+        while !ret.is_empty() {
+            let top = ret.peek().unwrap();
+            let top_idx = top.idx();
+            
