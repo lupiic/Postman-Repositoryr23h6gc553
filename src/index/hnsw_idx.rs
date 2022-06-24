@@ -618,4 +618,9 @@ impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for HNSW
         while !ret.is_empty() {
             let top = ret.peek().unwrap();
             let top_idx = top.idx();
-            
+            let top_distance = top.distance();
+            ret.pop();
+            result_idx.push((top_idx, top_distance))
+        }
+        for i in 0..result_idx.len() {
+  
