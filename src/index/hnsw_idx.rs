@@ -623,4 +623,7 @@ impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for HNSW
             result_idx.push((top_idx, top_distance))
         }
         for i in 0..result_idx.len() {
-  
+            let cur_id = result_idx.len() - i - 1;
+            result.push((
+                *self._nodes[result_idx[cur_id].0].clone(),
+   
