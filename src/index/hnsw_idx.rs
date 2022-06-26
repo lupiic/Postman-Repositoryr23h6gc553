@@ -626,4 +626,14 @@ impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for HNSW
             let cur_id = result_idx.len() - i - 1;
             result.push((
                 *self._nodes[result_idx[cur_id].0].clone(),
-   
+                result_idx[cur_id].1,
+            ));
+        }
+        result
+    }
+
+    fn name(&self) -> &'static str {
+        "HNSWIndex"
+    }
+
+    fn dimension(&self) 
