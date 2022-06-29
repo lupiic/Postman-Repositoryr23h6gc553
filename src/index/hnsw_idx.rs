@@ -645,4 +645,6 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
     ann_index::SerializableIndex<E, T> for HNSWIndex<E, T>
 {
     fn load(path: &str) -> Result<Self, &'static str> {
-        let file = File::open(path).unwrap_or_else(|_| 
+        let file = File::open(path).unwrap_or_else(|_| panic!("unable to open file {:?}", path));
+        let mut instance: HNSWIndex<E, T> = bincode::deserialize_from(&file).unwrap();
+        instance._nodes = instance
