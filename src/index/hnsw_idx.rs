@@ -648,3 +648,8 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
         let file = File::open(path).unwrap_or_else(|_| panic!("unable to open file {:?}", path));
         let mut instance: HNSWIndex<E, T> = bincode::deserialize_from(&file).unwrap();
         instance._nodes = instance
+            ._nodes_tmp
+            .iter()
+            .map(|x| Box::new(x.clone()))
+            .collect();
+        instance._id2neighbor = Vec::with_capac
