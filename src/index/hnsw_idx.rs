@@ -656,4 +656,8 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
         for i in 0..instance._id2neighbor_tmp.len() {
             let mut tmp = Vec::with_capacity(instance._id2neighbor_tmp[i].len());
             for j in 0..instance._id2neighbor_tmp[i].len() {
-                tmp.push(RwLock::new(instance._id2neighbor_tmp
+                tmp.push(RwLock::new(instance._id2neighbor_tmp[i][j].clone()));
+            }
+            instance._id2neighbor.push(tmp);
+        }
+        instance._id2neighbor0 = Vec::with_capacity(instance._id
