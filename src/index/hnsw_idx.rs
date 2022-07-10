@@ -660,4 +660,8 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
             }
             instance._id2neighbor.push(tmp);
         }
-        instance._id2neighbor0 = Vec::with_capacity(instance._id
+        instance._id2neighbor0 = Vec::with_capacity(instance._id2neighbor0_tmp.len());
+        for i in 0..instance._id2neighbor0_tmp.len() {
+            instance
+                ._id2neighbor0
+                .push(RwLock::new(instance._id2neig
