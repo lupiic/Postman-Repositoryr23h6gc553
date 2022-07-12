@@ -668,4 +668,10 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
         }
 
         instance._item2id = HashMap::new();
-        for iter in instance._item2id_tmp.iter(
+        for iter in instance._item2id_tmp.iter() {
+            let (k, v) = &*iter;
+            instance._item2id.insert(k.clone(), *v);
+        }
+
+        instance._delete_ids = HashSet::new();
+        for iter in instance._de
