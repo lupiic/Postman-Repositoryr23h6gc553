@@ -664,4 +664,8 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
         for i in 0..instance._id2neighbor0_tmp.len() {
             instance
                 ._id2neighbor0
-                .push(RwLock::new(instance._id2neig
+                .push(RwLock::new(instance._id2neighbor0_tmp[i].clone()));
+        }
+
+        instance._item2id = HashMap::new();
+        for iter in instance._item2id_tmp.iter(
