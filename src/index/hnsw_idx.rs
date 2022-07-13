@@ -679,4 +679,10 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
         }
         instance._id2neighbor_tmp.clear();
         instance._id2neighbor0_tmp.clear();
-        instan
+        instance._nodes_tmp.clear();
+        instance._item2id_tmp.clear();
+        instance._delete_ids_tmp.clear();
+        Ok(instance)
+    }
+
+    fn dump(&mut sel
