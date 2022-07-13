@@ -674,4 +674,9 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
         }
 
         instance._delete_ids = HashSet::new();
-        for iter in instance._de
+        for iter in instance._delete_ids_tmp.iter() {
+            instance._delete_ids.insert(*iter);
+        }
+        instance._id2neighbor_tmp.clear();
+        instance._id2neighbor0_tmp.clear();
+        instan
