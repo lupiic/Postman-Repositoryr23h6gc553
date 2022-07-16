@@ -687,4 +687,7 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
 
     fn dump(&mut self, path: &str) -> Result<(), &'static str> {
         self._id2neighbor_tmp = Vec::with_capacity(self._id2neighbor.len());
-        for i in 0..self._id2neigh
+        for i in 0..self._id2neighbor.len() {
+            let mut tmp = Vec::with_capacity(self._id2neighbor[i].len());
+            for j in 0..self._id2neighbor[i].len() {
+                tmp
