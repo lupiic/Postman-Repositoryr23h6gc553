@@ -695,4 +695,7 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
             self._id2neighbor_tmp.push(tmp);
         }
 
-        self._id2neighbor0_tmp = Vec::with_
+        self._id2neighbor0_tmp = Vec::with_capacity(self._id2neighbor0.len());
+        for i in 0..self._id2neighbor0.len() {
+            self._id2neighbor0_tmp
+                .push(self._id2neighbor0[i].read()
