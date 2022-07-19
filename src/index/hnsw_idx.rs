@@ -698,4 +698,8 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
         self._id2neighbor0_tmp = Vec::with_capacity(self._id2neighbor0.len());
         for i in 0..self._id2neighbor0.len() {
             self._id2neighbor0_tmp
-                .push(self._id2neighbor0[i].read()
+                .push(self._id2neighbor0[i].read().unwrap().clone());
+        }
+
+        self._nodes_tmp = self._nodes.iter().map(|x| *x.clone()).collect();
+        self._item2id_tmp = Vec::with_capacity(self._item2id.le
