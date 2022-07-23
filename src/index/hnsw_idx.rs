@@ -707,4 +707,9 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
             self._item2id_tmp.push((k.clone(), *v));
         }
         self._delete_ids_tmp = Vec::new();
-        for iter in &self._de
+        for iter in &self._delete_ids {
+            self._delete_ids_tmp.push(*iter);
+        }
+
+        let encoded_bytes = bincode::serialize(&self).unwrap();
+        let mut file = File::create(path).unwrap()
