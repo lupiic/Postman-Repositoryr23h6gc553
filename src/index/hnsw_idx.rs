@@ -716,3 +716,5 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
         file.write_all(&encoded_bytes)
             .unwrap_or_else(|_| panic!("unable to write file {:?}", path));
         Result::Ok(())
+    }
+}
