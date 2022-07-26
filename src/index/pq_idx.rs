@@ -177,3 +177,172 @@ impl<E: node::FloatElement, T: node::IdxType> PQIndex<E, T> {
             let begin = self._dimension_range[i][0];
             let end = self._dimension_range[i][1];
             *x = self.get_distance_from_vec_range(search_data, &self._centers[i][j], begin, end);
+        });
+
+        let mut top_candidate: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
+        (0..self._n_items).for_each(|i| {
+            let mut distance = E::from_f32(0.0).unwrap();
+            (0..self._n_sub).for_each(|j| {
+                distance += dis2centers[j * self._n_sub_center + self._assigned_center[j][i]];
+            });
+            top_candidate.push(Neighbor::new(i, distance));
+        });
+        while top_candidate.len() > k {
+            top_candidate.pop();
+        }
+
+        Ok(top_candidate)
+    }
+}
+
+impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for PQIndex<E, T> {
+    fn build(&mut self, _mt: metrics::Metric) -> Result<(), &'static str> {
+        self.mt = _mt;
+        self.train_center();
+        Result::Ok(())
+    }
+    fn add_node(&mut self, item: &node::Node<E, T>) -> Result<(), &'static str> {
+        match self.add_item(item) {
+            Err(err) => Err(err),
+            _ => Ok(()),
+        }
+    }
+    fn built(&self) -> bool {
+        true
+    }
+
+    fn node_search_k(&self, item: &node::Node<E, T>, k: usize) -> Vec<(node::Node<E, T>, E)> {
+        let mut ret: BinaryHeap<Neighbor<E, usize>> = self.search_knn_adc(item, k).unwrap();
+        let mut result: Vec<(node::Node<E, T>, E)> = Vec::new();
+        let mut result_idx: Vec<(usize, E)> = Vec::new();
+        while !ret.is_empty() {
+            let top = ret.peek().unwrap();
+            let top_idx = top.idx();
+            let top_distance = top.distance();
+            ret.pop();
+            result_idx.push((top_idx, top_distance))
+        }
+        for i in 0..result_idx.len() {
+            let cur_id = result_idx.len() - i - 1;
+            result.push((
+                *self._nodes[result_idx[cur_id].0].clone(),
+                result_idx[cur_id].1,
+            ));
+        }
+        result
+    }
+
+    fn name(&self) -> &'static str {
+        "PQIndex"
+    }
+
+    fn dimension(&self) -> usize {
+        self._dimension
+    }
+}
+
+impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwned>
+    ann_index::SerializableIndex<E, T> for PQIndex<E, T>
+{
+    fn load(path: &str) -> Result<Self, &'static str> {
+        let file = File::open(path).unwrap_or_else(|_| panic!("unable to open file {:?}", path));
+        let mut instance: PQIndex<E, T> = bincode::deserialize_from(&file).unwrap();
+        instance._nodes = instance
+            ._nodes_tmp
+            .iter()
+            .map(|x| Box::new(x.clone()))
+            .collect();
+        Ok(instance)
+    }
+
+    fn dump(&mut self, path: &str) -> Result<(), &'static str> {
+        self._nodes_tmp = self._nodes.iter().map(|x| *x.clone()).collect();
+        let encoded_bytes = bincode::serialize(&self).unwrap();
+        let mut file = File::create(path).unwrap();
+        file.write_all(&encoded_bytes)
+            .unwrap_or_else(|_| panic!("unable to write file {:?}", path));
+        Result::Ok(())
+    }
+}
+
+#[derive(Default, Debug, Serialize, Deserialize)]
+pub struct IVFPQIndex<E: node::FloatElement, T: node::IdxType> {
+    _dimension: usize,     //dimension of data
+    _n_sub: usize,         //num of subdata
+    _sub_dimension: usize, //dimension of subdata
+    _sub_bits: usize,      // size of subdata code
+    _sub_bytes: usize,     //code save as byte: (_sub_bit + 7)//8
+    _n_sub_center: usize,  //num of centers per subdata code
+    //n_center_per_sub = 1 << sub_bits
+    _code_bytes: usize,  // byte of code
+    _train_epoch: usize, // training epoch
+    _search_n_center: usize,
+    _n_kmeans_center: usize,
+    _centers: Vec<Vec<E>>,
+    _ivflist: Vec<Vec<usize>>, //ivf center id
+    _pq_list: Vec<PQIndex<E, T>>,
+    _is_trained: bool,
+
+    _n_items: usize,
+    _max_item: usize,
+    _nodes: Vec<Box<node::Node<E, T>>>,
+    _assigned_center: Vec<Vec<usize>>,
+    mt: metrics::Metric, //compute metrics
+    // _item2id: HashMap<i32, usize>,
+    _nodes_tmp: Vec<node::Node<E, T>>,
+}
+
+impl<E: node::FloatElement, T: node::IdxType> IVFPQIndex<E, T> {
+    pub fn new(dimension: usize, params: &IVFPQParams<E>) -> IVFPQIndex<E, T> {
+        let n_sub = params.n_sub;
+        let sub_bits = params.sub_bits;
+        let n_kmeans_center = params.n_kmeans_center;
+        let search_n_center = params.search_n_center;
+        let train_epoch = params.train_epoch;
+
+        let sub_dimension = dimension / n_sub;
+        let sub_bytes = (sub_bits + 7) / 8;
+        assert!(sub_bits <= 32);
+        let n_center_per_sub = (1 << sub_bits) as usize;
+        let code_bytes = sub_bytes * n_sub;
+        let mut ivflist: Vec<Vec<usize>> = Vec::new();
+        for _i in 0..n_kmeans_center {
+            let ivf: Vec<usize> = Vec::new();
+            ivflist.push(ivf);
+        }
+        IVFPQIndex {
+            _dimension: dimension,
+            _n_sub: n_sub,
+            _sub_dimension: sub_dimension,
+            _sub_bits: sub_bits,
+            _sub_bytes: sub_bytes,
+            _n_sub_center: n_center_per_sub,
+            _code_bytes: code_bytes,
+            _n_kmeans_center: n_kmeans_center,
+            _search_n_center: search_n_center,
+            _ivflist: ivflist,
+            _train_epoch: train_epoch,
+            _is_trained: false,
+            _n_items: 0,
+            _max_item: 100000,
+            mt: metrics::Metric::Unknown,
+            ..Default::default()
+        }
+    }
+
+    fn init_item(&mut self, data: &node::Node<E, T>) -> usize {
+        let cur_id = self._n_items;
+        // self._item2id.insert(item, cur_id);
+        self._nodes.push(Box::new(data.clone()));
+        self._n_items += 1;
+        cur_id
+    }
+
+    fn add_item(&mut self, data: &node::Node<E, T>) -> Result<usize, &'static str> {
+        if data.len() != self._dimension {
+            return Err("dimension is different");
+        }
+        // if self._item2id.contains_key(&item) {
+        //     //to_do update point
+        //     return Ok(self._item2id[&item]);
+        // }
