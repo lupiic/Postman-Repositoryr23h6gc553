@@ -346,3 +346,153 @@ impl<E: node::FloatElement, T: node::IdxType> IVFPQIndex<E, T> {
         //     //to_do update point
         //     return Ok(self._item2id[&item]);
         // }
+
+        if self._n_items > self._max_item {
+            return Err("The number of elements exceeds the specified limit");
+        }
+
+        let insert_id = self.init_item(data);
+        Ok(insert_id)
+    }
+
+    fn train(&mut self) {
+        let n_item = self._n_items;
+        let dimension = self._dimension;
+        let n_center = self._n_kmeans_center;
+        let n_epoch = self._train_epoch;
+        let mut cluster = kmeans::Kmeans::<E>::new(dimension, n_center, self.mt);
+        let mut data_vec: Vec<Vec<E>> = Vec::new();
+        for node in self._nodes.iter() {
+            data_vec.push(node.vectors().to_vec());
+        }
+        cluster.set_range(0, dimension);
+        cluster.train(n_item, &data_vec, n_epoch);
+        let mut assigned_center: Vec<usize> = Vec::new();
+        cluster.search_data(n_item, &data_vec, &mut assigned_center);
+        self._centers = cluster.centers().to_vec();
+        (0..n_item).for_each(|i| {
+            let center_id = assigned_center[i];
+            self._ivflist[center_id].push(i);
+        });
+        for i in 0..n_center {
+            let mut center_pq = PQIndex::<E, T>::new(
+                self._dimension,
+                &PQParams::default()
+                    .n_sub(self._n_sub)
+                    .sub_bits(self._sub_bits)
+                    .train_epoch(self._train_epoch),
+            );
+
+            for j in 0..self._ivflist[i].len() {
+                center_pq
+                    .add_item(&self._nodes[self._ivflist[i][j]].clone())
+                    .unwrap();
+            }
+            center_pq.set_residual(self._centers[i].to_vec());
+            center_pq.train_center();
+            self._pq_list.push(center_pq);
+        }
+
+        self._is_trained = true;
+    }
+
+    fn get_distance_from_vec_range(
+        &self,
+        x: &node::Node<E, T>,
+        y: &[E],
+        begin: usize,
+        end: usize,
+    ) -> E {
+        return metrics::metric(&x.vectors()[begin..end], y, self.mt).unwrap();
+    }
+
+    fn search_knn_adc(
+        &self,
+        search_data: &node::Node<E, T>,
+        k: usize,
+    ) -> Result<BinaryHeap<Neighbor<E, usize>>, &'static str> {
+        let mut top_centers: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
+        let n_kmeans_center = self._n_kmeans_center;
+        let dimension = self._dimension;
+        for i in 0..n_kmeans_center {
+            top_centers.push(Neighbor::new(
+                i,
+                -self.get_distance_from_vec_range(search_data, &self._centers[i], 0, dimension),
+            ))
+        }
+
+        let mut top_candidate: BinaryHeap<Neighbor<E, usize>> = BinaryHeap::new();
+        for _i in 0..self._search_n_center {
+            let center = top_centers.pop().unwrap().idx();
+            let mut ret = self._pq_list[center]
+                .search_knn_adc(search_data, k)
+                .unwrap();
+            while !ret.is_empty() {
+                let mut ret_peek = ret.pop().unwrap();
+                ret_peek._idx = self._ivflist[center][ret_peek._idx];
+                top_candidate.push(ret_peek);
+                if top_candidate.len() > k {
+                    top_candidate.pop();
+                }
+            }
+        }
+        Ok(top_candidate)
+    }
+}
+
+impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for IVFPQIndex<E, T> {
+    fn build(&mut self, _mt: metrics::Metric) -> Result<(), &'static str> {
+        self.mt = _mt;
+        self.train();
+        Result::Ok(())
+    }
+    fn add_node(&mut self, item: &node::Node<E, T>) -> Result<(), &'static str> {
+        match self.add_item(item) {
+            Err(err) => Err(err),
+            _ => Ok(()),
+        }
+    }
+    fn built(&self) -> bool {
+        true
+    }
+
+    fn node_search_k(&self, item: &node::Node<E, T>, k: usize) -> Vec<(node::Node<E, T>, E)> {
+        let mut ret: BinaryHeap<Neighbor<E, usize>> = self.search_knn_adc(item, k).unwrap();
+        let mut result: Vec<(node::Node<E, T>, E)> = Vec::new();
+        let mut result_idx: Vec<(usize, E)> = Vec::new();
+        while !ret.is_empty() {
+            let top = ret.peek().unwrap();
+            let top_idx = top.idx();
+            let top_distance = top.distance();
+            ret.pop();
+            result_idx.push((top_idx, top_distance))
+        }
+        for i in 0..result_idx.len() {
+            let cur_id = result_idx.len() - i - 1;
+            result.push((
+                *self._nodes[result_idx[cur_id].0].clone(),
+                result_idx[cur_id].1,
+            ));
+        }
+        result
+    }
+
+    fn name(&self) -> &'static str {
+        "IVFPQIndex"
+    }
+
+    fn dimension(&self) -> usize {
+        self._dimension
+    }
+}
+
+impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwned>
+    ann_index::SerializableIndex<E, T> for IVFPQIndex<E, T>
+{
+    fn load(path: &str) -> Result<Self, &'static str> {
+        let file = File::open(path).unwrap_or_else(|_| panic!("unable to open file {:?}", path));
+        let mut instance: IVFPQIndex<E, T> = bincode::deserialize_from(&file).unwrap();
+        instance._nodes = instance
+            ._nodes_tmp
+            .iter()
+            .map(|x| Box::new(x.clone()))
