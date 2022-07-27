@@ -496,3 +496,29 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
             ._nodes_tmp
             .iter()
             .map(|x| Box::new(x.clone()))
+            .collect();
+        instance._nodes_tmp.clear();
+        for i in 0..instance._n_kmeans_center {
+            instance._pq_list[i]._nodes = instance._pq_list[i]
+                ._nodes_tmp
+                .iter()
+                .map(|x| Box::new(x.clone()))
+                .collect();
+            instance._pq_list[i]._nodes_tmp.clear();
+        }
+        Ok(instance)
+    }
+
+    fn dump(&mut self, path: &str) -> Result<(), &'static str> {
+        self._nodes_tmp = self._nodes.iter().map(|x| *x.clone()).collect();
+        for i in 0..self._n_kmeans_center {
+            self._pq_list[i]._nodes_tmp =
+                self._pq_list[i]._nodes.iter().map(|x| *x.clone()).collect();
+        }
+        let encoded_bytes = bincode::serialize(&self).unwrap();
+        let mut file = File::create(path).unwrap();
+        file.write_all(&encoded_bytes)
+            .unwrap_or_else(|_| panic!("unable to write file {:?}", path));
+        Result::Ok(())
+    }
+}
