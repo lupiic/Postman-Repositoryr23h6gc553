@@ -12,4 +12,10 @@ pub struct PQParams<E: node::FloatElement> {
     pub e_type: E,
 }
 
-impl<E: node::FloatElemen
+impl<E: node::FloatElement> PQParams<E> {
+    pub fn n_sub(mut self, new_n_sub: usize) -> Self {
+        self.n_sub = new_n_sub;
+        self
+    }
+
+    pub fn sub_bits(mut self, new_sub_bi
