@@ -18,4 +18,10 @@ impl<E: node::FloatElement> PQParams<E> {
         self
     }
 
-    pub fn sub_bits(mut self, new_sub_bi
+    pub fn sub_bits(mut self, new_sub_bits: usize) -> Self {
+        self.sub_bits = new_sub_bits;
+        self
+    }
+
+    pub fn train_epoch(mut self, new_train_epoch: usize) -> Self {
+        self.train_epoch = 
