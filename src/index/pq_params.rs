@@ -24,4 +24,12 @@ impl<E: node::FloatElement> PQParams<E> {
     }
 
     pub fn train_epoch(mut self, new_train_epoch: usize) -> Self {
-        self.train_epoch = 
+        self.train_epoch = new_train_epoch;
+        self
+    }
+}
+
+impl<E: node::FloatElement> Default for PQParams<E> {
+    fn default() -> Self {
+        PQParams {
+            
