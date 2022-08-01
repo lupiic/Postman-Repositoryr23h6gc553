@@ -41,4 +41,9 @@ impl<E: node::FloatElement> Default for PQParams<E> {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct I
+pub struct IVFPQParams<E: node::FloatElement> {
+    pub n_sub: usize,
+    pub sub_bits: usize,
+    pub n_kmeans_center: usize,
+    pub search_n_center: usize,
+ 
