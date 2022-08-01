@@ -32,4 +32,13 @@ impl<E: node::FloatElement> PQParams<E> {
 impl<E: node::FloatElement> Default for PQParams<E> {
     fn default() -> Self {
         PQParams {
-            
+            n_sub: 4,
+            sub_bits: 4,
+            train_epoch: 100,
+            e_type: E::from_f32(0.0).unwrap(),
+        }
+    }
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct I
