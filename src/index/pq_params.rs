@@ -52,4 +52,13 @@ pub struct IVFPQParams<E: node::FloatElement> {
 
 impl<E: node::FloatElement> IVFPQParams<E> {
     pub fn n_sub(mut self, new_n_sub: usize) -> Self {
-        self.n_sub 
+        self.n_sub = new_n_sub;
+        self
+    }
+
+    pub fn sub_bits(mut self, new_sub_bits: usize) -> Self {
+        self.sub_bits = new_sub_bits;
+        self
+    }
+
+    pub fn 
