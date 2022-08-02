@@ -46,4 +46,10 @@ pub struct IVFPQParams<E: node::FloatElement> {
     pub sub_bits: usize,
     pub n_kmeans_center: usize,
     pub search_n_center: usize,
- 
+    pub train_epoch: usize,
+    pub e_type: E,
+}
+
+impl<E: node::FloatElement> IVFPQParams<E> {
+    pub fn n_sub(mut self, new_n_sub: usize) -> Self {
+        self.n_sub 
