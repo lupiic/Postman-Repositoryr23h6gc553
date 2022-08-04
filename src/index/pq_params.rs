@@ -61,4 +61,9 @@ impl<E: node::FloatElement> IVFPQParams<E> {
         self
     }
 
-    pub fn 
+    pub fn n_kmeans_center(mut self, new_n_kmeans_center: usize) -> Self {
+        self.n_kmeans_center = new_n_kmeans_center;
+        self
+    }
+
+    pub fn sear
