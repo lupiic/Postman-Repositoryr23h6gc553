@@ -66,4 +66,9 @@ impl<E: node::FloatElement> IVFPQParams<E> {
         self
     }
 
-    pub fn sear
+    pub fn search_n_center(mut self, new_search_n_center: usize) -> Self {
+        self.search_n_center = new_search_n_center;
+        self
+    }
+
+    pub fn train_epoc
