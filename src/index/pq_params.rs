@@ -71,4 +71,10 @@ impl<E: node::FloatElement> IVFPQParams<E> {
         self
     }
 
-    pub fn train_epoc
+    pub fn train_epoch(mut self, new_train_epoch: usize) -> Self {
+        self.train_epoch = new_train_epoch;
+        self
+    }
+}
+
+impl<E: node::FloatElement> Default for IVFPQParams<E> 
