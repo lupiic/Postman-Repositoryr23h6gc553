@@ -84,4 +84,8 @@ impl<E: node::FloatElement> Default for IVFPQParams<E> {
             sub_bits: 4,
             n_kmeans_center: 256,
             search_n_center: 8,
-        
+            train_epoch: 100,
+            e_type: E::from_f32(0.0).unwrap(),
+        }
+    }
+}
