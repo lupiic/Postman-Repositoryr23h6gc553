@@ -77,4 +77,11 @@ impl<E: node::FloatElement> IVFPQParams<E> {
     }
 }
 
-impl<E: node::FloatElement> Default for IVFPQParams<E> 
+impl<E: node::FloatElement> Default for IVFPQParams<E> {
+    fn default() -> Self {
+        IVFPQParams {
+            n_sub: 25,
+            sub_bits: 4,
+            n_kmeans_center: 256,
+            search_n_center: 8,
+        
