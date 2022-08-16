@@ -20,4 +20,8 @@ use std::collections::VecDeque;
 
 use std::fs::File;
 use std::io::Write;
-use std::sync
+use std::sync::{Arc, Mutex};
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct SSGIndex<E: node::FloatElement, T: node::IdxType> {
+    #[serde(skip_serializing, skip_deser
