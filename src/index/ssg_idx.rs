@@ -27,4 +27,10 @@ pub struct SSGIndex<E: node::FloatElement, T: node::IdxType> {
     #[serde(skip_serializing, skip_deserializing)]
     nodes: Vec<Box<node::Node<E, T>>>,
     tmp_nodes: Vec<node::Node<E, T>>, // only use for serialization scene
-    mt: metrics::M
+    mt: metrics::Metric,
+    dimension: usize,
+    neighbor_neighbor_size: usize,
+    index_size: usize,
+    graph: Vec<Vec<usize>>,
+    knn_graph: Vec<Vec<usize>>,
+   
