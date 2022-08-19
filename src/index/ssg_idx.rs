@@ -33,4 +33,15 @@ pub struct SSGIndex<E: node::FloatElement, T: node::IdxType> {
     index_size: usize,
     graph: Vec<Vec<usize>>,
     knn_graph: Vec<Vec<usize>>,
-   
+    init_k: usize, // as knn's k
+    root_nodes: Vec<usize>,
+    width: usize,
+    angle: E,
+    threshold: E,
+    root_size: usize,
+
+    // stat
+    search_times: usize,
+}
+
+impl<E
