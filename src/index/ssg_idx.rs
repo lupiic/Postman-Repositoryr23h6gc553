@@ -44,4 +44,6 @@ pub struct SSGIndex<E: node::FloatElement, T: node::IdxType> {
     search_times: usize,
 }
 
-impl<E
+impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
+    pub fn new(dimension: usize, params: &SSGParams<E>) -> SSGIndex<E, T> {
+        SSGIndex:
