@@ -46,4 +46,9 @@ pub struct SSGIndex<E: node::FloatElement, T: node::IdxType> {
 
 impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
     pub fn new(dimension: usize, params: &SSGParams<E>) -> SSGIndex<E, T> {
-        SSGIndex:
+        SSGIndex::<E, T> {
+            nodes: Vec::new(),
+            tmp_nodes: Vec::new(),
+            mt: metrics::Metric::Unknown,
+            dimension,
+            neighbor_neighbor_size: param
