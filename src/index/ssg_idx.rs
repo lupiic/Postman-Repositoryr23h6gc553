@@ -55,4 +55,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             init_k: params.init_k,
             graph: Vec::new(),
             knn_graph: Vec::new(),
-            root_n
+            root_nodes: Vec::new(),
+            width: 0,
+            index_size: params.index_size,
+            angle: params.angle,
+            threshold: (params.angle / E::from_f32(180.0).unwrap() * E:
