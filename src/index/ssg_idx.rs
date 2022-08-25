@@ -51,4 +51,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             tmp_nodes: Vec::new(),
             mt: metrics::Metric::Unknown,
             dimension,
-            neighbor_neighbor_size: param
+            neighbor_neighbor_size: params.neighbor_neighbor_size,
+            init_k: params.init_k,
+            graph: Vec::new(),
+            knn_graph: Vec::new(),
+            root_n
