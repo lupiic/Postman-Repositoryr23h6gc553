@@ -67,4 +67,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
     }
 
     fn build_knn_graph(&mut self) {
-        let tmp_grap
+        let tmp_graph = Arc::new(Mutex::new(vec![vec![0]; self.nodes.len()]));
+        vec_iter!(self.nodes, ctr);
+        ctr.zip(0..self.nodes.len()).for_each(|(item, n)| {
+            l
