@@ -59,4 +59,12 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             width: 0,
             index_size: params.index_size,
             angle: params.angle,
-            threshold: (params.angle / E::from_f32(180.0).unwrap() * E:
+            threshold: (params.angle / E::from_f32(180.0).unwrap() * E::PI()).cos(),
+            root_size: params.root_size,
+
+            search_times: 0,
+        }
+    }
+
+    fn build_knn_graph(&mut self) {
+        let tmp_grap
