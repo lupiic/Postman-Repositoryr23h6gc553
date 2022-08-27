@@ -70,4 +70,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         let tmp_graph = Arc::new(Mutex::new(vec![vec![0]; self.nodes.len()]));
         vec_iter!(self.nodes, ctr);
         ctr.zip(0..self.nodes.len()).for_each(|(item, n)| {
-            l
+            let mut heap = BinaryHeap::with_capacity(self.init_k);
+            self.nodes
+                .iter()
+                .zip(0..self.nodes.len())
+          
