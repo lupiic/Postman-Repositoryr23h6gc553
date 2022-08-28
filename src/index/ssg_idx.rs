@@ -78,4 +78,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                     if i == n {
                         return;
                     }
-                    heap.push(neighbor::Neighbor
+                    heap.push(neighbor::Neighbor::new(
+                        i,
+                        item.metric(node, self.mt).unwrap(),
+                    ));
+                    if heap.len() > self.ini
