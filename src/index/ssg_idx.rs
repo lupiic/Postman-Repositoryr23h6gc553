@@ -74,4 +74,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             self.nodes
                 .iter()
                 .zip(0..self.nodes.len())
-          
+                .for_each(|(node, i)| {
+                    if i == n {
+                        return;
+                    }
+                    heap.push(neighbor::Neighbor
