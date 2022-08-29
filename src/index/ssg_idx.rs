@@ -82,4 +82,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                         i,
                         item.metric(node, self.mt).unwrap(),
                     ));
-                    if heap.len() > self.ini
+                    if heap.len() > self.init_k {
+                        heap.pop();
+                    }
+                });
+            let mut tmp = Vec::with_capacity(heap.len());
+            wh
