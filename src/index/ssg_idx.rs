@@ -87,4 +87,10 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                     }
                 });
             let mut tmp = Vec::with_capacity(heap.len());
-            wh
+            while !heap.is_empty() {
+                tmp.push(heap.pop().unwrap().idx());
+            }
+
+            tmp_graph.lock().unwrap()[n] = tmp;
+        });
+     
