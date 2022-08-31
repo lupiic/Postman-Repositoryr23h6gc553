@@ -93,4 +93,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
 
             tmp_graph.lock().unwrap()[n] = tmp;
         });
-     
+        self.graph = tmp_graph.lock().unwrap().to_vec();
+        self.knn_graph = tmp_graph.lock().unwrap().to_vec();
+    }
+
+    fn get_random_nodes_idx_lite(&self
