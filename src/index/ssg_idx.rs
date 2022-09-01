@@ -100,4 +100,11 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
     fn get_random_nodes_idx_lite(&self, indices: &mut [usize]) {
         let mut rng = rand::thread_rng();
         (0..indices.len()).for_each(|i| {
-            indices[i] = rng.gen_range(0..s
+            indices[i] = rng.gen_range(0..self.nodes.len() - indices.len());
+        });
+    }
+
+    fn get_point_neighbor_size_neighbors(
+        &self,
+        q: usize,
+        expand_neighbors_tmp: &m
