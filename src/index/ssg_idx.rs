@@ -97,4 +97,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         self.knn_graph = tmp_graph.lock().unwrap().to_vec();
     }
 
-    fn get_random_nodes_idx_lite(&self
+    fn get_random_nodes_idx_lite(&self, indices: &mut [usize]) {
+        let mut rng = rand::thread_rng();
+        (0..indices.len()).for_each(|i| {
+            indices[i] = rng.gen_range(0..s
