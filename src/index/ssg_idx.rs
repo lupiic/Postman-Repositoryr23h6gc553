@@ -107,4 +107,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
     fn get_point_neighbor_size_neighbors(
         &self,
         q: usize,
-        expand_neighbors_tmp: &m
+        expand_neighbors_tmp: &mut Vec<neighbor::Neighbor<E, usize>>,
+    ) {
+        let mut flags = HashSet::with_capacity(self.neighbor_neighbor_size);
+
+        flags.insert(q);
+     
