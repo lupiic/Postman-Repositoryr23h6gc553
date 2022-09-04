@@ -112,4 +112,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         let mut flags = HashSet::with_capacity(self.neighbor_neighbor_size);
 
         flags.insert(q);
-     
+        for neighbor_id in self.graph[q].iter() {
+            for nn_id in self.graph[*neighbor_id].iter() {
+                if *neighbor_id == *nn_id {
+                    continue;
+         
