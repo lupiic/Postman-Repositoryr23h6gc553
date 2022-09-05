@@ -116,4 +116,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             for nn_id in self.graph[*neighbor_id].iter() {
                 if *neighbor_id == *nn_id {
                     continue;
-         
+                }
+                if flags.contains(nn_id) {
+                    continue;
+                }
+                flags.insert(*nn_id);
+                let dist = self.nodes[q].metric(
