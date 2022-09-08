@@ -131,4 +131,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
     }
 
     fn expand_connectivity(&mut self) {
-        
+        let range = self.index_size;
+
+        let mut ids: Vec<usize> = (0..self.nodes.len()).collect();
+        ids.shuffle(&mut thread_rng())
