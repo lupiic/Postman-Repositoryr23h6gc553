@@ -123,4 +123,12 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 flags.insert(*nn_id);
                 let dist = self.nodes[q].metric(&self.nodes[*nn_id], self.mt).unwrap();
                 expand_neighbors_tmp.push(neighbor::Neighbor::new(*nn_id, dist));
-                if expand_neighbors_tmp.le
+                if expand_neighbors_tmp.len() >= self.neighbor_neighbor_size {
+                    return;
+                }
+            }
+        }
+    }
+
+    fn expand_connectivity(&mut self) {
+        
