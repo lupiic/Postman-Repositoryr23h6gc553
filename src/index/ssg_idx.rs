@@ -134,4 +134,10 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         let range = self.index_size;
 
         let mut ids: Vec<usize> = (0..self.nodes.len()).collect();
-        ids.shuffle(&mut thread_rng())
+        ids.shuffle(&mut thread_rng());
+        for id in ids.iter().take(self.root_size) {
+            self.root_nodes.push(*id);
+        }
+
+        (0..self.root_size).for_each(|i| {
+          
