@@ -140,4 +140,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         }
 
         (0..self.root_size).for_each(|i| {
-          
+            let root_id = self.root_nodes[i];
+            let mut flags = HashSet::new();
+            let mut my_queue = VecDeque::new();
+            my_queue.push_back(
