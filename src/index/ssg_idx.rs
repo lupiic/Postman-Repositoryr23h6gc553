@@ -143,4 +143,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             let root_id = self.root_nodes[i];
             let mut flags = HashSet::new();
             let mut my_queue = VecDeque::new();
-            my_queue.push_back(
+            my_queue.push_back(root_id);
+            flags.insert(root_id);
+
+            let mut unknown_set: Vec<usize> = Vec::with_capacity(1);
+            while !unknown_set.is_empt
