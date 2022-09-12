@@ -147,4 +147,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             flags.insert(root_id);
 
             let mut unknown_set: Vec<usize> = Vec::with_capacity(1);
-            while !unknown_set.is_empt
+            while !unknown_set.is_empty() {
+                while !my_queue.is_empty() {
+                    let q_front = my_queue.pop_front().unwrap();
+
+                    for j in 0..self.graph[q_front
