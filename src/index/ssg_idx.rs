@@ -151,4 +151,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 while !my_queue.is_empty() {
                     let q_front = my_queue.pop_front().unwrap();
 
-                    for j in 0..self.graph[q_front
+                    for j in 0..self.graph[q_front].len() {
+                        let child = self.graph[q_front][j];
+                        if flags.contains(&child) {
+                            continue;
+                       
