@@ -155,4 +155,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                         let child = self.graph[q_front][j];
                         if flags.contains(&child) {
                             continue;
-                       
+                        }
+                        flags.insert(child);
+                        my_queue.push_back(child);
+                    }
+                }
+      
