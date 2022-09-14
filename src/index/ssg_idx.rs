@@ -160,4 +160,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                         my_queue.push_back(child);
                     }
                 }
-      
+                unknown_set.clear();
+                for j in 0..self.nodes.len() {
+                    if flags.contains(&j) {
+                        continue;
+              
