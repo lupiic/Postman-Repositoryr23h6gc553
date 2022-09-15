@@ -164,4 +164,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 for j in 0..self.nodes.len() {
                     if flags.contains(&j) {
                         continue;
-              
+                    }
+                    unknown_set.push(j);
+                }
+                if !unknown_set.is_empty() {
+                    for j in 0..self.nodes.len() {
+  
