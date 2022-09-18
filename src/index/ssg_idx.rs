@@ -175,4 +175,11 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                         }
                     }
                     my_queue.push_back(unknown_set[0]);
-                    flags.insert(u
+                    flags.insert(unknown_set[0]);
+                }
+            }
+        });
+    }
+
+    fn link_each_nodes(&mut self, pruned_graph_tmp: &mut Vec<neighbor::Neighbor<E, usize>>) {
+    
