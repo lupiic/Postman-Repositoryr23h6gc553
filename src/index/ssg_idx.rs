@@ -171,4 +171,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                     for j in 0..self.nodes.len() {
                         if flags.contains(&j) && self.graph[j].len() < range {
                             self.graph[j].push(unknown_set[0]);
-                       
+                            break;
+                        }
+                    }
+                    my_queue.push_back(unknown_set[0]);
+                    flags.insert(u
