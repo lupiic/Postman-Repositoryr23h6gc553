@@ -182,4 +182,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
     }
 
     fn link_each_nodes(&mut self, pruned_graph_tmp: &mut Vec<neighbor::Neighbor<E, usize>>) {
-    
+        let mut expand_neighbors_tmp = Vec::new();
+        (0..self.nodes.len()).for_each(|i| {
+            expand_neighbors_tmp.clear();
+            
