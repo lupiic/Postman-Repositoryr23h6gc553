@@ -185,4 +185,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         let mut expand_neighbors_tmp = Vec::new();
         (0..self.nodes.len()).for_each(|i| {
             expand_neighbors_tmp.clear();
-            
+            self.get_point_neighbor_size_neighbors(i, &mut expand_neighbors_tmp); // get related one
+            self.prune_graph(
+                i,
+           
