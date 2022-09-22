@@ -188,4 +188,10 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             self.get_point_neighbor_size_neighbors(i, &mut expand_neighbors_tmp); // get related one
             self.prune_graph(
                 i,
-           
+                &mut expand_neighbors_tmp,
+                self.threshold,
+                pruned_graph_tmp,
+            );
+        });
+        (0..self.nodes.len()).for_each(|i| {
+        
