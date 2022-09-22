@@ -194,4 +194,11 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             );
         });
         (0..self.nodes.len()).for_each(|i| {
-        
+            self.inter_insert(i, self.index_size, pruned_graph_tmp);
+        });
+    }
+
+    fn prune_graph(
+        &mut self,
+        query_id: usize,
+        expa
