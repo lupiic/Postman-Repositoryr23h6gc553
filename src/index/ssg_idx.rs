@@ -201,4 +201,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
     fn prune_graph(
         &mut self,
         query_id: usize,
-        expa
+        expand_neighbors_tmp: &mut Vec<neighbor::Neighbor<E, usize>>,
+        threshold: E,
+        pruned_graph_tmp: &mut Vec<neighbor::Neighbor<E, usize>>,
+    ) {
+ 
