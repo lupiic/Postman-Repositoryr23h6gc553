@@ -205,4 +205,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         threshold: E,
         pruned_graph_tmp: &mut Vec<neighbor::Neighbor<E, usize>>,
     ) {
- 
+        let mut start = 0;
+        let mut flags = HashSet::with_capacity(expand_neighbors_tmp.len());
+        for iter in expand_neighbors_tmp.iter() {
+            f
