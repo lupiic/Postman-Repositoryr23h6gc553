@@ -208,4 +208,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         let mut start = 0;
         let mut flags = HashSet::with_capacity(expand_neighbors_tmp.len());
         for iter in expand_neighbors_tmp.iter() {
-            f
+            flags.insert(iter.idx());
+        }
+        self.graph[query_id].iter().for_each(|linked_id| {
+            if flags.contains(linked_id) {
+                return;
+         
