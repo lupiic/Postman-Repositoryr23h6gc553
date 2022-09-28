@@ -213,4 +213,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         self.graph[query_id].iter().for_each(|linked_id| {
             if flags.contains(linked_id) {
                 return;
-         
+            }
+            expand_neighbors_tmp.push(neighbor::Neighbor::new(
+                *linked_id,
+                self.nodes[query_id]
+                    .metric(&self.nodes[*linke
