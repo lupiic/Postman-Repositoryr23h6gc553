@@ -217,4 +217,11 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             expand_neighbors_tmp.push(neighbor::Neighbor::new(
                 *linked_id,
                 self.nodes[query_id]
-                    .metric(&self.nodes[*linke
+                    .metric(&self.nodes[*linked_id], self.mt)
+                    .unwrap(),
+            ));
+        });
+
+        expand_neighbors_tmp.sort_unstable();
+        let mut result = Vec::new();
+  
