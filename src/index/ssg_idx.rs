@@ -224,4 +224,10 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
 
         expand_neighbors_tmp.sort_unstable();
         let mut result = Vec::new();
-  
+        if expand_neighbors_tmp[start].idx() == query_id {
+            start += 1;
+        }
+        result.push(expand_neighbors_tmp[start].clone());
+
+        start += 1;
+     
