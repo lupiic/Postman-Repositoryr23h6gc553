@@ -232,4 +232,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         start += 1;
         while result.len() < self.index_size && start < expand_neighbors_tmp.len() {
             let p = &expand_neighbors_tmp[start];
-            let mut occlu
+            let mut occlude = false;
+            // TODO: check every metrics, and decide use euclidean forcibly.
+            for iter in result.iter() {
+                if p.idx() == 
