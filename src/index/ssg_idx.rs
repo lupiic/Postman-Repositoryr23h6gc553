@@ -230,4 +230,6 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         result.push(expand_neighbors_tmp[start].clone());
 
         start += 1;
-     
+        while result.len() < self.index_size && start < expand_neighbors_tmp.len() {
+            let p = &expand_neighbors_tmp[start];
+            let mut occlu
