@@ -235,4 +235,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             let mut occlude = false;
             // TODO: check every metrics, and decide use euclidean forcibly.
             for iter in result.iter() {
-                if p.idx() == 
+                if p.idx() == iter.idx() {
+                    // stop early
+                    occlude = true;
+                    break;
+                }
+                let djk 
