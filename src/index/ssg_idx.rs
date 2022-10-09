@@ -240,4 +240,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                     occlude = true;
                     break;
                 }
-                let djk 
+                let djk = self.nodes[iter.idx()]
+                    .metric(&self.nodes[p.idx()], self.mt)
+                    .unwrap();
+                let cos_ij = 
