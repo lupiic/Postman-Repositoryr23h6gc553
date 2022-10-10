@@ -246,4 +246,10 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 let cos_ij = (p.distance().powi(2) + iter.distance().powi(2) - djk.powi(2))
                     / (E::from_usize(2).unwrap() * (p.distance() * iter.distance()));
 
-          
+                if cos_ij > threshold {
+                    occlude = true;
+                    break;
+                }
+            }
+            if !occlude {
+      
