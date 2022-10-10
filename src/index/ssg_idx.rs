@@ -252,4 +252,10 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 }
             }
             if !occlude {
-      
+                result.push(p.clone());
+            }
+            start += 1;
+        }
+
+        (0..result.len()).for_each(|t| {
+            pruned_graph_tmp[t + query_id *
