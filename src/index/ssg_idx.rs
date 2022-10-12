@@ -258,4 +258,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         }
 
         (0..result.len()).for_each(|t| {
-            pruned_graph_tmp[t + query_id *
+            pruned_graph_tmp[t + query_id * self.index_size]._idx = result[t].idx();
+            pruned_graph_tmp[t + query_id * self.index_size]._distance = result[t].distance();
+        });
+        if resul
