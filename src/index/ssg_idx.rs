@@ -263,4 +263,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         });
         if result.len() < self.index_size {
             (result.len()..self.index_size).for_each(|i| {
-                pruned_graph_tmp[query_id * self.index_size + i]._distance =
+                pruned_graph_tmp[query_id * self.index_size + i]._distance = E::max_value();
+                pruned_graph_tmp[query_id * self.index_size + i]._idx = self.nodes.len();
+                // means not exist
+            
