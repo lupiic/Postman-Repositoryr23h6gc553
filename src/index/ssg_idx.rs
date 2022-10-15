@@ -266,4 +266,13 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 pruned_graph_tmp[query_id * self.index_size + i]._distance = E::max_value();
                 pruned_graph_tmp[query_id * self.index_size + i]._idx = self.nodes.len();
                 // means not exist
-            
+            });
+        }
+    }
+
+    // to handle neighbor's graph
+    fn inter_insert(
+        &self,
+        n: usize,
+        range: usize,
+        pruned_graph_tmp: &mut Vec<neighbor:
