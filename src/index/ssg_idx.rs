@@ -275,4 +275,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         &self,
         n: usize,
         range: usize,
-        pruned_graph_tmp: &mut Vec<neighbor:
+        pruned_graph_tmp: &mut Vec<neighbor::Neighbor<E, usize>>,
+    ) {
+        (0..range).for_each(|i| {
+            if pruned_graph_tmp[i + n].distance() == E::max_value() {
+ 
