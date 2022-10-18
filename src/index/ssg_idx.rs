@@ -283,4 +283,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             }
 
             let sn = neighbor::Neighbor::new(n, pruned_graph_tmp[i + n].distance()); // distance of n to i
-         
+            let des = pruned_graph_tmp[i + n].idx();
+            let mut temp_pool = Vec::new();
+            let mut dup = false;
+
+            for j in 0..range {
+               
