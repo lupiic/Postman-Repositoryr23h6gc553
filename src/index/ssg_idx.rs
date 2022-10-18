@@ -279,4 +279,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
     ) {
         (0..range).for_each(|i| {
             if pruned_graph_tmp[i + n].distance() == E::max_value() {
- 
+                return;
+            }
+
+            let sn = neighbor::Neighbor::new(n, pruned_graph_tmp[i + n].distance()); // distance of n to i
+         
