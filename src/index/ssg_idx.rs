@@ -288,4 +288,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             let mut dup = false;
 
             for j in 0..range {
-               
+                if pruned_graph_tmp[j + des * self.index_size].distance() == E::max_value() {
+                    break;
+                }
+                // each o
