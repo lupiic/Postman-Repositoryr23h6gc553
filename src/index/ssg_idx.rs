@@ -291,4 +291,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 if pruned_graph_tmp[j + des * self.index_size].distance() == E::max_value() {
                     break;
                 }
-                // each o
+                // each other has neighbor relationship
+                if n == pruned_graph_tmp[j + des * self.index_size].idx() {
+                    // neighbor and point meet
+                    dup = true;
+             
