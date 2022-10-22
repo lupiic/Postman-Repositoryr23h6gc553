@@ -295,4 +295,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 if n == pruned_graph_tmp[j + des * self.index_size].idx() {
                     // neighbor and point meet
                     dup = true;
-             
+                    break;
+                }
+                temp_pool.push(pruned_graph_tmp[j + des * self.index_size].clone());
+                // neighbor's neighbor
+           
