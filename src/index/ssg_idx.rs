@@ -299,4 +299,12 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 }
                 temp_pool.push(pruned_graph_tmp[j + des * self.index_size].clone());
                 // neighbor's neighbor
-           
+            }
+
+            if dup {
+                return;
+            }
+
+            temp_pool.push(sn.clone());
+            if temp_pool.len() > range {
+        
