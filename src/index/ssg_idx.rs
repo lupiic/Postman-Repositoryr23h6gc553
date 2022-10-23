@@ -310,4 +310,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 let mut result = Vec::new();
                 let mut start = 0;
                 temp_pool.sort_unstable();
-                result.push(temp_pool[start].clone
+                result.push(temp_pool[start].clone());
+                start += 1;
+                while result.len() < range && start < temp_pool.len() {
+                    let p = &temp_pool[start];
+     
