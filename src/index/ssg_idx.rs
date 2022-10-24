@@ -314,4 +314,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 start += 1;
                 while result.len() < range && start < temp_pool.len() {
                     let p = &temp_pool[start];
-     
+                    let mut occlude = false;
+                    for rt in result.iter() {
+                        if p.idx() == rt.idx() {
+                            occ
