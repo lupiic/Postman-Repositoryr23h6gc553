@@ -317,4 +317,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                     let mut occlude = false;
                     for rt in result.iter() {
                         if p.idx() == rt.idx() {
-                            occ
+                            occlude = true;
+                            break;
+                        }
+                        let djk = self.nodes[rt.idx()]
+                            .
