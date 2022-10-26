@@ -321,4 +321,6 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                             break;
                         }
                         let djk = self.nodes[rt.idx()]
-                            .
+                            .metric(&self.nodes[p.idx()], self.mt)
+                            .unwrap();
+                        let cos_ij = (p.distance().powi(2) + rt.distance().powi(2) - djk
