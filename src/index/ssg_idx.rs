@@ -327,4 +327,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                             / (E::from_usize(2).unwrap() * (p.distance() * rt.distance()));
 
                         if cos_ij > self.threshold {
-                         
+                            occlude = true;
+                            break;
+                        }
+                    }
+                    if !occlude {
+        
