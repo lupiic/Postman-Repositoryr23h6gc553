@@ -323,4 +323,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                         let djk = self.nodes[rt.idx()]
                             .metric(&self.nodes[p.idx()], self.mt)
                             .unwrap();
-                        let cos_ij = (p.distance().powi(2) + rt.distance().powi(2) - djk
+                        let cos_ij = (p.distance().powi(2) + rt.distance().powi(2) - djk.powi(2))
+                            / (E::from_usize(2).unwrap() * (p.distance() * rt.distance()));
+
+                        if cos_ij > self.threshold {
+                         
