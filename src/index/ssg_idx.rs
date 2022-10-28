@@ -336,4 +336,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                     }
                     start += 1;
                 }
-                (0..resu
+                (0..result.len()).for_each(|t| {
+                    pruned_graph_tmp[t + des * self.index_size] = result[t].clone();
+                });
+
+                if result.le
