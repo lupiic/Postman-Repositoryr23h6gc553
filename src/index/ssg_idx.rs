@@ -340,4 +340,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                     pruned_graph_tmp[t + des * self.index_size] = result[t].clone();
                 });
 
-                if result.le
+                if result.len() < range {
+                    pruned_graph_tmp[result.len() + des * self.index_size]._distance =
+                        E::max_value();
+          
