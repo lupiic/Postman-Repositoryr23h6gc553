@@ -353,4 +353,12 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                             break;
                         }
                     }
-    
+                }
+            }
+        });
+    }
+
+    fn _build(&mut self) {
+        self.build_knn_graph();
+
+        let mut pruned_graph_tmp: Vec<neighbor::Neigh
