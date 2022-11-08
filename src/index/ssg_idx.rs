@@ -364,4 +364,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         let mut pruned_graph_tmp: Vec<neighbor::Neighbor<E, usize>> =
             Vec::with_capacity(self.nodes.len() * self.index_size);
         (0..self.nodes.len() * self.index_size).for_each(|i| {
-            p
+            pruned_graph_tmp.push(neighbor::Neighbor::<E, usize>::new(i, E::float_zero()));
+        });
+        self.link_each_nodes(&mut pruned_graph_tmp);
+
+        for i in 0..
