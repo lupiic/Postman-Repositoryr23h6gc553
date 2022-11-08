@@ -361,4 +361,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
     fn _build(&mut self) {
         self.build_knn_graph();
 
-        let mut pruned_graph_tmp: Vec<neighbor::Neigh
+        let mut pruned_graph_tmp: Vec<neighbor::Neighbor<E, usize>> =
+            Vec::with_capacity(self.nodes.len() * self.index_size);
+        (0..self.nodes.len() * self.index_size).for_each(|i| {
+            p
