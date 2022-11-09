@@ -368,4 +368,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         });
         self.link_each_nodes(&mut pruned_graph_tmp);
 
-        for i in 0..
+        for i in 0..self.nodes.len() {
+            let mut pool_size = 0;
+            for j in 0..self.index_size {
+                if pruned_graph_tmp[i * self.index_size + 
