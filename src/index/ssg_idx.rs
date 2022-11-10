@@ -376,4 +376,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 }
                 pool_size = j;
             }
-            pool_size += 1
+            pool_size += 1;
+            self.graph[i] = Vec::with_capacity(pool_size);
+            for j in 0..pool_size {
+                self.graph[i].push(pruned_graph_tmp[i * self.index_size + j].idx(
