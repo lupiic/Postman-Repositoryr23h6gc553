@@ -371,4 +371,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         for i in 0..self.nodes.len() {
             let mut pool_size = 0;
             for j in 0..self.index_size {
-                if pruned_graph_tmp[i * self.index_size + 
+                if pruned_graph_tmp[i * self.index_size + j].distance() == E::max_value() {
+                    break;
+                }
+                pool_size = j;
+            }
+            pool_size += 1
