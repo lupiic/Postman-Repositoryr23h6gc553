@@ -379,4 +379,10 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             pool_size += 1;
             self.graph[i] = Vec::with_capacity(pool_size);
             for j in 0..pool_size {
-                self.graph[i].push(pruned_graph_tmp[i * self.index_size + j].idx(
+                self.graph[i].push(pruned_graph_tmp[i * self.index_size + j].idx());
+            }
+        }
+
+        self.expand_connectivity();
+
+        self.root_nodes = kmeans::general_kmeans(self.root_size, 256, &self.nodes, self.mt)
