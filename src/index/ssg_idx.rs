@@ -385,4 +385,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
 
         self.expand_connectivity();
 
-        self.root_nodes = kmeans::general_kmeans(self.root_size, 256, &self.nodes, self.mt)
+        self.root_nodes = kmeans::general_kmeans(self.root_size, 256, &self.nodes, self.mt);
+
+        // let mut max = 0;
+        // let mut min = self.nodes.len();
+        // let mut avg: f32 = 0.;
+        // for t in 0..self.nodes.
