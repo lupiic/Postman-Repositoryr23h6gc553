@@ -390,4 +390,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         // let mut max = 0;
         // let mut min = self.nodes.len();
         // let mut avg: f32 = 0.;
-        // for t in 0..self.nodes.
+        // for t in 0..self.nodes.len() {
+        //     let size = self.graph[t].len();
+        //     max = if max < size { size } else { max };
+        //     min = if min > size { size }
