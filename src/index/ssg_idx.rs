@@ -393,4 +393,10 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         // for t in 0..self.nodes.len() {
         //     let size = self.graph[t].len();
         //     max = if max < size { size } else { max };
-        //     min = if min > size { size }
+        //     min = if min > size { size } else { min };
+        //     avg += size as f32;
+        // }
+        // avg /= 1.0 * self.nodes.len() as f32;
+    }
+
+    fn search(&self, query: &node::Node<E, T>, k: usize)
