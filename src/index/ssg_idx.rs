@@ -399,4 +399,6 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         // avg /= 1.0 * self.nodes.len() as f32;
     }
 
-    fn search(&self, query: &node::Node<E, T>, k: usize)
+    fn search(&self, query: &node::Node<E, T>, k: usize) -> Vec<(node::Node<E, T>, E)> {
+        // let mut search_flags = HashSet::with_capacity(self.nodes.len());
+        let mut search_flags = FixedBitSet::with_capacity(se
