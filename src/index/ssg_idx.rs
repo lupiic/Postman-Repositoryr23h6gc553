@@ -403,4 +403,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         // let mut search_flags = HashSet::with_capacity(self.nodes.len());
         let mut search_flags = FixedBitSet::with_capacity(self.nodes.len());
         let mut heap: BinaryHeap<neighbor::Neighbor<E, usize>> = BinaryHeap::new(); // max-heap
-        let mut search_queue: LinkedList<usize
+        let mut search_queue: LinkedList<usize> = LinkedList::new();
+
+        let mut vec_tmp = Vec::with_capacity(self.root_nodes.len());
+        self.root_nodes.iter().for_each(|n| {
+            let dist = self.nodes[*n].me
