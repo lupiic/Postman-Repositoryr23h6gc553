@@ -401,4 +401,6 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
 
     fn search(&self, query: &node::Node<E, T>, k: usize) -> Vec<(node::Node<E, T>, E)> {
         // let mut search_flags = HashSet::with_capacity(self.nodes.len());
-        let mut search_flags = FixedBitSet::with_capacity(se
+        let mut search_flags = FixedBitSet::with_capacity(self.nodes.len());
+        let mut heap: BinaryHeap<neighbor::Neighbor<E, usize>> = BinaryHeap::new(); // max-heap
+        let mut search_queue: LinkedList<usize
