@@ -407,4 +407,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
 
         let mut vec_tmp = Vec::with_capacity(self.root_nodes.len());
         self.root_nodes.iter().for_each(|n| {
-            let dist = self.nodes[*n].me
+            let dist = self.nodes[*n].metric(query, self.mt).unwrap();
+            vec_tmp.push(neighbor::Neighbor::new(*n, dist));
+        });
+        vec_tmp.sort();
+        for iter in vec_
