@@ -411,4 +411,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             vec_tmp.push(neighbor::Neighbor::new(*n, dist));
         });
         vec_tmp.sort();
-        for iter in vec_
+        for iter in vec_tmp.iter() {
+            if heap.len() < k {
+                heap.push(iter.clone());
+                search_queue.push_back(iter.idx());
+            }
+            search
