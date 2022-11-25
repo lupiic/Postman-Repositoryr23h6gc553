@@ -416,4 +416,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 heap.push(iter.clone());
                 search_queue.push_back(iter.idx());
             }
-            search
+            search_flags.insert(iter.idx());
+        }
+
+        // greedy BFS search
+        while !search_queue.is_empty() {
+            let id = search_queue.pop_front().unwrap
