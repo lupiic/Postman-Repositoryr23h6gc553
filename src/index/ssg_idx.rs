@@ -421,4 +421,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
 
         // greedy BFS search
         while !search_queue.is_empty() {
-            let id = search_queue.pop_front().unwrap
+            let id = search_queue.pop_front().unwrap();
+
+            let mut tmp = BinaryHeap::with_capacity(self.graph[id].len());
+            for iter in self.graph[id].iter() {
+                if search_flags.contains(*iter) {
+           
