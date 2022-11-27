@@ -426,4 +426,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             let mut tmp = BinaryHeap::with_capacity(self.graph[id].len());
             for iter in self.graph[id].iter() {
                 if search_flags.contains(*iter) {
-           
+                    continue;
+                }
+
+                let dist = self.nodes[*iter].metric(query, self.mt).unwrap();
+                tmp.push(Reverse(neighbor::Neighbor
