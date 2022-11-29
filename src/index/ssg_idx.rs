@@ -434,4 +434,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 search_flags.insert(*iter);
             }
             while !tmp.is_empty() {
-                let Reverse(item) = tmp
+                let Reverse(item) = tmp.pop().unwrap();
+                // let item = tmp.pop().unwrap();
+                if item.distance() > heap.peek().unwrap().distance() {
+                    break;
+         
