@@ -430,4 +430,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 }
 
                 let dist = self.nodes[*iter].metric(query, self.mt).unwrap();
-                tmp.push(Reverse(neighbor::Neighbor
+                tmp.push(Reverse(neighbor::Neighbor::new(*iter, dist)));
+                search_flags.insert(*iter);
+            }
+            while !tmp.is_empty() {
+                let Reverse(item) = tmp
