@@ -438,4 +438,11 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
                 // let item = tmp.pop().unwrap();
                 if item.distance() > heap.peek().unwrap().distance() {
                     break;
-         
+                }
+                heap.pop();
+                search_queue.push_back(item.idx());
+                heap.push(item);
+            }
+        }
+
+        let mut resu
