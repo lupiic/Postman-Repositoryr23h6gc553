@@ -445,4 +445,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             }
         }
 
-        let mut resu
+        let mut result = Vec::with_capacity(heap.len());
+
+        while !heap.is_empty() {
+            let tmp = heap.pop().unwrap();
+            result.push((*self.nodes[tmp.idx()].c
