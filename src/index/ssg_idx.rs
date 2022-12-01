@@ -449,4 +449,12 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
 
         while !heap.is_empty() {
             let tmp = heap.pop().unwrap();
-            result.push((*self.nodes[tmp.idx()].c
+            result.push((*self.nodes[tmp.idx()].clone(), tmp.distance()));
+        }
+        result.reverse();
+        result
+    }
+
+    fn check_edge(&self, h: usize, t: usize) -> bool {
+        let mut flag = true;
+        f
