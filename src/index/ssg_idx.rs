@@ -457,4 +457,12 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
 
     fn check_edge(&self, h: usize, t: usize) -> bool {
         let mut flag = true;
-        f
+        for i in 0..self.graph[h].len() {
+            if t == self.graph[h][i] {
+                flag = false;
+            }
+        }
+        flag
+    }
+
+    fn co
