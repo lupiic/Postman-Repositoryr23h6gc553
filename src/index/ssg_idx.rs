@@ -465,4 +465,8 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         flag
     }
 
-    fn co
+    fn connectivity_profile(&self) {
+        let mut visited = HashSet::with_capacity(self.nodes.len());
+        let mut queue = VecDeque::new();
+
+        queue.push_back(0);
