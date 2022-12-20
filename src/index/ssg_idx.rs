@@ -470,3 +470,9 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
         let mut queue = VecDeque::new();
 
         queue.push_back(0);
+        while !queue.is_empty() {
+            let id = queue.pop_front().unwrap();
+            if visited.contains(&id) {
+                continue;
+            }
+  
