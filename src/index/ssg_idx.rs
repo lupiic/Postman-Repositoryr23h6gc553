@@ -475,4 +475,10 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
             if visited.contains(&id) {
                 continue;
             }
-  
+            visited.insert(id);
+        }
+    }
+}
+
+impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwned>
+    ann_inde
