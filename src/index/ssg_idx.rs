@@ -481,4 +481,7 @@ impl<E: node::FloatElement, T: node::IdxType> SSGIndex<E, T> {
 }
 
 impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwned>
-    ann_inde
+    ann_index::SerializableIndex<E, T> for SSGIndex<E, T>
+{
+    fn load(path: &str) -> Result<Self, &'static str> {
+        let file = File::open(path).unwrap_or_else(|_| pan
