@@ -486,4 +486,10 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
     fn load(path: &str) -> Result<Self, &'static str> {
         let file = File::open(path).unwrap_or_else(|_| panic!("unable to open file {:?}", path));
         let mut instance: SSGIndex<E, T> = bincode::deserialize_from(&file).unwrap();
-        instance.node
+        instance.nodes = instance
+            .tmp_nodes
+            .iter()
+            .map(|x| Box::new(x.clone()))
+            .collect();
+        Ok(instance)
+    }
