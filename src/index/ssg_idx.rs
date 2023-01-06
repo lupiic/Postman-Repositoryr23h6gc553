@@ -496,4 +496,7 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
 
     fn dump(&mut self, path: &str) -> Result<(), &'static str> {
         self.tmp_nodes = self.nodes.iter().map(|x| *x.clone()).collect();
-        let enco
+        let encoded_bytes = bincode::serialize(&self).unwrap();
+        let mut file = File::create(path).unwrap();
+        file.write_all(&encoded_bytes)
+   
