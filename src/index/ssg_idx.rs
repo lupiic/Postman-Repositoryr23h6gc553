@@ -493,3 +493,7 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
             .collect();
         Ok(instance)
     }
+
+    fn dump(&mut self, path: &str) -> Result<(), &'static str> {
+        self.tmp_nodes = self.nodes.iter().map(|x| *x.clone()).collect();
+        let enco
