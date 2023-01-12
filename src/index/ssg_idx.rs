@@ -507,4 +507,9 @@ impl<E: node::FloatElement + DeserializeOwned, T: node::IdxType + DeserializeOwn
 impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for SSGIndex<E, T> {
     fn build(&mut self, mt: metrics::Metric) -> Result<(), &'static str> {
         self.mt = mt;
-        s
+        self._build();
+
+        Result::Ok(())
+    }
+    fn add_node(&mut self, item: &node::Node<E, T>) -> Result<(), &'static str> {
+        self.nodes.pu
