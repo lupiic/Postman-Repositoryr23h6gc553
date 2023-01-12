@@ -512,4 +512,10 @@ impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for SSGI
         Result::Ok(())
     }
     fn add_node(&mut self, item: &node::Node<E, T>) -> Result<(), &'static str> {
-        self.nodes.pu
+        self.nodes.push(Box::new(item.clone()));
+        Result::Ok(())
+    }
+    fn built(&self) -> bool {
+        true
+    }
+    fn node_search_k(&self, item: &node::Node<E, T>, k: us
