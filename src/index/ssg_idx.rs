@@ -518,4 +518,12 @@ impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for SSGI
     fn built(&self) -> bool {
         true
     }
-    fn node_search_k(&self, item: &node::Node<E, T>, k: us
+    fn node_search_k(&self, item: &node::Node<E, T>, k: usize) -> Vec<(node::Node<E, T>, E)> {
+        self.search(item, k)
+    }
+
+    fn name(&self) -> &'static str {
+        "SSGIndex"
+    }
+
+    fn nodes_size(&s
