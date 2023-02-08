@@ -526,4 +526,11 @@ impl<E: node::FloatElement, T: node::IdxType> ann_index::ANNIndex<E, T> for SSGI
         "SSGIndex"
     }
 
-    fn nodes_size(&s
+    fn nodes_size(&self) -> usize {
+        self.nodes.len()
+    }
+
+    fn dimension(&self) -> usize {
+        self.dimension
+    }
+}
